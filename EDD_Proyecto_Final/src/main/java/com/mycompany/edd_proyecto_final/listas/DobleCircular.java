@@ -1,17 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.mycompany.edd_proyecto_final.listas;
 
 import com.mycompany.interfaces.Estructuras_Acciones;
 import com.mycompany.exception.PopException;
 
-/**
- *
- * @author <button><a href="https://twitter.com/Julio_Ixcoy_">Julio</a></button>
- */
 public class DobleCircular<T> implements Estructuras_Acciones<T> {
 
     private Nodo<T> root;
@@ -191,8 +183,11 @@ public class DobleCircular<T> implements Estructuras_Acciones<T> {
     @Override
     public String toString() {
         String anteriorStr =  "";//root.toStringAnterior(cantNodos-1);
-        return root.toString()+"\n"+anteriorStr;
+        return root.toString()+"\n";//+anteriorStr;
 
+    }
+    public String testP(){
+        return root.testGraph(true,true);
     }
 
     private void reindexar(int index, Nodo<T> nodo) {

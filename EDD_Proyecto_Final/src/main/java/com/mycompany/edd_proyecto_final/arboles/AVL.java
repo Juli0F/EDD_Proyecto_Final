@@ -1,14 +1,17 @@
 package com.mycompany.edd_proyecto_final.arboles;
 
-/**
- *
- */
-public class Arbol<T> {
+public class AVL<T> {
 
     protected Nodo<T> root;
     private String cadena;
+    private String graph;
     private int contador = 0;
 
+    public AVL() {
+        graph = "";
+    }
+
+    
     public boolean isEmpty() {
         return root == null;
     }
@@ -168,7 +171,34 @@ public class Arbol<T> {
     public void setRoot(Nodo<T> root) {
         this.root = root;
     }
+    public String testGraph(){
+        graph =  root.hashCode()+"[ label=\""+root.value+"\"];";
+        inOrden(root);
+        return graph;
+    }
 
+    public void inOrden (Nodo<T> nodo){
+        
+        if (nodo != null) {
+            if (nodo.left != null) {
+                //cadena += this.getSiguiente().getId() + "[label=\"" + this.getSiguiente().getValue().toString() + "\"];\n";
+                //graph +="\n"+ nodo.hashCode()+"[ label=\""+nodo.value+"\"];";
+                graph += nodo.left.hashCode()+"[ label=\""+nodo.left.value+"\"];";
+                graph +="\n"+ nodo.hashCode() +" -> "+ nodo.left.hashCode()+";\n\t";
+            }
+            inOrden(nodo.left);
+            if (nodo.right != null) {
+               // graph +="\n"+ nodo.value+" -> "+ nodo.right.value+";\n\t";
+                
+                //graph +="\n"+ nodo.hashCode()+"[ label=\""+nodo.value+"\"];";
+                graph +="\n"+ nodo.right.hashCode()+"[ label=\""+nodo.right.value+"\"];";
+                graph +="\n"+ nodo.hashCode() +" -> "+ nodo.right.hashCode()+";\n\t";
+                
+            }
+            inOrden(nodo.right);
+        }
+        
+    }
     @Override
     public String toString() {
         return "Arbol{" + "cadena=" + cadena + '}';

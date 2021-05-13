@@ -1,17 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mycompany.edd_proyecto_final.listas;
 
 import java.util.Objects;
 
-/**
- *
- * @author <button><a href="https://twitter.com/Julio_Ixcoy_">Julio</a></button>
- * nodo para la lista simple, doble, simple circular, doble circular
- */
 public class Nodo<T> {
 
     private Nodo<T> siguiente;
@@ -21,10 +11,9 @@ public class Nodo<T> {
     private static int i = 0;
 
     public Nodo() {
-        System.out.println("i -> " + i);
+
         this.id = i++;
-        System.out.println("i -> " + i);
-        System.out.println("id -> " + id);
+
     }
 
     public Nodo(T value, boolean incrementI) {
@@ -99,25 +88,53 @@ public class Nodo<T> {
         return true;
     }
 
+    public String testGraph(boolean doble, boolean circular) {
+        String cadena = "";
+        if (circular) {
+            if (siguiente.getSiguiente().getId() == 0) {
+                cadena += this.getSiguiente().getId() + "[label=\"" + this.getSiguiente().getValue().toString() + "\"];\n";
+                cadena += this.getSiguiente().getId() + " -> " + siguiente.getSiguiente().getId();
+                cadena += "\n" + siguiente.getSiguiente().getId() + " -> " + siguiente.getId() + "\n";
+            }
+
+        }
+
+        if (siguiente != null && siguiente.getId() != 0) {
+            cadena += this.getId() + "[label=\"" + this.getValue().toString() + "\"];\n";
+            cadena += this.getId() + " -> " + siguiente.getId();
+
+            if (doble) {
+                cadena += "\n" + siguiente.getId() + " -> " + this.getId();
+            }
+
+            cadena += "\n" + siguiente.testGraph(doble, circular);
+
+        }
+        return cadena;
+
+    }
+
     @Override
     public String toString() {
-        String siguienteToString = "-->null";
+        String siguienteToString = "->null";
         String anteriorStr = "";
         if (siguiente != null && siguiente.getId() != 0) {
-            siguienteToString = "-->" + siguiente.toString();
+            siguienteToString = siguiente.toString();
             if (anterior != null && siguiente.getId() != 0) {
-                anteriorStr = " <- " + " (id: " + id + ", value: " + value + ")";
+                anteriorStr = "-> " + value.toString();
+                //anteriorStr = " <- " + " (id: " + id + ", value: " + value + ")";
             }
 
         }
         if (siguiente.getId() == 0) {
-            siguienteToString = "--> (id: 0, value: " + siguiente.getValue() + ")";
+            siguienteToString = "->( " + siguiente.getValue().toString() + ")";
             if (anterior != null) {
-                anteriorStr = " <- " + " (id: " + id + ", value: " + value + ")";
+                anteriorStr = " -> " + value.toString();//" (id: " + id + ", value: " + value + ")";
+                //anteriorStr = " <- " + " (id: " + id + ", value: " + value + ")";
             }
         }
 
-        return anteriorStr + " (id: " + id + ", value: " + value + ")" + siguienteToString;//+", value=" + value  ;
+        return anteriorStr + value.toString() + siguienteToString;//+", value=" + value  ;
     }
 
 }

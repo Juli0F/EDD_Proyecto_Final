@@ -12,4 +12,11 @@ public class Estudiante extends Persona{
     public Estudiante() {
     }
     
+
+    @Override
+    public String toString() {
+        return "Estudiante\nCarnet: "+super.getId() + super.toString(); 
+    }
+    
+    
 }

@@ -1,18 +1,9 @@
-
 package com.mycompany.edd_proyecto_final.arboles;
 
 import java.util.Objects;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- */
 public class Nodo<T> {
+
     protected T value;       // the associated value
     protected int height;      // height of the subtree
     protected int size;        // number of nodes in subtree
@@ -32,8 +23,28 @@ public class Nodo<T> {
     public void setValue(T value) {
         this.value = value;
     }
-    
-    
+
+    public String testGraph() {
+        String graph = "";
+        try {
+            
+        if (left != null ) {
+            graph += value.hashCode() + "->" + left.value.hashCode()+"\n";
+            graph += value.hashCode() + "->" + right.value.hashCode()+"\n";
+            graph += left.testGraph();
+        }
+
+//        if (right != null && value != null) {
+//            graph += value.hashCode() + "->" + left.value.hashCode()+"\n";
+//            graph += value.hashCode() + "->" + right.value.hashCode()+"\n";
+//            graph += right.testGraph();
+//        }
+        } catch (Exception e) {
+        }
+
+
+        return graph;
+    }
 
     @Override
     public int hashCode() {
@@ -59,6 +70,5 @@ public class Nodo<T> {
         }
         return true;
     }
-    
-    
+
 }

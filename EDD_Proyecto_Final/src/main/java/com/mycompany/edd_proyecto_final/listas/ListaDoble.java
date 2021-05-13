@@ -1,17 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.mycompany.edd_proyecto_final.listas;
 
 import com.mycompany.interfaces.Estructuras_Acciones;
 import com.mycompany.exception.PopException;
 
-/**
- *
- * @author <button><a href="https://twitter.com/Julio_Ixcoy_">Julio</a></button>
- */
 public class ListaDoble<T> implements Estructuras_Acciones<T> {
 
     private Nodo<T> root;
