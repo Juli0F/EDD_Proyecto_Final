@@ -5,6 +5,12 @@
  */
 package com.mycompany.edd_proyecto_final.ui;
 
+import com.mycompany.edd_practica_2.readf_file.Read;
+import java.io.File;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 /**
  *
  * @author Temporal
@@ -73,7 +79,25 @@ public class LoadFile extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        JFileChooser selectorArchivos = new JFileChooser();
+        selectorArchivos.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archios texto plano", "txt");
+        selectorArchivos.setFileFilter(filtro);
+// indica cual fue la accion de usuario sobre el jfilechooser
+        int resultado = selectorArchivos.showOpenDialog(this);
+
+        File archivo = selectorArchivos.getSelectedFile(); // obtiene el archivo seleccionado
+
+// muestra error si es inválido
+        if ((archivo == null) || (archivo.getName().equals(""))) {
+            JOptionPane.showMessageDialog(this, "Nombre de archivo inválido", "Nombre de archivo inválido", JOptionPane.ERROR_MESSAGE);
+        } // fin de if
+
+        Read read = new Read();
+        read.leerTexto(archivo, jTextArea1,jTextArea2);
+
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

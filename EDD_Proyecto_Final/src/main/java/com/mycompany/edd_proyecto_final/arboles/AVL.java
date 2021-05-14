@@ -45,7 +45,8 @@ public class AVL<T> {
     }
 
     public T buscar(T value){
-        return buscar(value, root).value;
+        Nodo<T> nodo = buscar(value, root);
+        return nodo != null? nodo.value:null;
     }
     public Nodo<T> buscar(T val, Nodo<T> x) {
         if (x == null) {

@@ -18,12 +18,14 @@ import javax.swing.JTextArea;
  */
 public class Read {
 
-    public static ListaSimple<String> lstErr ;
+    public static ListaSimple<String> lstErr;
     private String strRead;
+    private String strReadErr;
 
     public Read() {
         lstErr = new ListaSimple<>();
         strRead = "";
+        strReadErr = "";
     }
 
     public void leerTexto(File file) {
@@ -35,55 +37,78 @@ public class Read {
 
         leerTexto(file.getAbsolutePath());
         area.setText(strRead);
-        
+
+    }
+
+    public void leerTexto(File file, JTextArea area, JTextArea showErrores) {
+
+        leerTexto(file.getAbsolutePath());
+        area.setText(strRead);
+        showErrores.setText(strReadErr);
+
     }
 
     public void leerTexto(String path) {
 
-        
         System.out.println("path " + path);
 
         try (BufferedReader br = new BufferedReader(new FileReader(path))) {
 
             String linea = br.readLine();
             Interprete in = new Interprete();
+            int cont = 1;
+            int bien = 1;
 
             while (linea != null) {
 
-                strRead += linea + "\n";
                 System.out.println(linea);
                 String[] lineaSplit = linea.split("\\(");
 
-                switch (lineaSplit[0]) {
-                    case "Estudiate":
-                        in.interpreteEstudiante(lineaSplit[1].trim().substring(0, lineaSplit[1].length()-2));
-
+                switch (lineaSplit[0].toLowerCase().trim()) {
+                    case "estudiante":
+                        in.interpreteEstudiante(lineaSplit[1].trim().substring(0, lineaSplit[1].length() - 2));
+                        strRead += bien + ": " + linea + "\n";
+                        bien++;
                         break;
                     case "usuario":
-                        in.interpreteUsuario(lineaSplit[1].trim().substring(0, lineaSplit[1].length()-2));
-
+                        in.interpreteUsuario(lineaSplit[1].trim().substring(0, lineaSplit[1].length() - 2));
+                        strRead += bien + ": " + linea + "\n";
+                        bien++;
                         break;
-                    case "Catedratico":
-                        in.interpreteCatedratico(lineaSplit[1].trim().substring(0, lineaSplit[1].length()-2));
-
+                    case "catedratico":
+                        in.interpreteCatedratico(lineaSplit[1].trim().substring(0, lineaSplit[1].length() - 2));
+                        strRead += bien + ": " + linea + "\n";
+                        bien++;
                         break;
-                    case "Edificio":
-                        in.interpreteEdificio(lineaSplit[1].trim().substring(0, lineaSplit[1].length()-2));
+                    case "edificio":
+                        in.interpreteEdificio(lineaSplit[1].trim().substring(0, lineaSplit[1].length() - 2));
+                        strRead += bien + ": " + linea + "\n";
+                        bien++;
                         break;
-                    case "Salon":
-                        in.interpreteSalon(lineaSplit[1].trim().substring(0, lineaSplit[1].length()-2));
+                    case "salon":
+                        in.interpreteSalon(lineaSplit[1].trim().substring(0, lineaSplit[1].length() - 2));
+                        strRead += bien + ": " + linea + "\n";
+                        bien++;
                         break;
-                    case "Curso":
-                        in.interpreteCurso(lineaSplit[1].trim().substring(0, lineaSplit[1].length()-2));
+                    case "curso":
+                        in.interpreteCurso(lineaSplit[1].trim().substring(0, lineaSplit[1].length() - 2));
+                        strRead += bien + ": " + linea + "\n";
+                        bien++;
                         break;
-                    case "Horario":
-                        in.interpreteHorario(lineaSplit[1].trim().substring(0, lineaSplit[1].length()-2));
+                    case "horario":
+                        in.interpreteHorario(lineaSplit[1].trim().substring(0, lineaSplit[1].length() - 2));
+                        strRead += bien + ": " + linea + "\n";
+                        bien++;
                         break;
-                    case "Asignar":
-                        in.interpreteAsignar(lineaSplit[1].trim().substring(0, lineaSplit[1].length()-2));
+                    case "asignar":
+                        in.interpreteAsignar(lineaSplit[1].trim().substring(0, lineaSplit[1].length() - 2));
+                        strRead += bien + ": " + linea + "\n";
+                        bien++;
                         break;
                     default:
+                        strReadErr += cont + ": " + linea + "\n";
                         lstErr.push(linea);
+                        cont++;
 
                 }
 
