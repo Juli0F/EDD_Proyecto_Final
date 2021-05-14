@@ -1,7 +1,9 @@
 package com.mycompany.main;
 
 import com.mycompany.edd_proyecto_final.arboles.AVL;
+import com.mycompany.edd_proyecto_final.entidades.Catedratico;
 import com.mycompany.edd_proyecto_final.entidades.Estudiante;
+import com.mycompany.edd_proyecto_final.entidades.Usuario;
 import com.mycompany.edd_proyecto_final.listas.DobleCircular;
 import com.mycompany.edd_proyecto_final.listas.ListaSimple;
 import com.mycompany.edd_proyecto_final.listas.SimpleCircular;
@@ -12,48 +14,20 @@ import java.util.logging.Logger;
 public class Main {
 
     public static void main(String[] args) {
-        DobleCircular<Estudiante> lstSimple = new DobleCircular<>();
-        AVL<Estudiante> avl = new AVL<>();
-//        avl.insertar(1);
-//        avl.insertar(2);
-//        avl.insertar(3);
-//        avl.insertar(4);
-//        avl.insertar(5);
-//        avl.insertar(6);
-        avl.insertar(new Estudiante("01", "Julio-01", "Xela"));
-        avl.insertar(new Estudiante("02", "Julio-02", "Xela"));
-        avl.insertar(new Estudiante("03", "Julio-03", "Xela"));
-        avl.insertar(new Estudiante("04", "Julio-04", "Xela"));
-        avl.insertar(new Estudiante("05", "Julio-05", "Xela"));
-        avl.insertar(new Estudiante("06", "Julio-06", "Xela"));
+       
+        ListaSimple<Integer> lstSimple = new ListaSimple<>(37);
+        lstSimple.push(5, 20);
+        System.out.println("size: "+ lstSimple.size());
+        System.out.println("value: "+ lstSimple.get(20));
         
-        //System.out.println(avl.testGraph());
+        Estudiante s = new Estudiante("1","estudiante","test");
+        Catedratico c = new Catedratico("1", "Catedratico", "123");
+        Usuario u = new Usuario("1", "1", "password", "1");
         
+        System.out.println("s: "+ s.hashCode());
+        System.out.println("c: "+ c.hashCode());
+        System.out.println("u: "+u.hashCode());
         
-
-//        lstSimple.push("Uno");
-//        lstSimple.push("Dos");
-//        lstSimple.push("Tres");
-//        lstSimple.push("Cuatro");
-//        
-//        
-//        lstSimple.push(new Estudiante("01", "Julio", "Xela"));
-//        lstSimple.push(new Estudiante("02", "Fernando", "Xela"));
-//        lstSimple.push(new Estudiante("03", "Julio-03", "Xela"));
-//        lstSimple.push(new Estudiante("04", "Julio-04", "Xela"));
-//        lstSimple.push(new Estudiante("05", "Julio-05", "Xela"));
-//
-//        lstSimple.delete(10);
-//
-//        System.out.println("digraph g {\n" + lstSimple.testP() + "\n}");
-
-
-        String test = "Estudiante(200145785, “Fernando Marroquín”, “Mixco”);";
-        String[] s = test.split("\\(");
-        System.out.println(s[1]);
-        
-        System.out.println(s[1].substring(0, s[1].length()-2));
-
     }
 
 }

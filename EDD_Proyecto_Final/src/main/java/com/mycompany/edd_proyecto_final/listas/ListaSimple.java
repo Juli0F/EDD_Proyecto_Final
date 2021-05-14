@@ -1,4 +1,3 @@
-
 package com.mycompany.edd_proyecto_final.listas;
 
 import com.mycompany.interfaces.Estructuras_Acciones;
@@ -13,6 +12,35 @@ public class ListaSimple<T> implements Estructuras_Acciones<T> {
 
     public ListaSimple() {
         cantNodos = 0;
+    }
+
+    public ListaSimple(int spaceInit) {
+        for (int i = 0; i < spaceInit; i++) {
+
+            push(null);
+
+        }
+    }
+
+    public boolean push(T value, int index) {
+        
+        return pushIndex(value, root, index);
+        
+    }
+
+    public boolean pushIndex(T value, Nodo<T> nodo,  int index) {
+        if (nodo.getSiguiente().getId() == index) {
+            if (nodo.getSiguiente().getValue() == null) {
+                nodo.getSiguiente().setValue(value);
+                return true;
+            }else{
+                return false;
+            }
+
+        } else {
+            return pushIndex(value, nodo.getSiguiente(),index);
+        }
+        
     }
 
     @Override
@@ -135,7 +163,7 @@ public class ListaSimple<T> implements Estructuras_Acciones<T> {
             cantNodos -= 1;
             return true;
         }
-        return delete(nodoDelete, root) ;
+        return delete(nodoDelete, root);
     }
 
     private boolean delete(Nodo<T> value, Nodo<T> nodo) {
