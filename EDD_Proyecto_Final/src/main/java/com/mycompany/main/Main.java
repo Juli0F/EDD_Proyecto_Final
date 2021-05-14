@@ -27,7 +27,7 @@ public class Main {
         avl.insertar(new Estudiante("05", "Julio-05", "Xela"));
         avl.insertar(new Estudiante("06", "Julio-06", "Xela"));
         
-        System.out.println(avl.testGraph());
+        //System.out.println(avl.testGraph());
         
         
 
@@ -46,6 +46,13 @@ public class Main {
 //        lstSimple.delete(10);
 //
 //        System.out.println("digraph g {\n" + lstSimple.testP() + "\n}");
+
+
+        String test = "Estudiante(200145785, “Fernando Marroquín”, “Mixco”);";
+        String[] s = test.split("\\(");
+        System.out.println(s[1]);
+        
+        System.out.println(s[1].substring(0, s[1].length()-2));
 
     }
 

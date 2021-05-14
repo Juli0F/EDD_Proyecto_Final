@@ -1,5 +1,7 @@
 package com.mycompany.edd_proyecto_final.arboles;
 
+import com.mycompany.edd_proyecto_final.io.WriteFile;
+
 public class AVL<T> {
 
     protected Nodo<T> root;
@@ -42,6 +44,9 @@ public class AVL<T> {
         root = insertar(root, val);
     }
 
+    public T buscar(T value){
+        return buscar(value, root).value;
+    }
     public Nodo<T> buscar(T val, Nodo<T> x) {
         if (x == null) {
             return null;
@@ -172,8 +177,14 @@ public class AVL<T> {
         this.root = root;
     }
     public String testGraph(){
-        graph =  root.hashCode()+"[ label=\""+root.value+"\"];";
+        graph = "digraph avl{\n";
+        graph +=  root.hashCode()+"[ label=\""+root.value+"\"];";
         inOrden(root);
+        
+        graph +="\n}";
+        WriteFile wf = new WriteFile();
+        wf.writeFile("avl.dot", graph);
+        wf.dibujar("avl.dot", "avl.png");
         return graph;
     }
 
@@ -181,16 +192,11 @@ public class AVL<T> {
         
         if (nodo != null) {
             if (nodo.left != null) {
-                //cadena += this.getSiguiente().getId() + "[label=\"" + this.getSiguiente().getValue().toString() + "\"];\n";
-                //graph +="\n"+ nodo.hashCode()+"[ label=\""+nodo.value+"\"];";
                 graph += nodo.left.hashCode()+"[ label=\""+nodo.left.value+"\"];";
                 graph +="\n"+ nodo.hashCode() +" -> "+ nodo.left.hashCode()+";\n\t";
             }
             inOrden(nodo.left);
             if (nodo.right != null) {
-               // graph +="\n"+ nodo.value+" -> "+ nodo.right.value+";\n\t";
-                
-                //graph +="\n"+ nodo.hashCode()+"[ label=\""+nodo.value+"\"];";
                 graph +="\n"+ nodo.right.hashCode()+"[ label=\""+nodo.right.value+"\"];";
                 graph +="\n"+ nodo.hashCode() +" -> "+ nodo.right.hashCode()+";\n\t";
                 

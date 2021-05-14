@@ -1,0 +1,34 @@
+digraph avl{
+1908[ label="Estudiante
+Carnet: 04
+nombre: Julio-04
+ direccion: Xela"];1906[ label="Estudiante
+Carnet: 02
+nombre: Julio-02
+ direccion: Xela"];
+1908 -> 1906;
+	1905[ label="Estudiante
+Carnet: 01
+nombre: Julio-01
+ direccion: Xela"];
+1906 -> 1905;
+	
+1907[ label="Estudiante
+Carnet: 03
+nombre: Julio-03
+ direccion: Xela"];
+1906 -> 1907;
+	
+1909[ label="Estudiante
+Carnet: 05
+nombre: Julio-05
+ direccion: Xela"];
+1908 -> 1909;
+	
+1910[ label="Estudiante
+Carnet: 06
+nombre: Julio-06
+ direccion: Xela"];
+1909 -> 1910;
+	
+}

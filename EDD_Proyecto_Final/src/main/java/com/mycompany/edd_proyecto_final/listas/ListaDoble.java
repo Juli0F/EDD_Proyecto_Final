@@ -164,5 +164,23 @@ public class ListaDoble<T> implements Estructuras_Acciones<T> {
             reindexar(index+1, nodo.getSiguiente());
         }
     }
+    public T get(T value){
+    
+        return getT(value, root);
+    }
+    
+    private T getT(T value, Nodo<T> nodo) {
+        if (nodo != null) {
+            if (value.hashCode() == nodo.getValue().hashCode()) {
+                return nodo.getValue();
+            } else {
+                return getT(value, nodo.getSiguiente());
+            }
+
+        }
+        return null;
+    }
+
+    
 
 }
