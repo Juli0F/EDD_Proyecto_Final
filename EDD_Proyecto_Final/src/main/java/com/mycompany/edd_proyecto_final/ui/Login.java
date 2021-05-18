@@ -50,8 +50,6 @@ public class Login extends javax.swing.JInternalFrame {
             }
         });
 
-        txtPass.setText("jPasswordField1");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -92,39 +90,32 @@ public class Login extends javax.swing.JInternalFrame {
         Usuario usr = new Usuario();
         usr.setUsuario(txtUsr.getText());
         usr.setPassword(txtPass.getText());
+
+        bar.setVisible(true);
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void permisos() {
+
         for (Component component : bar.getComponents()) {
-         //   System.out.println("componnt: " + component.toString());
-            
+            //   System.out.println("componnt: " + component.toString());
+
             if (component.toString().contains("Editar")) {
                 System.out.println("Text");
                 JMenu m = (JMenu) component;
                 m.setVisible(false);
-            }
-            if (component.toString().contains("Crear")) {
+            } else if (component.toString().contains("Crear")) {
                 System.out.println("Crear");
                 JMenu m = (JMenu) component;
                 m.setVisible(false);
+            } else if (component.toString().contains("Archivo")) {
+                System.out.println("Crear");
+                JMenu m = (JMenu) component;
+                m.setVisible(false);
+
             }
         }
-        bar.setVisible(true);
-
-//        if (Interprete.lstUsr.contains(usr)) {
-//            Usuario temp = Interprete.lstUsr.get(usr);
-//            if (temp.getPassword().equals(usr.getPassword())) {
-//                if (temp.getTipo().equalsIgnoreCase("colaborador")) {
-//                    bar.setVisible(true);
-//                }else if (temp.getTipo().equalsIgnoreCase("estudiante")) {
-//                    bar.setVisible(true);
-//                    bar.getComponents();
-//                    for (Component component : bar.getComponents()) {
-//                        System.out.println("componnt: "+component.getName());
-//                    }
-//                    
-//                }
-//            }
-//        }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
+    }
     private JMenuBar bar;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

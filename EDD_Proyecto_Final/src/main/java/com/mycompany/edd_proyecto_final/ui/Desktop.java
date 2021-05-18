@@ -47,26 +47,42 @@ public class Desktop extends javax.swing.JFrame {
 
         desktopPane = new javax.swing.JDesktopPane();
         menuBar = new javax.swing.JMenuBar();
-        fileMenu = new javax.swing.JMenu();
+        btnFile = new javax.swing.JMenu();
         btnCargar = new javax.swing.JMenuItem();
         btnSave = new javax.swing.JMenuItem();
         exitMenuItem = new javax.swing.JMenuItem();
-        helpMenu = new javax.swing.JMenu();
-        contentMenuItem = new javax.swing.JMenuItem();
-        aboutMenuItem = new javax.swing.JMenuItem();
-        editMenu = new javax.swing.JMenu();
+        btnCrear = new javax.swing.JMenu();
+        crearEstudiante = new javax.swing.JMenuItem();
+        crearCatedratico = new javax.swing.JMenuItem();
+        crearHorario = new javax.swing.JMenuItem();
+        aboutMenuItem3 = new javax.swing.JMenuItem();
+        aboutMenuItem5 = new javax.swing.JMenuItem();
+        aboutMenuItem6 = new javax.swing.JMenuItem();
+        aboutMenuItem7 = new javax.swing.JMenuItem();
+        btnEditar = new javax.swing.JMenu();
         cutMenuItem = new javax.swing.JMenuItem();
         copyMenuItem = new javax.swing.JMenuItem();
         pasteMenuItem = new javax.swing.JMenuItem();
         deleteMenuItem = new javax.swing.JMenuItem();
-        helpMenu1 = new javax.swing.JMenu();
+        aboutMenuItem4 = new javax.swing.JMenuItem();
+        aboutMenuItem8 = new javax.swing.JMenuItem();
+        btnGraficar = new javax.swing.JMenu();
+        contentMenuItem2 = new javax.swing.JMenuItem();
+        aboutMenuItem9 = new javax.swing.JMenuItem();
+        aboutMenuItem10 = new javax.swing.JMenuItem();
+        aboutMenuItem11 = new javax.swing.JMenuItem();
+        aboutMenuItem12 = new javax.swing.JMenuItem();
+        aboutMenuItem13 = new javax.swing.JMenuItem();
+        aboutMenuItem14 = new javax.swing.JMenuItem();
+        btnAcerca = new javax.swing.JMenu();
         contentMenuItem1 = new javax.swing.JMenuItem();
         aboutMenuItem1 = new javax.swing.JMenuItem();
+        btnSalir = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        fileMenu.setMnemonic('f');
-        fileMenu.setText("Archivo");
+        btnFile.setMnemonic('f');
+        btnFile.setText("Archivo");
 
         btnCargar.setMnemonic('o');
         btnCargar.setText("Cargar");
@@ -75,69 +91,139 @@ public class Desktop extends javax.swing.JFrame {
                 btnCargarActionPerformed(evt);
             }
         });
-        fileMenu.add(btnCargar);
+        btnFile.add(btnCargar);
 
         btnSave.setMnemonic('s');
         btnSave.setText("Guardar");
-        fileMenu.add(btnSave);
+        btnFile.add(btnSave);
 
         exitMenuItem.setMnemonic('x');
-        exitMenuItem.setText("Exit");
+        exitMenuItem.setText("Salir");
         exitMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 exitMenuItemActionPerformed(evt);
             }
         });
-        fileMenu.add(exitMenuItem);
+        btnFile.add(exitMenuItem);
 
-        menuBar.add(fileMenu);
+        menuBar.add(btnFile);
 
-        helpMenu.setMnemonic('h');
-        helpMenu.setText("Crear");
+        btnCrear.setMnemonic('h');
+        btnCrear.setText("Crear");
 
-        contentMenuItem.setMnemonic('c');
-        contentMenuItem.setText("Contents");
-        helpMenu.add(contentMenuItem);
+        crearEstudiante.setMnemonic('c');
+        crearEstudiante.setText("Estudiante");
+        btnCrear.add(crearEstudiante);
 
-        aboutMenuItem.setMnemonic('a');
-        aboutMenuItem.setText("About");
-        helpMenu.add(aboutMenuItem);
+        crearCatedratico.setMnemonic('a');
+        crearCatedratico.setText("Catedratico");
+        btnCrear.add(crearCatedratico);
 
-        menuBar.add(helpMenu);
+        crearHorario.setMnemonic('a');
+        crearHorario.setText("Horario");
+        btnCrear.add(crearHorario);
 
-        editMenu.setMnemonic('e');
-        editMenu.setText("Editar");
+        aboutMenuItem3.setMnemonic('a');
+        aboutMenuItem3.setText("Curso");
+        btnCrear.add(aboutMenuItem3);
+
+        aboutMenuItem5.setMnemonic('a');
+        aboutMenuItem5.setText("Usuario");
+        btnCrear.add(aboutMenuItem5);
+
+        aboutMenuItem6.setMnemonic('a');
+        aboutMenuItem6.setText("Edificio");
+        btnCrear.add(aboutMenuItem6);
+
+        aboutMenuItem7.setMnemonic('a');
+        aboutMenuItem7.setText("Asignacion");
+        btnCrear.add(aboutMenuItem7);
+
+        menuBar.add(btnCrear);
+
+        btnEditar.setMnemonic('e');
+        btnEditar.setText("Editar");
 
         cutMenuItem.setMnemonic('t');
-        cutMenuItem.setText("Cut");
-        editMenu.add(cutMenuItem);
+        cutMenuItem.setText("Estudiante");
+        btnEditar.add(cutMenuItem);
 
         copyMenuItem.setMnemonic('y');
-        copyMenuItem.setText("Copy");
-        editMenu.add(copyMenuItem);
+        copyMenuItem.setText("Catedratico");
+        btnEditar.add(copyMenuItem);
 
         pasteMenuItem.setMnemonic('p');
-        pasteMenuItem.setText("Paste");
-        editMenu.add(pasteMenuItem);
+        pasteMenuItem.setText("Horario");
+        btnEditar.add(pasteMenuItem);
 
         deleteMenuItem.setMnemonic('d');
-        deleteMenuItem.setText("Delete");
-        editMenu.add(deleteMenuItem);
+        deleteMenuItem.setText("Curso");
+        deleteMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteMenuItemActionPerformed(evt);
+            }
+        });
+        btnEditar.add(deleteMenuItem);
 
-        menuBar.add(editMenu);
+        aboutMenuItem4.setMnemonic('a');
+        aboutMenuItem4.setText("Catedratico");
+        btnEditar.add(aboutMenuItem4);
 
-        helpMenu1.setMnemonic('h');
-        helpMenu1.setText("Acerca De");
+        aboutMenuItem8.setMnemonic('a');
+        aboutMenuItem8.setText("Asignacion");
+        btnEditar.add(aboutMenuItem8);
+
+        menuBar.add(btnEditar);
+
+        btnGraficar.setMnemonic('h');
+        btnGraficar.setText("Graficar");
+
+        contentMenuItem2.setMnemonic('c');
+        contentMenuItem2.setText("Estudiante");
+        btnGraficar.add(contentMenuItem2);
+
+        aboutMenuItem9.setMnemonic('a');
+        aboutMenuItem9.setText("Catedratico");
+        btnGraficar.add(aboutMenuItem9);
+
+        aboutMenuItem10.setMnemonic('a');
+        aboutMenuItem10.setText("Horario");
+        btnGraficar.add(aboutMenuItem10);
+
+        aboutMenuItem11.setMnemonic('a');
+        aboutMenuItem11.setText("Curso");
+        btnGraficar.add(aboutMenuItem11);
+
+        aboutMenuItem12.setMnemonic('a');
+        aboutMenuItem12.setText("Usuario");
+        btnGraficar.add(aboutMenuItem12);
+
+        aboutMenuItem13.setMnemonic('a');
+        aboutMenuItem13.setText("Edificio");
+        btnGraficar.add(aboutMenuItem13);
+
+        aboutMenuItem14.setMnemonic('a');
+        aboutMenuItem14.setText("Asignacion");
+        btnGraficar.add(aboutMenuItem14);
+
+        menuBar.add(btnGraficar);
+
+        btnAcerca.setMnemonic('h');
+        btnAcerca.setText("Acerca De");
 
         contentMenuItem1.setMnemonic('c');
         contentMenuItem1.setText("Contents");
-        helpMenu1.add(contentMenuItem1);
+        btnAcerca.add(contentMenuItem1);
 
         aboutMenuItem1.setMnemonic('a');
         aboutMenuItem1.setText("About");
-        helpMenu1.add(aboutMenuItem1);
+        btnAcerca.add(aboutMenuItem1);
 
-        menuBar.add(helpMenu1);
+        menuBar.add(btnAcerca);
+
+        btnSalir.setMnemonic('e');
+        btnSalir.setText("Salir");
+        menuBar.add(btnSalir);
 
         setJMenuBar(menuBar);
 
@@ -160,13 +246,19 @@ public class Desktop extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
-        System.exit(0);
+        //System.exit(0);
+        
+        agregarInternal(new Login(menuBar));
     }//GEN-LAST:event_exitMenuItemActionPerformed
 
     private void btnCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarActionPerformed
             LoadFile file = new LoadFile();
             agregarInternal(file);
     }//GEN-LAST:event_btnCargarActionPerformed
+
+    private void deleteMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteMenuItemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deleteMenuItemActionPerformed
 
     public void agregarInternal(JInternalFrame internal){
         internal.setSize(desktopPane.getSize());
@@ -214,21 +306,37 @@ public class Desktop extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem aboutMenuItem;
     private javax.swing.JMenuItem aboutMenuItem1;
+    private javax.swing.JMenuItem aboutMenuItem10;
+    private javax.swing.JMenuItem aboutMenuItem11;
+    private javax.swing.JMenuItem aboutMenuItem12;
+    private javax.swing.JMenuItem aboutMenuItem13;
+    private javax.swing.JMenuItem aboutMenuItem14;
+    private javax.swing.JMenuItem aboutMenuItem3;
+    private javax.swing.JMenuItem aboutMenuItem4;
+    private javax.swing.JMenuItem aboutMenuItem5;
+    private javax.swing.JMenuItem aboutMenuItem6;
+    private javax.swing.JMenuItem aboutMenuItem7;
+    private javax.swing.JMenuItem aboutMenuItem8;
+    private javax.swing.JMenuItem aboutMenuItem9;
+    private javax.swing.JMenu btnAcerca;
     private javax.swing.JMenuItem btnCargar;
+    private javax.swing.JMenu btnCrear;
+    private javax.swing.JMenu btnEditar;
+    private javax.swing.JMenu btnFile;
+    private javax.swing.JMenu btnGraficar;
+    private javax.swing.JMenu btnSalir;
     private javax.swing.JMenuItem btnSave;
-    private javax.swing.JMenuItem contentMenuItem;
     private javax.swing.JMenuItem contentMenuItem1;
+    private javax.swing.JMenuItem contentMenuItem2;
     private javax.swing.JMenuItem copyMenuItem;
+    private javax.swing.JMenuItem crearCatedratico;
+    private javax.swing.JMenuItem crearEstudiante;
+    private javax.swing.JMenuItem crearHorario;
     private javax.swing.JMenuItem cutMenuItem;
     private javax.swing.JMenuItem deleteMenuItem;
     private javax.swing.JDesktopPane desktopPane;
-    private javax.swing.JMenu editMenu;
     private javax.swing.JMenuItem exitMenuItem;
-    private javax.swing.JMenu fileMenu;
-    private javax.swing.JMenu helpMenu;
-    private javax.swing.JMenu helpMenu1;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem pasteMenuItem;
     // End of variables declaration//GEN-END:variables

@@ -186,8 +186,8 @@ public class DobleCircular<T> implements Estructuras_Acciones<T> {
         return root.toString()+"\n";//+anteriorStr;
 
     }
-    public String testP(){
-        return root.testGraph(true,true);
+    public String testP(int group){
+        return root.testGraph(true,true,group);
     }
 
     private void reindexar(int index, Nodo<T> nodo) {

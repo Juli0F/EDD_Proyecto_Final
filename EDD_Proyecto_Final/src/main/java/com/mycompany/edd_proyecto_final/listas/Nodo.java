@@ -88,11 +88,11 @@ public class Nodo<T> {
         return true;
     }
 
-    public String testGraph(boolean doble, boolean circular) {
+    public String testGraph(boolean doble, boolean circular, int group) {
         String cadena = "";
         if (circular) {
             if (siguiente.getSiguiente().getId() == 0) {
-                cadena += this.getSiguiente().getId() + "[label=\"" + this.getSiguiente().getValue().toString() + "\"];\n";
+                cadena += this.getSiguiente().getId() + "[group = "+group+",label=\"" + this.getSiguiente().getValue().toString() + "\"];\n";
                 cadena += this.getSiguiente().getId() + " -> " + siguiente.getSiguiente().getId();
                 cadena += "\n" + siguiente.getSiguiente().getId() + " -> " + siguiente.getId() + "\n";
             }
@@ -100,15 +100,17 @@ public class Nodo<T> {
         }
 
         if (siguiente != null && siguiente.getId() != 0) {
-            cadena += this.getId() + "[label=\"" + this.getValue().toString() + "\"];\n";
+            cadena += this.getId() + "[group = "+group+",label=\"" + this.getValue().toString() + "\"];\n";
             cadena += this.getId() + " -> " + siguiente.getId();
 
             if (doble) {
                 cadena += "\n" + siguiente.getId() + " -> " + this.getId();
             }
 
-            cadena += "\n" + siguiente.testGraph(doble, circular);
+            cadena += "\n" + siguiente.testGraph(doble, circular,siguiente.value.hashCode());
 
+        }else{
+             cadena += this.getId() + "[group = "+group+",  label=\"" + this.getValue().toString() + "\"];\n";
         }
         return cadena;
 

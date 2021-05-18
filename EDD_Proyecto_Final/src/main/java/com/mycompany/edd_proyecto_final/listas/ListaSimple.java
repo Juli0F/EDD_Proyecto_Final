@@ -12,6 +12,7 @@ public class ListaSimple<T> implements Estructuras_Acciones<T> {
 
     public ListaSimple() {
         cantNodos = 0;
+        System.out.println("Cantidad de nodos: " + cantNodos);
     }
 
     public ListaSimple(int spaceInit) {
@@ -23,24 +24,52 @@ public class ListaSimple<T> implements Estructuras_Acciones<T> {
     }
 
     public boolean push(T value, int index) {
+
+        if (index < cantNodos) {
+            return pushIndex(value, root, index);
+        }
         
-        return pushIndex(value, root, index);
-        
+        return false;
+
     }
 
-    public boolean pushIndex(T value, Nodo<T> nodo,  int index) {
+    private boolean pushIndex(T value, Nodo<T> nodo, int index) {
         if (nodo.getSiguiente().getId() == index) {
             if (nodo.getSiguiente().getValue() == null) {
                 nodo.getSiguiente().setValue(value);
                 return true;
-            }else{
+            } else {
                 return false;
             }
 
         } else {
-            return pushIndex(value, nodo.getSiguiente(),index);
+            return pushIndex(value, nodo.getSiguiente(), index);
         }
-        
+
+    }
+
+    public boolean pushForce(T value, int index) {
+
+        if (index < cantNodos) {
+            return pushIndexForce(value, root, index);
+        }
+        return false;
+
+    }
+
+    private boolean pushIndexForce(T value, Nodo<T> nodo, int index) {
+        if (nodo.getSiguiente().getId() == index) {
+            // if (nodo.getSiguiente().getValue() == null) {
+            nodo.getSiguiente().setValue(value);
+            return true;
+            //} else {
+            //  return false;
+            //}
+
+        } else {
+            return pushIndexForce(value, nodo.getSiguiente(), index);
+        }
+
     }
 
     @Override
@@ -50,10 +79,14 @@ public class ListaSimple<T> implements Estructuras_Acciones<T> {
             root = nodoAdd;
 
             cantNodos = 1;
+            System.out.println("(1 root) Cantidad de nodos:  " + cantNodos);
+            //System.out.println(value.toString());
+
         } else {
 
             push(nodoAdd, root);
             cantNodos += 1;
+            System.out.println("    Cantidad de nodos: " + cantNodos);
         }
     }
 
@@ -122,7 +155,15 @@ public class ListaSimple<T> implements Estructuras_Acciones<T> {
 
     @Override
     public T get(int index) {
-        return getNodo(index, root);
+        try {
+
+            return getNodo(index, root);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
     }
 
     private T getNodo(int index, Nodo<T> nodo) {
@@ -136,6 +177,7 @@ public class ListaSimple<T> implements Estructuras_Acciones<T> {
                 return getNodo(index, nodo.getSiguiente());
             }
         }
+
     }
 
     @Override
@@ -210,6 +252,10 @@ public class ListaSimple<T> implements Estructuras_Acciones<T> {
                 return delete(index, nodo.getSiguiente());
             }
         }
+    }
+
+    public String testGraph(int group) {
+        return root.testGraph(false, false, group);
     }
 
     public int size() {

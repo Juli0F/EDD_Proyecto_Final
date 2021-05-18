@@ -16,6 +16,7 @@ public class Edificio {
     public Edificio(String id) {
         this.id = id;
         this.lstSalon = new ListaSimple<>();
+        System.out.println(id+" hashcode: "+ hashCode());
     }
 
     public String getId() {
@@ -57,6 +58,17 @@ public class Edificio {
             return false;
         }
         return true;
+    }
+    public void graphSalon(){
+        String graph = "subgraph {";
+        System.out.println("---> "+ this.lstSalon.testGraph(hashCode()));
+        
+    }
+
+    @Override
+    public String toString() {
+        String cadena = "subgraph "+hashCode()+"g {"+ lstSalon.testGraph(hashCode()) + "}//";
+        return "Edificio" + "id:" + id + "\"]\n //" ;
     }
     
     
