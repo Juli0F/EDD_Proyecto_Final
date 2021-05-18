@@ -90,7 +90,7 @@ public class Main {
         System.out.println((eRec== null)?"null":eRec.getId());
         
         
-        
+        System.out.println(hashTest.testGraph());
         
         
     }

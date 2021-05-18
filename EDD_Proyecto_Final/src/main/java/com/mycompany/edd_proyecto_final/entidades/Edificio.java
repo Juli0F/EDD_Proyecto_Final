@@ -67,8 +67,9 @@ public class Edificio {
 
     @Override
     public String toString() {
-        String cadena = "subgraph "+hashCode()+"g {"+ lstSalon.testGraph(hashCode()) + "}//";
-        return "Edificio" + "id:" + id + "\"]\n //" ;
+        //String cadena = "subgraph "+hashCode()+"g {"+ lstSalon.testGraph(hashCode()) + "}//";
+        //return "Edificio" + "id:" + id + "\"]\n //" ;
+        return "Edificio :"+id;
     }
     
     

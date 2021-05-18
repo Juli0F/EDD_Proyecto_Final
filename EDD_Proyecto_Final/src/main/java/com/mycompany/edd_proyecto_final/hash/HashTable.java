@@ -9,7 +9,6 @@ public class HashTable<V> {
     private int charge;
     private int cont;
 
-    
     public HashTable() {
 
         valor = new ListaSimple<>(37);
@@ -93,25 +92,23 @@ public class HashTable<V> {
     public V getValue(V value) {
 
         int index = getIndexByHash(value);
-        System.out.println("get-Index: "+ index);
+        System.out.println("get-Index: " + index);
         V v = valor.get(index);
-        
-        
-        if ( ( v != null) &&  v.hashCode() == value.hashCode()) {
+
+        if ((v != null) && v.hashCode() == value.hashCode()) {
             return v;
         } else {
             //aca debo llamar a la otra funcion, que busque el valor buscado 
             cont++;
-            System.out.println("cont "+cont);
-            
+            System.out.println("cont " + cont);
+
             Integer indexV = getIndexColision(value, index);// != null? valor.get(index)
-            
+
             V valueRec = valor.get(indexV);
             if ((valueRec != null) && value.hashCode() == valueRec.hashCode()) {
                 return valueRec;
             }
-            
-            
+
             return null;
         }
 
@@ -119,8 +116,8 @@ public class HashTable<V> {
 
     private Integer getIndexColision(V value, int index) {
 
-         return colisionesFix(value, index);
-         //index = colisionesFix(value, index);
+        return colisionesFix(value, index);
+        //index = colisionesFix(value, index);
 //        if (index < valor.size()) {
 //
 //            if (valor.get(index).equals(value)) {
@@ -134,19 +131,19 @@ public class HashTable<V> {
     }
 
     public boolean eliminar(V value) {
-        
+
         int index = getIndexByHash(value);
         if (valor.get(index).hashCode() == value.hashCode()) {
             return valor.pushForce(null, index);
-            
-        }else{
+
+        } else {
             index = getIndexColision(value, index);
             if (valor.get(index).hashCode() == value.hashCode()) {
                 return valor.pushForce(null, index);
             }
         }
         return false;
-        
+
 //        int index = getIndexByHash(value);
 //        if (valor.get(index).equals(value)) {
 //            V v = valor.get(index);
@@ -164,9 +161,92 @@ public class HashTable<V> {
 //        }
 //        return false;
     }
-    
-    public String  testGraph(){
-        return valor.testGraph(1);
+
+    public String testGraph() {
+
+        String cadena = "node [shape = box]\n"
+                + "key[label=\"Clave\" width = 1.5, style = filled, fillcolor = firebrick1, group = 1 ];\n"
+                + "valor[label=\"Valor\" width = 1.5, style = filled, fillcolor = firebrick1, group = 2 ];\n"
+                + "nodo0 [label =\"0\"  width = 1.5 style = filled, fillcolor = bisque1, group = 1 ];\n";
+        cadena += "key -> valor;\n";
+        cadena += "{rank = same; key; valor}\n"
+                + "key -> nodo0;\n";
+        for (int i = 1; i <= valor.size(); i++) {
+            cadena += "nodo" + i + " [label =\"" + i + "\" pos = \"1.5!\" width = 1.5 style = filled, fillcolor = bisque1, group = 1 ];\n";
+
+        }
+        //muestra la columna de cla
+        
+        cadena += enlazarNodos(false);
+        
+        String nodoValue = nodoValue();
+        cadena += nodoValue+"\n";
+        String primer = (String) nodoValue.subSequence(0, 11);
+        //
+        
+        if (!Character.isDigit(primer.charAt(primer.length()-1))) {
+            primer = primer.substring(0, primer.length()-1);
+        }
+        cadena += "valor -> "+primer+"\n";
+        return cadena;
+    }
+
+    private String nodoValue() {
+        String nodoValue = "";
+
+        nodoValue = nodoValue(6);
+        return nodoValue;
+    }
+
+    private String nodoValue(int index) {
+        String cadena = "";
+        V v = valor.get(index);
+
+        if (index <= valor.size()) {
+
+            if (v != null) {
+
+                cadena += "nodoValue" + index + "[label=\"" + v.toString() + "\" group = 2]\n";
+                cadena += "nodo" + index + " -> nodoValue" + index + "\n";
+                cadena += "{rank = same; nodo" + index + "; nodoValue" + index + "};\n";
+
+            }
+            cadena += nodoValue(index + 1);
+
+            return cadena;
+        }
+        return cadena;
+    }
+
+    private String enlazarNodos(boolean contNull) {
+        String cadena = "";
+//esto era para que me imprimiera solo las celdas que tuvieran un valor
+//si contNull = verdadero entonces contaba los valores nulos de lo contrario los omitia
+//        if (!contNull) {
+//            for (int i = 0; i < valor.size(); i++) {
+//                V v = valor.get(i);
+//                if (v != null) {
+//                    cadena += "nodo" + i + " -> nodo" + (i + 1) + ";\n";
+//                }
+//                
+//            }
+//        } else {
+//            for (int i = 0; i < valor.size(); i++) {
+//                cadena += "nodo" + i + " -> nodo" + (i + 1) + ";\n";
+//            }
+//        }
+
+         for (int i = 0; i < valor.size(); i++) {
+                cadena += "nodo" + i + " -> nodo" + (i + 1) + ";\n";
+            }
+        return cadena;
+    }
+
+    public void graph(V value, int index) {
+
+        String cadena = "";
+        cadena += index + "-> " + value.toString();
+
     }
 
 }
