@@ -1,5 +1,6 @@
 package com.mycompany.edd_proyecto_final.listas;
 
+import com.mycompany.edd_proyecto_final.entidades.Edificio;
 import java.util.Objects;
 
 public class Nodo<T> {
@@ -91,9 +92,9 @@ public class Nodo<T> {
     public String testGraph(boolean doble, boolean circular, int group) {
         String cadena = "";
         if (circular) {
-            
-            if (siguiente.getSiguiente().getId() == 0) {
-                cadena += this.getSiguiente().getId() + "[group = "+group+",label=\"" + this.getSiguiente().getValue().toString() + "\"];\n";
+
+            if (siguiente.getSiguiente() == null && siguiente.getSiguiente().getId() == 0) {
+                cadena += this.getSiguiente().getId() + "[group = " + group + ",label=\"" + this.getSiguiente().getValue().toString() + "\"];\n";
                 cadena += this.getSiguiente().getId() + " -> " + siguiente.getSiguiente().getId();
                 cadena += "\n" + siguiente.getSiguiente().getId() + " -> " + siguiente.getId() + "\n";
             }
@@ -101,17 +102,17 @@ public class Nodo<T> {
         }
 
         if (siguiente != null && siguiente.getId() != 0) {
-            cadena += this.getId() + "[group = "+group+",label=\"" + this.getValue().toString() + "\"];\n";
+            cadena += this.getId() + "[group = " + group + ",label=\"" + this.getValue().toString() + "\"];\n";
             cadena += this.getId() + " -> " + siguiente.getId();
-            
+
             if (doble) {
                 cadena += "\n" + siguiente.getId() + " -> " + this.getId();
             }
 
-            cadena += "\n" + siguiente.testGraph(doble, circular,siguiente.value.hashCode());
+            cadena += "\n" + siguiente.testGraph(doble, circular, siguiente.value.hashCode());
 
-        }else{
-             cadena += this.getId() + "[group = "+group+",  label=\"" + this.getValue().toString() + "\"];\n";
+        } else {
+            cadena += this.getId() + "[group = " + group + ",  label=\"" + this.getValue().toString() + "\"];\n";
         }
         return cadena;
 
@@ -138,7 +139,12 @@ public class Nodo<T> {
 //        }
 //
 //        return anteriorStr + value.toString() + siguienteToString;//+", value=" + value  ;
-            return "";//Nodo: "+this.id+" value: "+ value.toString();
+        String cadena = "";
+        if (value instanceof Edificio) {
+            Edificio e = (Edificio)value;
+            cadena = "Edificio: "+e.getId()+"\nCantidad De Salones: "+e.getLstSalon().size();
+        }
+        return cadena;//Nodo: "+this.id+" value: "+ value.toString();
     }
 
 }

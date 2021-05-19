@@ -5,8 +5,8 @@
  */
 package com.mycompany.edd_proyecto_final.ui;
 
-import com.mycompany.edd_practica_2.readf_file.Interprete;
 import com.mycompany.edd_proyecto_final.entidades.Usuario;
+import static com.mycompany.edd_proyecto_final.ui.Desktop.lstUsr;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -117,8 +117,8 @@ public class Login1 extends javax.swing.JInternalFrame {
             usr.setUsuario(txtUser.getText());
             usr.setPassword(txtPassword.getText());
 
-            if (Interprete.lstUsr.contains(usr)) {
-                Usuario usuario = Interprete.lstUsr.get(usr);
+            if (lstUsr.contains(usr)) {
+                Usuario usuario = lstUsr.get(usr);
                 if (usuario.getPassword().equals(usr.getPassword())) {
                     if (!usuario.getTipo().equalsIgnoreCase("colaborador")) {
                         permisos();

@@ -5,8 +5,8 @@
  */
 package com.mycompany.edd_proyecto_final.ui;
 
-import com.mycompany.edd_practica_2.readf_file.Interprete;
 import com.mycompany.edd_proyecto_final.entidades.Usuario;
+import static com.mycompany.edd_proyecto_final.ui.Desktop.lstUsr;
 import javax.swing.JOptionPane;
 
 /**
@@ -92,10 +92,10 @@ public class CrearUsuario extends javax.swing.JInternalFrame {
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
         
         ;
-        if (!Interprete.lstUsr.contains(new Usuario("", txtUser.getText(), "", ""))) {
+        if (!lstUsr.contains(new Usuario("", txtUser.getText(), "", ""))) {
             String tipo = (String)cmbTipo.getSelectedItem();
             Usuario usuario = new Usuario("", txtUser.getText(), txtPassword.getText(), tipo);
-            Interprete.lstUsr.push(usuario);
+            lstUsr.push(usuario);
             
         }else{
             JOptionPane.showMessageDialog(null, txtUser.getText()+", Ya Se Encuentra Registrado ", "Informacion", JOptionPane.INFORMATION_MESSAGE);

@@ -1,4 +1,3 @@
-
 package com.mycompany.edd_proyecto_final.listas;
 
 import com.mycompany.interfaces.Estructuras_Acciones;
@@ -182,12 +181,13 @@ public class DobleCircular<T> implements Estructuras_Acciones<T> {
 
     @Override
     public String toString() {
-        String anteriorStr =  "";//root.toStringAnterior(cantNodos-1);
-        return root.toString()+"\n";//+anteriorStr;
+        String anteriorStr = "";//root.toStringAnterior(cantNodos-1);
+        return root.toString() + "\n";//+anteriorStr;
 
     }
-    public String testP(int group){
-        return root.testGraph(true,true,group);
+
+    public String testP(int group) {
+        return root.testGraph(true, true, group);
     }
 
     private void reindexar(int index, Nodo<T> nodo) {
@@ -203,5 +203,29 @@ public class DobleCircular<T> implements Estructuras_Acciones<T> {
         } else {
             //nodo.setSiguiente(root);//se recolaca el apuntado al nuevo root, para mantener la lista circular
         }
+    }
+
+    public String testGraph() {
+        return root.testGraph(true, true, root.hashCode());
+    }
+
+    public T get(T value) {
+
+        return getT(value, root);
+    }
+
+    private T getT(T value, Nodo<T> nodo) {
+        if (nodo != null) {
+            if (value.hashCode() == nodo.getValue().hashCode()) {
+                return nodo.getValue();
+            } else {
+                if (nodo.getSiguiente() != root) {
+                    return getT(value, nodo.getSiguiente());
+                }
+
+            }
+
+        }
+        return null;
     }
 }

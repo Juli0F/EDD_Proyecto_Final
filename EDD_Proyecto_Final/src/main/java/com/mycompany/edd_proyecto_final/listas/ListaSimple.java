@@ -274,12 +274,16 @@ public class ListaSimple<T> implements Estructuras_Acciones<T> {
         }
     }
 
+    public String testGraph(){
+        return root.testGraph(true, true, root.hashCode());
+    }
+            
     public String testGraph(int group) {
 
         Random r = new Random();
         int x = r.nextInt(100000);
 
-        String cadena = "s" + x + " [label =\"posocion: " + (0) + "\n" + root.getValue().toString() + "\" width = 1.5 ,  group = " + group + "  ];\n";;
+        String cadena = "s" + x + " [label =\"posocion: " + (0) +"\" width = 1.5 ,  group = " + group + "  ];\n";;
         cadena += label(x, 0, root, group);
         return cadena;
 

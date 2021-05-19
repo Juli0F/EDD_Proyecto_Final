@@ -1,5 +1,6 @@
 package com.mycompany.edd_proyecto_final.listas;
 
+import com.mycompany.edd_proyecto_final.entidades.Edificio;
 import com.mycompany.interfaces.Estructuras_Acciones;
 import com.mycompany.exception.PopException;
 
@@ -183,26 +184,52 @@ public class ListaDoble<T> implements Estructuras_Acciones<T> {
         return null;
     }
 
+    public String testGraph(int group) {
+        return root.testGraph(true, true, group);
+    }
+
     public String testGraph() {
+    
+        T t = null;
         String cadena = "";
-        cadena += label(0, root);
-        cadena += "0 -> "+(this.size()-1)+"\n";
-        cadena += (this.size()-1)+"->0;\n";
+        //System.out.println("t class"+ t.getClass().getName());
+        //cadena += (t instanceof Edificio)?label(0, root):labelNoEdificio(0, root);
+        cadena += (root != null && root.getValue() instanceof Edificio)?label(0, root):labelNoEdificio(0, root);
+        cadena += "0 -> " + (this.size() - 1) + ";\n";
+        cadena += (this.size() - 1) + "->0;\n";
         return cadena;
     }
 
     private String label(int indice, Nodo<T> t) {
         String cadena = "";
         if (t != null) {
-            cadena += indice + " [label =\"posocion: " + (indice)+"\n" + t.toString() + "\" width = 1.5 style = filled, fillcolor = firebrick1, group = " + t.getValue().hashCode() + "  ];\n";
-            cadena += indice +" -> "+t.getValue().toString();
-            
+            cadena += indice + " [label =\"posocion: " + (indice) + "\n" + t.toString() + "\" width = 1.5 style = filled, fillcolor = firebrick1, group = " + t.getValue().hashCode() + "  ];\n";
+            cadena += indice + " -> " + t.getValue().toString();
+
             cadena += label(indice + 1, t.getSiguiente());
             //enlaza los nodos 
-            if (indice - 1 != -1 && (indice)< this.size()) {
+            if (indice - 1 != -1 && (indice) < this.size()) {
                 cadena += indice + "->" + (indice - 1) + "\n";
-                cadena += (indice-1) + "->" + (indice ) + "\n";
-                
+                cadena += (indice - 1) + "->" + (indice) + "\n";
+
+            }
+        }
+
+        return cadena;
+    }
+
+    private String labelNoEdificio(int indice, Nodo<T> t) {
+        String cadena = "";
+        if (t != null) {
+            cadena += indice + " [label =\"posocion: " + (indice) + "\n" + t.getValue().toString() + "\" width = 1.5 style = filled, fillcolor = firebrick1, group = " + t.getValue().hashCode() + "  ];\n";
+            //cadena += indice + " -> " + t.getValue().toString();
+
+            cadena += labelNoEdificio(indice + 1, t.getSiguiente());
+            //enlaza los nodos 
+            if (indice - 1 != -1 && (indice) < this.size()) {
+                cadena += indice + "->" + (indice - 1) + "\n";
+                cadena += (indice - 1) + "->" + (indice) + "\n";
+
             }
         }
 

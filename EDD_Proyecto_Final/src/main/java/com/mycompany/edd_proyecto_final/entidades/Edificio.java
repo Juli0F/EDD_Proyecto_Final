@@ -69,7 +69,8 @@ public class Edificio {
     public String toString() {
         //String cadena = "subgraph "+hashCode()+"g {"+ lstSalon.testGraph(hashCode()) + "}//";
         //return "Edificio" + "id:" + id + "\"]\n //" ;
-        return lstSalon.testGraph(this.hashCode());
+        
+        return (lstSalon.empty())?"\"Sin Salones\"": lstSalon.testGraph(this.hashCode());
     }
     
     

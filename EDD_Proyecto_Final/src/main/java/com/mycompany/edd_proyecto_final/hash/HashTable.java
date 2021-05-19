@@ -15,6 +15,9 @@ public class HashTable<V> {
         charge = 0;
         cont = 0;
     }
+    public int getEspacioOcupado(){
+        return charge;
+    }
 
     private int getIndexByHash(V value) {
         return value.hashCode() % valor.size();
@@ -127,17 +130,6 @@ public class HashTable<V> {
     private Integer getIndexColision(V value, int index) {
 
         return colisionesFix(value, index);
-        //index = colisionesFix(value, index);
-//        if (index < valor.size()) {
-//
-//            if (valor.get(index).equals(value)) {
-//                return index;
-//                //return value;
-//            }
-//            return getIndexColision(value, index);
-//        }
-
-        //return null;
     }
 
     public boolean eliminar(V value) {
@@ -149,27 +141,12 @@ public class HashTable<V> {
         } else {
             index = getIndexColision(value, index);
             if (valor.get(index).hashCode() == value.hashCode()) {
+                charge--;
                 return valor.pushForce(null, index);
             }
         }
         return false;
 
-//        int index = getIndexByHash(value);
-//        if (valor.get(index).equals(value)) {
-//            V v = valor.get(index);
-//            v = null;
-//            return true;
-//        } else {
-//            Integer indexColision = getIndexColision(value, index);
-//
-//            if (indexColision != null) {
-//
-//                V v = valor.get(indexColision);
-//                v = null;
-//                return true;
-//            }
-//        }
-//        return false;
     }
 
     public String testGraph() {
@@ -181,7 +158,8 @@ public class HashTable<V> {
         cadena += "key -> valor;\n";
         cadena += "{rank = same; key; valor}\n"
                 + "key -> nodo0;\n";
-        for (int i = 1; i <= valor.size(); i++) {
+        
+        for (int i = 0; i <= valor.size(); i++) {
             cadena += "nodo" + i + " [label =\"" + i + "\" pos = \"1.5!\" width = 1.5 style = filled, fillcolor = bisque1, group = 1 ];\n";
 
         }
@@ -206,7 +184,7 @@ public class HashTable<V> {
     private String nodoValue() {
         String nodoValue = "";
 
-        nodoValue = nodoValue(6);
+        nodoValue = nodoValue(0);
         return nodoValue;
     }
 
@@ -232,22 +210,6 @@ public class HashTable<V> {
 
     private String enlazarNodos(boolean contNull) {
         String cadena = "";
-//esto era para que me imprimiera solo las celdas que tuvieran un valor
-//si contNull = verdadero entonces contaba los valores nulos de lo contrario los omitia
-//        if (!contNull) {
-//            for (int i = 0; i < valor.size(); i++) {
-//                V v = valor.get(i);
-//                if (v != null) {
-//                    cadena += "nodo" + i + " -> nodo" + (i + 1) + ";\n";
-//                }
-//                
-//            }
-//        } else {
-//            for (int i = 0; i < valor.size(); i++) {
-//                cadena += "nodo" + i + " -> nodo" + (i + 1) + ";\n";
-//            }
-//        }
-
         for (int i = 0; i < valor.size(); i++) {
             cadena += "nodo" + i + " -> nodo" + (i + 1) + ";\n";
         }

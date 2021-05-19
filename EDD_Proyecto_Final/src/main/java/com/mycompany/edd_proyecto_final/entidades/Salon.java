@@ -75,7 +75,7 @@ public class Salon {
 
     @Override
     public String toString() {
-        return "No. Salon: "+ noSalon+"\nLimite De Estudiantes:  "+ cantidadMaxima;//noSalon="  noSalon + ", cantidadMaxima=" + cantidadMaxima + '}';
+        return "No. Salon: "+ noSalon+"\nLimite De Estudiantes:  "+ cantidadMaxima+"\nAlumnos Asignados: "+disponible;//noSalon="  noSalon + ", cantidadMaxima=" + cantidadMaxima + '}';
     }
     
     

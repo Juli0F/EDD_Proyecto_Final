@@ -5,7 +5,6 @@
  */
 package com.mycompany.edd_practica_2.readf_file;
 
-import com.mycompany.edd_proyecto_final.arboles.AVL;
 import com.mycompany.edd_proyecto_final.entidades.Asignacion;
 import com.mycompany.edd_proyecto_final.entidades.Catedratico;
 import com.mycompany.edd_proyecto_final.entidades.Curso;
@@ -14,18 +13,17 @@ import com.mycompany.edd_proyecto_final.entidades.Estudiante;
 import com.mycompany.edd_proyecto_final.entidades.Horario;
 import com.mycompany.edd_proyecto_final.entidades.Salon;
 import com.mycompany.edd_proyecto_final.entidades.Usuario;
-import com.mycompany.edd_proyecto_final.hash.HashTable;
-import com.mycompany.edd_proyecto_final.listas.ListaDoble;
+import static com.mycompany.edd_proyecto_final.ui.Desktop.hashEstudiante;
+import static com.mycompany.edd_proyecto_final.ui.Desktop.lstAsignacion;
+import static com.mycompany.edd_proyecto_final.ui.Desktop.lstCursos;
+import static com.mycompany.edd_proyecto_final.ui.Desktop.lstEdificios;
+import static com.mycompany.edd_proyecto_final.ui.Desktop.lstUsr;
+import static com.mycompany.edd_proyecto_final.ui.Desktop.treeAvl;
+import static com.mycompany.edd_proyecto_final.ui.Desktop.treeHorario;
 
 public class Interprete {
     
-    public static ListaDoble<Edificio> lstEdificios = new ListaDoble<>();
-    public static ListaDoble<Curso> lstCursos = new ListaDoble<>();
-    public static ListaDoble<Usuario> lstUsr = new ListaDoble<>();
-    public static AVL<Catedratico> treeAvl = new AVL<>();
-    public static HashTable<Estudiante> hashEstudiante = new HashTable<>();
-    public static AVL<Horario> treeHorario = new AVL<>();
-    public static ListaDoble<Asignacion> lstAsignacion = new ListaDoble<>();
+    
     //public static AVL<Salon> AVLsalon = new AVL<>();
     
     public Interprete() {
@@ -42,12 +40,14 @@ public class Interprete {
     
     public void interpreteUsuario(String linea) throws Exception {
         
-        String[] datos = linea.split(",");
+        
+        String[] datos = linea.replace(";", "").split(",");
         Usuario usuario = new Usuario(datos[0], datos[1], datos[2], datos[3]);
         if (!lstUsr.contains(usuario)) {
             System.out.println("tipo: "+datos[3]);
+            datos[3] = datos[3].trim();
             if (datos[3].equalsIgnoreCase("estudiante") || datos[3].equalsIgnoreCase("colaborador")) {
-            System.out.println("tipo: "+datos[4]+" ..insertando");    
+            //System.out.println("tipo: "+datos[4]+" ..insertando");    
                 lstUsr.push(usuario);
             }else{
                 Read.lstErr.push("Tipo de Usuario No valido: " + datos[0] + ", " + datos[1] );
@@ -70,8 +70,9 @@ public class Interprete {
     }
     
     public void interpreteEdificio(String linea) throws Exception {
-        
+        linea = linea.replaceAll(";", "");
         Edificio edificio = new Edificio(linea);
+        
         if (!lstEdificios.contains(edificio)) {
             lstEdificios.push(edificio);
         } else {
@@ -80,6 +81,8 @@ public class Interprete {
     }
     
     public void interpreteSalon(String linea) throws Exception {
+                 //0    1   2
+//        /Salon(“T3”, 110, 75);
         String[] datos = linea.split(",");
         Edificio temp = new Edificio(datos[0]);
         Salon salon = new Salon(datos[1], datos[2]);
@@ -138,7 +141,7 @@ public class Interprete {
         
         Horario horario = treeHorario.buscar(new Horario(datos[1]));
         
-        if (horario.getSalon().isDisponible()) {
+        if (horario != null && horario.getSalon() != null &&  horario.getSalon().isDisponible()) {
             Estudiante estudiante = hashEstudiante.getValue(new Estudiante(datos[0], "",""));
             if (estudiante != null) {
                 Asignacion asignacion = new Asignacion(estudiante, horario, datos[2], datos[3]);

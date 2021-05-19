@@ -6,7 +6,18 @@
 package com.mycompany.edd_proyecto_final.ui;
 
 import com.mycompany.edd_practica_2.readf_file.Interprete;
+import com.mycompany.edd_proyecto_final.arboles.AVL;
+import com.mycompany.edd_proyecto_final.entidades.Asignacion;
+import com.mycompany.edd_proyecto_final.entidades.Catedratico;
+import com.mycompany.edd_proyecto_final.entidades.Curso;
+import com.mycompany.edd_proyecto_final.entidades.Edificio;
+import com.mycompany.edd_proyecto_final.entidades.Estudiante;
+import com.mycompany.edd_proyecto_final.entidades.Horario;
+import com.mycompany.edd_proyecto_final.entidades.Usuario;
+import com.mycompany.edd_proyecto_final.hash.HashTable;
 import com.mycompany.edd_proyecto_final.io.WriteFile;
+import com.mycompany.edd_proyecto_final.listas.ListaDoble;
+import com.mycompany.edd_proyecto_final.listas.ListaSimple;
 import javax.swing.JInternalFrame;
 
 /**
@@ -84,6 +95,7 @@ public class Desktop extends javax.swing.JFrame {
         btnFile.setMnemonic('f');
         btnFile.setText("Archivo");
 
+        btnCargar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
         btnCargar.setMnemonic('o');
         btnCargar.setText("Cargar");
         btnCargar.addActionListener(new java.awt.event.ActionListener() {
@@ -300,14 +312,14 @@ public class Desktop extends javax.swing.JFrame {
 
     private void graphEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_graphEstudianteActionPerformed
         String graph = "digraph hash{\n ";
-        graph += Interprete.hashEstudiante.testGraph();
+        graph += hashEstudiante.testGraph();
         graph += "\n}";
         writeGraph("estudiante.dot", "estudiante.png", graph);
     }//GEN-LAST:event_graphEstudianteActionPerformed
 
     private void graphCatedraticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_graphCatedraticoActionPerformed
         String graph = "digraph c { \n";
-        graph += Interprete.treeAvl.testGraph();
+        graph += treeAvl.testGraph();
         graph += "\n}";
         writeGraph("catedratico.dot", "catedratico.png", graph);
         
@@ -319,21 +331,21 @@ public class Desktop extends javax.swing.JFrame {
 
     private void graphCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_graphCursoActionPerformed
         String graph = "digraph curso { \n";
-        graph += Interprete.lstCursos.testGraph();
+        graph += lstCursos.testGraph();
         graph += "\n}";
         writeGraph("curso.dot", "curso.png", graph);
     }//GEN-LAST:event_graphCursoActionPerformed
 
     private void graphUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_graphUsuarioActionPerformed
         String graph = "digraph usuario { \n";
-        graph += Interprete.lstUsr.testGraph();
+        graph += lstUsr.testGraph();
         graph += "\n}";
         writeGraph("usuario.dot", "usuario.png", graph);
     }//GEN-LAST:event_graphUsuarioActionPerformed
 
     private void graphEdificioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_graphEdificioActionPerformed
         String graph = "digraph Edificio { \n";
-        graph += Interprete.lstUsr.testGraph();
+        graph += lstEdificios.testGraph();
         graph += "\n}";
         writeGraph("edificio.dot", "edificio.png", graph);
     }//GEN-LAST:event_graphEdificioActionPerformed
@@ -389,6 +401,15 @@ public class Desktop extends javax.swing.JFrame {
         });
     }
     private WriteFile wf;
+    
+    
+    public static ListaDoble<Edificio> lstEdificios = new ListaDoble<>();
+    public static ListaDoble<Curso> lstCursos = new ListaDoble<>();
+    public static ListaDoble<Usuario> lstUsr = new ListaDoble<>();
+    public static AVL<Catedratico> treeAvl = new AVL<>();
+    public static HashTable<Estudiante> hashEstudiante = new HashTable<>();
+    public static AVL<Horario> treeHorario = new AVL<>();
+    public static ListaDoble<Asignacion> lstAsignacion = new ListaDoble<>();
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem aboutMenuItem1;
