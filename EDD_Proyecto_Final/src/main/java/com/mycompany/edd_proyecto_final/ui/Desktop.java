@@ -125,6 +125,11 @@ public class Desktop extends javax.swing.JFrame {
 
         crearEstudiante.setMnemonic('c');
         crearEstudiante.setText("Estudiante");
+        crearEstudiante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                crearEstudianteActionPerformed(evt);
+            }
+        });
         btnCrear.add(crearEstudiante);
 
         crearCatedratico.setMnemonic('a');
@@ -141,6 +146,11 @@ public class Desktop extends javax.swing.JFrame {
 
         aboutMenuItem5.setMnemonic('a');
         aboutMenuItem5.setText("Usuario");
+        aboutMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aboutMenuItem5ActionPerformed(evt);
+            }
+        });
         btnCrear.add(aboutMenuItem5);
 
         aboutMenuItem6.setMnemonic('a');
@@ -158,6 +168,11 @@ public class Desktop extends javax.swing.JFrame {
 
         cutMenuItem.setMnemonic('t');
         cutMenuItem.setText("Estudiante");
+        cutMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cutMenuItemActionPerformed(evt);
+            }
+        });
         btnEditar.add(cutMenuItem);
 
         copyMenuItem.setMnemonic('y');
@@ -362,8 +377,21 @@ public class Desktop extends javax.swing.JFrame {
         writeGraph("Asignacion.dot", "Asignacion.png", graph);
     }//GEN-LAST:event_graphAsignacionActionPerformed
 
+    private void aboutMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItem5ActionPerformed
+        agregarInternal(new CrearUsuario());
+    }//GEN-LAST:event_aboutMenuItem5ActionPerformed
+
+    private void crearEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearEstudianteActionPerformed
+        agregarInternal(new CrearEstudiante());
+    }//GEN-LAST:event_crearEstudianteActionPerformed
+
+    private void cutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cutMenuItemActionPerformed
+        agregarInternal(new EditarEstudiante());
+    }//GEN-LAST:event_cutMenuItemActionPerformed
+
     public void agregarInternal(JInternalFrame internal) {
-        internal.setSize(desktopPane.getSize());
+        //internal.setSize(desktopPane.getSize());
+         internal.setLocation(desktopPane.getWidth() / 2 - (internal.getWidth()/2), desktopPane.getHeight() / 2 - (internal.getHeight()/2));
         internal.setVisible(true);
         desktopPane.removeAll();
         desktopPane.repaint();
