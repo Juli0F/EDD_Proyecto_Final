@@ -15,7 +15,8 @@ public class HashTable<V> {
         charge = 0;
         cont = 0;
     }
-    public int getEspacioOcupado(){
+
+    public int getEspacioOcupado() {
         return charge;
     }
 
@@ -33,7 +34,7 @@ public class HashTable<V> {
     public boolean insertar(V value) {
         //posicion donde se almacenara el valor
         int index = getIndexByHash(value);
-        if (index < 0 ) {
+        if (index < 0) {
             index *= -1;
         }
 
@@ -47,7 +48,7 @@ public class HashTable<V> {
                 //al obtenerlo debo verificar que este vacio nuevamente, hasta encontrar un lugar disponible
                 //guardo el indice en index  y termino el ciclo
                 index = colisionesFix(value, index);
-                index = (index < 0)?(-1 * index ):index;
+                index = (index < 0) ? (-1 * index) : index;
             }
 
             System.out.println("Index " + index);
@@ -105,6 +106,7 @@ public class HashTable<V> {
     public V getValue(V value) {
 
         int index = getIndexByHash(value);
+        index = (index < 0) ? (-1 * index) : index;
         System.out.println("get-Index: " + index);
         V v = valor.get(index);
 
@@ -115,9 +117,10 @@ public class HashTable<V> {
             cont++;
             System.out.println("cont " + cont);
 
-            Integer indexV = getIndexColision(value, index);// != null? valor.get(index)
-
-            V valueRec = valor.get(indexV);
+            index = getIndexColision(value, index);// != null? valor.get(index)
+            index = (index < 0) ? (-1 * index) : index;
+            
+            V valueRec = valor.get(index);
             if ((valueRec != null) && value.hashCode() == valueRec.hashCode()) {
                 return valueRec;
             }
@@ -158,7 +161,7 @@ public class HashTable<V> {
         cadena += "key -> valor;\n";
         cadena += "{rank = same; key; valor}\n"
                 + "key -> nodo0;\n";
-        
+
         for (int i = 0; i <= valor.size(); i++) {
             cadena += "nodo" + i + " [label =\"" + i + "\" pos = \"1.5!\" width = 1.5 style = filled, fillcolor = bisque1, group = 1 ];\n";
 

@@ -101,6 +101,12 @@ public class Horario {
         }
         return true;
     }
+
+    @Override
+    public String toString() {
+        return  id + "\n hora: " + hora + "\n dia " + dia + "\n salon: " + salon + "\n curso" + curso + "\n catedratico" + catedratico + '}';
+    }
+    
     
     
 }

@@ -49,5 +49,12 @@ public class Asignacion {
     public void setFin(String fin) {
         this.fin = fin;
     }
+
+    @Override
+    public String toString() {
+        return  "-------Estudiante------\n "+estudiante.getId() + " - "+estudiante.getNombre() + "\n zona: " + zona + "\n final: " + fin +
+                "\n ----horario----\n" +horario.getDia()+" - "+ horario.getHora()+"\n---Curso--\n"+horario.getCurso().getNombre();
+    }
+    
     
 }

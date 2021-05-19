@@ -33,7 +33,8 @@ public class Interprete {
     public void interpreteEstudiante(String linea) throws Exception {
         
         String[] datos = linea.split(",");
-        Estudiante p = new Estudiante(datos[0], datos[1], datos[2]);
+        datos = borrarEspacios(datos);
+        Estudiante p = new Estudiante(datos[0].trim(), datos[1].trim(), datos[2].trim());
         hashEstudiante.insertar(p);
         
     }
@@ -42,11 +43,12 @@ public class Interprete {
         
         
         String[] datos = linea.replace(";", "").split(",");
-        Usuario usuario = new Usuario(datos[0], datos[1], datos[2], datos[3]);
+        datos = borrarEspacios(datos);
+        Usuario usuario = new Usuario(datos[0].trim(), datos[1].trim(), datos[2].trim(), datos[3].trim());
         if (!lstUsr.contains(usuario)) {
             System.out.println("tipo: "+datos[3]);
             datos[3] = datos[3].trim();
-            if (datos[3].equalsIgnoreCase("estudiante") || datos[3].equalsIgnoreCase("colaborador")) {
+            if (datos[3].trim().equalsIgnoreCase("estudiante") || datos[3].trim().equalsIgnoreCase("colaborador")) {
             //System.out.println("tipo: "+datos[4]+" ..insertando");    
                 lstUsr.push(usuario);
             }else{
@@ -59,6 +61,7 @@ public class Interprete {
     
     public void interpreteCatedratico(String linea) throws Exception {
         String[] datos = linea.split(",");
+        datos = borrarEspacios(datos);
         Catedratico catedratico = new Catedratico(datos[0], datos[1], datos[2]);
         
         if (treeAvl.buscar(catedratico) == null) {
@@ -71,7 +74,7 @@ public class Interprete {
     
     public void interpreteEdificio(String linea) throws Exception {
         linea = linea.replaceAll(";", "");
-        Edificio edificio = new Edificio(linea);
+        Edificio edificio = new Edificio(linea.trim());
         
         if (!lstEdificios.contains(edificio)) {
             lstEdificios.push(edificio);
@@ -81,11 +84,13 @@ public class Interprete {
     }
     
     public void interpreteSalon(String linea) throws Exception {
+        linea = linea.replace(";", "");
                  //0    1   2
 //        /Salon(“T3”, 110, 75);
         String[] datos = linea.split(",");
+        datos = borrarEspacios(datos);
         Edificio temp = new Edificio(datos[0]);
-        Salon salon = new Salon(datos[1], datos[2]);
+        Salon salon = new Salon(datos[1].trim(), datos[2]);
         
         if (lstEdificios.contains(temp)) {
             temp = lstEdificios.get(temp);
@@ -99,6 +104,7 @@ public class Interprete {
     
     public void interpreteCurso(String linea) throws Exception {
         String[] datos = linea.split(",");
+        datos = borrarEspacios(datos);
         Curso curso = new Curso(datos[0], datos[1], datos[2], datos[3]);
         
         if (!lstCursos.contains(curso)) {
@@ -110,6 +116,7 @@ public class Interprete {
     
     public void interpreteHorario(String linea) throws Exception {
         String[] datos = linea.split(",");
+        datos = borrarEspacios(datos);
         //Horario
         //   0      1       2       3       4           5           6      
         //(código, período, día, codCurso, codSalón, codEdificio, numIdentificacion);
@@ -117,13 +124,13 @@ public class Interprete {
         if (e == null) {
             Read.lstErr.push("Codigo del Edificio: " + datos[5] + " No Se Encuntra Registrado! ");
         }else{
-            Salon s = e.getLstSalon().get(new Salon(datos[4], ""));
+            Salon s = e.getLstSalon().get(new Salon(datos[4].trim(), ""));
             if (s != null) {
                // Horario horario = new Horario(datos[0], datos[1], datos[2], s, curso, catedratico)
                Curso curso = lstCursos.get(new Curso(datos[3], "", "", ""));
                 if (curso != null) {
                     Catedratico catedratico = treeAvl.buscar(new Catedratico(datos[6], "", ""));
-                  Horario horario = new Horario(datos[0], datos[1], datos[2], s, curso, catedratico);  
+                  Horario horario = new Horario(datos[0].trim(), datos[1].trim(), datos[2].trim(), s, curso, catedratico);  
                     treeHorario.insertar(horario);
                 }else{
                     Read.lstErr.push("Codigo de Catedratico: " + datos[3] + " No Se Encuntra Registrado! ");
@@ -135,11 +142,14 @@ public class Interprete {
     }
     
     public void interpreteAsignar(String linea) throws Exception {
+        linea = linea.replace(";", "");
         String[] datos = linea.split(",");
+        
+        datos = borrarEspacios(datos);
             //      0          1       2      3
         //Asignar(carnet, codHorario, zona, final)
         
-        Horario horario = treeHorario.buscar(new Horario(datos[1]));
+        Horario horario = treeHorario.buscar(new Horario(datos[1].trim()));
         
         if (horario != null && horario.getSalon() != null &&  horario.getSalon().isDisponible()) {
             Estudiante estudiante = hashEstudiante.getValue(new Estudiante(datos[0], "",""));
@@ -147,12 +157,22 @@ public class Interprete {
                 Asignacion asignacion = new Asignacion(estudiante, horario, datos[2], datos[3]);
                 lstAsignacion.push(asignacion);
             }else{
+                System.out.println("Error En Asignacion");
                 Read.lstErr.push("Codigo de Estudiante: " + datos[0] + " No Se Encuntra Registrado! ");
             }
         }else{
+            System.out.println("Error En Asignacion");
             Read.lstErr.push("Codigo de Horario: " + datos[1] + " No Se Encuntra Registrado! ");
         }
         
         
+    }
+    private String[] borrarEspacios(String[] datos){
+        
+        for (int i = 0; i < datos.length; i++) {
+             datos[i] = datos[i].trim();
+            
+        }
+        return datos;
     }
 }

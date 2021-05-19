@@ -45,13 +45,15 @@ public class Salon {
     }
 
     public boolean isDisponible(){
+        
         int cantidad = Integer.parseInt(cantidadMaxima);
         return (cantidad - disponible) > 0;
     }
+
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 97 * hash + Objects.hashCode(this.noSalon);
+        int hash = 5;
+        hash = 17 * hash + Objects.hashCode(this.noSalon);
         return hash;
     }
 

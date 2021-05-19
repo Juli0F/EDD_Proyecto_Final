@@ -246,6 +246,11 @@ public class Desktop extends javax.swing.JFrame {
 
         graphAsignacion.setMnemonic('a');
         graphAsignacion.setText("Asignacion");
+        graphAsignacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                graphAsignacionActionPerformed(evt);
+            }
+        });
         btnGraficar.add(graphAsignacion);
 
         menuBar.add(btnGraficar);
@@ -349,6 +354,13 @@ public class Desktop extends javax.swing.JFrame {
         graph += "\n}";
         writeGraph("edificio.dot", "edificio.png", graph);
     }//GEN-LAST:event_graphEdificioActionPerformed
+
+    private void graphAsignacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_graphAsignacionActionPerformed
+        String graph = "digraph Edificio { \n";
+        graph += lstAsignacion.testGraph();
+        graph += "\n}";
+        writeGraph("Asignacion.dot", "Asignacion.png", graph);
+    }//GEN-LAST:event_graphAsignacionActionPerformed
 
     public void agregarInternal(JInternalFrame internal) {
         internal.setSize(desktopPane.getSize());
