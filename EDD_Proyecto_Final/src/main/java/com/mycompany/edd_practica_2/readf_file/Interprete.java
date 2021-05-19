@@ -6,11 +6,12 @@
 package com.mycompany.edd_practica_2.readf_file;
 
 import com.mycompany.edd_proyecto_final.arboles.AVL;
+import com.mycompany.edd_proyecto_final.entidades.Asignacion;
 import com.mycompany.edd_proyecto_final.entidades.Catedratico;
 import com.mycompany.edd_proyecto_final.entidades.Curso;
 import com.mycompany.edd_proyecto_final.entidades.Edificio;
 import com.mycompany.edd_proyecto_final.entidades.Estudiante;
-import com.mycompany.edd_proyecto_final.entidades.Persona;
+import com.mycompany.edd_proyecto_final.entidades.Horario;
 import com.mycompany.edd_proyecto_final.entidades.Salon;
 import com.mycompany.edd_proyecto_final.entidades.Usuario;
 import com.mycompany.edd_proyecto_final.hash.HashTable;
@@ -23,6 +24,9 @@ public class Interprete {
     public static ListaDoble<Usuario> lstUsr = new ListaDoble<>();
     public static AVL<Catedratico> treeAvl = new AVL<>();
     public static HashTable<Estudiante> hashEstudiante = new HashTable<>();
+    public static AVL<Horario> treeHorario = new AVL<>();
+    public static ListaDoble<Asignacion> lstAsignacion = new ListaDoble<>();
+    //public static AVL<Salon> AVLsalon = new AVL<>();
     
     public Interprete() {
         
@@ -83,6 +87,7 @@ public class Interprete {
         if (lstEdificios.contains(temp)) {
             temp = lstEdificios.get(temp);
             temp.getLstSalon().push(salon);
+//            AVLsalon.insertar(salon);
         } else {
             Read.lstErr.push("No se Encontro Edificio: " + datos[0] + " no se almaceno El Salon Con los Datos: " + salon.toString());
         }
@@ -101,10 +106,50 @@ public class Interprete {
     }
     
     public void interpreteHorario(String linea) throws Exception {
-        
+        String[] datos = linea.split(",");
+        //Horario
+        //   0      1       2       3       4           5           6      
+        //(código, período, día, codCurso, codSalón, codEdificio, numIdentificacion);
+        Edificio e = lstEdificios.get(new Edificio(datos[5]));
+        if (e == null) {
+            Read.lstErr.push("Codigo del Edificio: " + datos[5] + " No Se Encuntra Registrado! ");
+        }else{
+            Salon s = e.getLstSalon().get(new Salon(datos[4], ""));
+            if (s != null) {
+               // Horario horario = new Horario(datos[0], datos[1], datos[2], s, curso, catedratico)
+               Curso curso = lstCursos.get(new Curso(datos[3], "", "", ""));
+                if (curso != null) {
+                    Catedratico catedratico = treeAvl.buscar(new Catedratico(datos[6], "", ""));
+                  Horario horario = new Horario(datos[0], datos[1], datos[2], s, curso, catedratico);  
+                    treeHorario.insertar(horario);
+                }else{
+                    Read.lstErr.push("Codigo de Catedratico: " + datos[3] + " No Se Encuntra Registrado! ");
+                }
+            }else{
+                Read.lstErr.push("Codigo de Salon: " + datos[4] + " No Se Encuntra Registrado! ");
+            }
+        }
     }
     
     public void interpreteAsignar(String linea) throws Exception {
+        String[] datos = linea.split(",");
+            //      0          1       2      3
+        //Asignar(carnet, codHorario, zona, final)
+        
+        Horario horario = treeHorario.buscar(new Horario(datos[1]));
+        
+        if (horario.getSalon().isDisponible()) {
+            Estudiante estudiante = hashEstudiante.getValue(new Estudiante(datos[0], "",""));
+            if (estudiante != null) {
+                Asignacion asignacion = new Asignacion(estudiante, horario, datos[2], datos[3]);
+                lstAsignacion.push(asignacion);
+            }else{
+                Read.lstErr.push("Codigo de Estudiante: " + datos[0] + " No Se Encuntra Registrado! ");
+            }
+        }else{
+            Read.lstErr.push("Codigo de Horario: " + datos[1] + " No Se Encuntra Registrado! ");
+        }
+        
         
     }
 }

@@ -186,6 +186,8 @@ public class ListaDoble<T> implements Estructuras_Acciones<T> {
     public String testGraph() {
         String cadena = "";
         cadena += label(0, root);
+        cadena += "0 -> "+(this.size()-1)+"\n";
+        cadena += (this.size()-1)+"->0;\n";
         return cadena;
     }
 
