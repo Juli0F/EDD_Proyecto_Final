@@ -178,14 +178,14 @@ public class AVL<T> {
         this.root = root;
     }
     public String testGraph(){
-        graph = "digraph avl{\n";
+        
         graph +=  root.hashCode()+"[ label=\""+root.value+"\"];";
         inOrden(root);
         
-        graph +="\n}";
-        WriteFile wf = new WriteFile();
-        wf.writeFile("avl.dot", graph);
-        wf.dibujar("avl.dot", "avl.png");
+        
+//        WriteFile wf = new WriteFile();
+//        wf.writeFile("avl.dot", graph);
+//        wf.dibujar("avl.dot", "avl.png");
         return graph;
     }
 

@@ -62,7 +62,9 @@ public class Read {
             while (linea != null) {
 
                 System.out.println(linea);
-                String[] lineaSplit = linea.split("\\(");
+                
+                
+                String[] lineaSplit = linea.replaceAll("\"", "").replaceAll("\\)", "").split("\\(");
 
                 switch (lineaSplit[0].toLowerCase().trim()) {
                     case "estudiante":
@@ -119,6 +121,10 @@ public class Read {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+        System.out.println("hash: "+Interprete.hashEstudiante.size());
+        System.out.println("Curso: "+ Interprete.lstCursos.size());
+        System.out.println("Edificio: "+Interprete.lstEdificios.size());
+        System.out.println("Usuario: "+Interprete.lstUsr.size());
 
     }
 

@@ -1,0 +1,185 @@
+digraph  test {
+0 [label ="posocion: 0
+" width = 1.5 style = filled, fillcolor = firebrick1, group = 3106579  ];
+0 -> s54078 [label ="posocion: 0
+No. Salon: ed-0-0
+Limite De Estudiantes:  20" width = 1.5 ,  group = 3106579  ];
+s54078 [label ="posocion: 0
+No. Salon: ed-0-0
+Limite De Estudiantes:  20" width = 1.5 style = filled, fillcolor = lightskyblue, group = 3106579  ];
+s54079 [label ="posocion: 1
+No. Salon: ed-0-1
+Limite De Estudiantes:  20" width = 1.5 style = filled, fillcolor = lightskyblue, group = 3106579  ];
+s54080 [label ="posocion: 2
+No. Salon: ed-0-2
+Limite De Estudiantes:  20" width = 1.5 style = filled, fillcolor = lightskyblue, group = 3106579  ];
+s54081 [label ="posocion: 3
+No. Salon: ed-0-3
+Limite De Estudiantes:  20" width = 1.5 style = filled, fillcolor = lightskyblue, group = 3106579  ];
+s54082 [label ="posocion: 4
+No. Salon: ed-0-4
+Limite De Estudiantes:  20" width = 1.5 style = filled, fillcolor = lightskyblue, group = 3106579  ];
+s54083 [label ="posocion: 5
+No. Salon: ed-0-5
+Limite De Estudiantes:  20" width = 1.5 style = filled, fillcolor = lightskyblue, group = 3106579  ];
+s54084 [label ="posocion: 6
+No. Salon: ed-0-6
+Limite De Estudiantes:  20" width = 1.5 style = filled, fillcolor = lightskyblue, group = 3106579  ];
+s54085 [label ="posocion: 7
+No. Salon: ed-0-7
+Limite De Estudiantes:  20" width = 1.5 style = filled, fillcolor = lightskyblue, group = 3106579  ];
+s54086 [label ="posocion: 8
+No. Salon: ed-0-8
+Limite De Estudiantes:  20" width = 1.5 style = filled, fillcolor = lightskyblue, group = 3106579  ];
+s54087 [label ="posocion: 9
+No. Salon: ed-0-9
+Limite De Estudiantes:  20" width = 1.5 style = filled, fillcolor = lightskyblue, group = 3106579  ];
+ s54086-> s54087
+ s54085-> s54086
+ s54084-> s54085
+ s54083-> s54084
+ s54082-> s54083
+ s54081-> s54082
+ s54080-> s54081
+ s54079-> s54080
+ s54078-> s54079
+1 [label ="posocion: 1
+" width = 1.5 style = filled, fillcolor = firebrick1, group = 3106580  ];
+1 -> s45335 [label ="posocion: 0
+No. Salon: ed-1-0
+Limite De Estudiantes:  20" width = 1.5 ,  group = 3106580  ];
+s45335 [label ="posocion: 0
+No. Salon: ed-1-0
+Limite De Estudiantes:  20" width = 1.5 style = filled, fillcolor = lightskyblue, group = 3106580  ];
+s45336 [label ="posocion: 1
+No. Salon: ed-1-1
+Limite De Estudiantes:  20" width = 1.5 style = filled, fillcolor = lightskyblue, group = 3106580  ];
+s45337 [label ="posocion: 2
+No. Salon: ed-1-2
+Limite De Estudiantes:  20" width = 1.5 style = filled, fillcolor = lightskyblue, group = 3106580  ];
+s45338 [label ="posocion: 3
+No. Salon: ed-1-3
+Limite De Estudiantes:  20" width = 1.5 style = filled, fillcolor = lightskyblue, group = 3106580  ];
+s45339 [label ="posocion: 4
+No. Salon: ed-1-4
+Limite De Estudiantes:  20" width = 1.5 style = filled, fillcolor = lightskyblue, group = 3106580  ];
+s45340 [label ="posocion: 5
+No. Salon: ed-1-5
+Limite De Estudiantes:  20" width = 1.5 style = filled, fillcolor = lightskyblue, group = 3106580  ];
+s45341 [label ="posocion: 6
+No. Salon: ed-1-6
+Limite De Estudiantes:  20" width = 1.5 style = filled, fillcolor = lightskyblue, group = 3106580  ];
+s45342 [label ="posocion: 7
+No. Salon: ed-1-7
+Limite De Estudiantes:  20" width = 1.5 style = filled, fillcolor = lightskyblue, group = 3106580  ];
+s45343 [label ="posocion: 8
+No. Salon: ed-1-8
+Limite De Estudiantes:  20" width = 1.5 style = filled, fillcolor = lightskyblue, group = 3106580  ];
+s45344 [label ="posocion: 9
+No. Salon: ed-1-9
+Limite De Estudiantes:  20" width = 1.5 style = filled, fillcolor = lightskyblue, group = 3106580  ];
+ s45343-> s45344
+ s45342-> s45343
+ s45341-> s45342
+ s45340-> s45341
+ s45339-> s45340
+ s45338-> s45339
+ s45337-> s45338
+ s45336-> s45337
+ s45335-> s45336
+2 [label ="posocion: 2
+" width = 1.5 style = filled, fillcolor = firebrick1, group = 3106581  ];
+2 -> s24535 [label ="posocion: 0
+No. Salon: ed-2-0
+Limite De Estudiantes:  20" width = 1.5 ,  group = 3106581  ];
+s24535 [label ="posocion: 0
+No. Salon: ed-2-0
+Limite De Estudiantes:  20" width = 1.5 style = filled, fillcolor = lightskyblue, group = 3106581  ];
+s24536 [label ="posocion: 1
+No. Salon: ed-2-1
+Limite De Estudiantes:  20" width = 1.5 style = filled, fillcolor = lightskyblue, group = 3106581  ];
+s24537 [label ="posocion: 2
+No. Salon: ed-2-2
+Limite De Estudiantes:  20" width = 1.5 style = filled, fillcolor = lightskyblue, group = 3106581  ];
+s24538 [label ="posocion: 3
+No. Salon: ed-2-3
+Limite De Estudiantes:  20" width = 1.5 style = filled, fillcolor = lightskyblue, group = 3106581  ];
+s24539 [label ="posocion: 4
+No. Salon: ed-2-4
+Limite De Estudiantes:  20" width = 1.5 style = filled, fillcolor = lightskyblue, group = 3106581  ];
+s24540 [label ="posocion: 5
+No. Salon: ed-2-5
+Limite De Estudiantes:  20" width = 1.5 style = filled, fillcolor = lightskyblue, group = 3106581  ];
+s24541 [label ="posocion: 6
+No. Salon: ed-2-6
+Limite De Estudiantes:  20" width = 1.5 style = filled, fillcolor = lightskyblue, group = 3106581  ];
+s24542 [label ="posocion: 7
+No. Salon: ed-2-7
+Limite De Estudiantes:  20" width = 1.5 style = filled, fillcolor = lightskyblue, group = 3106581  ];
+s24543 [label ="posocion: 8
+No. Salon: ed-2-8
+Limite De Estudiantes:  20" width = 1.5 style = filled, fillcolor = lightskyblue, group = 3106581  ];
+s24544 [label ="posocion: 9
+No. Salon: ed-2-9
+Limite De Estudiantes:  20" width = 1.5 style = filled, fillcolor = lightskyblue, group = 3106581  ];
+ s24543-> s24544
+ s24542-> s24543
+ s24541-> s24542
+ s24540-> s24541
+ s24539-> s24540
+ s24538-> s24539
+ s24537-> s24538
+ s24536-> s24537
+ s24535-> s24536
+3 [label ="posocion: 3
+" width = 1.5 style = filled, fillcolor = firebrick1, group = 3106582  ];
+3 -> s49615 [label ="posocion: 0
+No. Salon: ed-3-0
+Limite De Estudiantes:  20" width = 1.5 ,  group = 3106582  ];
+s49615 [label ="posocion: 0
+No. Salon: ed-3-0
+Limite De Estudiantes:  20" width = 1.5 style = filled, fillcolor = lightskyblue, group = 3106582  ];
+s49616 [label ="posocion: 1
+No. Salon: ed-3-1
+Limite De Estudiantes:  20" width = 1.5 style = filled, fillcolor = lightskyblue, group = 3106582  ];
+s49617 [label ="posocion: 2
+No. Salon: ed-3-2
+Limite De Estudiantes:  20" width = 1.5 style = filled, fillcolor = lightskyblue, group = 3106582  ];
+s49618 [label ="posocion: 3
+No. Salon: ed-3-3
+Limite De Estudiantes:  20" width = 1.5 style = filled, fillcolor = lightskyblue, group = 3106582  ];
+s49619 [label ="posocion: 4
+No. Salon: ed-3-4
+Limite De Estudiantes:  20" width = 1.5 style = filled, fillcolor = lightskyblue, group = 3106582  ];
+s49620 [label ="posocion: 5
+No. Salon: ed-3-5
+Limite De Estudiantes:  20" width = 1.5 style = filled, fillcolor = lightskyblue, group = 3106582  ];
+s49621 [label ="posocion: 6
+No. Salon: ed-3-6
+Limite De Estudiantes:  20" width = 1.5 style = filled, fillcolor = lightskyblue, group = 3106582  ];
+s49622 [label ="posocion: 7
+No. Salon: ed-3-7
+Limite De Estudiantes:  20" width = 1.5 style = filled, fillcolor = lightskyblue, group = 3106582  ];
+s49623 [label ="posocion: 8
+No. Salon: ed-3-8
+Limite De Estudiantes:  20" width = 1.5 style = filled, fillcolor = lightskyblue, group = 3106582  ];
+s49624 [label ="posocion: 9
+No. Salon: ed-3-9
+Limite De Estudiantes:  20" width = 1.5 style = filled, fillcolor = lightskyblue, group = 3106582  ];
+ s49623-> s49624
+ s49622-> s49623
+ s49621-> s49622
+ s49620-> s49621
+ s49619-> s49620
+ s49618-> s49619
+ s49617-> s49618
+ s49616-> s49617
+ s49615-> s49616
+3->2
+2->3
+2->1
+1->2
+1->0
+0->1
+
+}

@@ -1,4 +1,3 @@
-
 package com.mycompany.edd_proyecto_final.listas;
 
 import com.mycompany.interfaces.Estructuras_Acciones;
@@ -25,7 +24,7 @@ public class ListaDoble<T> implements Estructuras_Acciones<T> {
             root.setId(cantNodos);
             cantNodos += 1;
         } else {
-            
+
             push(new Nodo<T>(value, false), root);
         }
 
@@ -54,9 +53,9 @@ public class ListaDoble<T> implements Estructuras_Acciones<T> {
             reindexar(0, root);
             cantNodos += 1;
             return value;
-        } else if(deletePos == 1) {
+        } else if (deletePos == 1) {
             return pop(root);
-        }else{
+        } else {
             throw new PopException("valor esperado para pop: 0|1");
         }
     }
@@ -114,7 +113,7 @@ public class ListaDoble<T> implements Estructuras_Acciones<T> {
 
     @Override
     public boolean delete(T value) {
-     return  delete(value, root);
+        return delete(value, root);
     }
 
     private boolean delete(T value, Nodo<T> nodo) {
@@ -136,19 +135,20 @@ public class ListaDoble<T> implements Estructuras_Acciones<T> {
 
     @Override
     public boolean delete(int index) {
-       return delete(index, root);
+        return delete(index, root);
     }
-    private boolean delete(int index , Nodo<T> nodo){
+
+    private boolean delete(int index, Nodo<T> nodo) {
         if (nodo != null) {
             if (index == nodo.getId()) {
-                
+
                 nodo.getSiguiente().setAnterior(nodo.getAnterior());
                 nodo.getAnterior().setSiguiente(nodo.getSiguiente());
                 reindexar(index, nodo.getSiguiente());
                 nodo = null;
                 return true;
-            }else{
-                return  delete(index, nodo.getSiguiente());
+            } else {
+                return delete(index, nodo.getSiguiente());
             }
         }
         return false;
@@ -158,17 +158,19 @@ public class ListaDoble<T> implements Estructuras_Acciones<T> {
     public int size() {
         return cantNodos;
     }
-    private void reindexar(int index, Nodo<T> nodo){
+
+    private void reindexar(int index, Nodo<T> nodo) {
         if (nodo != null) {
             nodo.setId(index);
-            reindexar(index+1, nodo.getSiguiente());
+            reindexar(index + 1, nodo.getSiguiente());
         }
     }
-    public T get(T value){
-    
+
+    public T get(T value) {
+
         return getT(value, root);
     }
-    
+
     private T getT(T value, Nodo<T> nodo) {
         if (nodo != null) {
             if (value.hashCode() == nodo.getValue().hashCode()) {
@@ -181,6 +183,28 @@ public class ListaDoble<T> implements Estructuras_Acciones<T> {
         return null;
     }
 
-    
+    public String testGraph() {
+        String cadena = "";
+        cadena += label(0, root);
+        return cadena;
+    }
+
+    private String label(int indice, Nodo<T> t) {
+        String cadena = "";
+        if (t != null) {
+            cadena += indice + " [label =\"posocion: " + (indice)+"\n" + t.toString() + "\" width = 1.5 style = filled, fillcolor = firebrick1, group = " + t.getValue().hashCode() + "  ];\n";
+            cadena += indice +" -> "+t.getValue().toString();
+            
+            cadena += label(indice + 1, t.getSiguiente());
+            //enlaza los nodos 
+            if (indice - 1 != -1 && (indice)< this.size()) {
+                cadena += indice + "->" + (indice - 1) + "\n";
+                cadena += (indice-1) + "->" + (indice ) + "\n";
+                
+            }
+        }
+
+        return cadena;
+    }
 
 }

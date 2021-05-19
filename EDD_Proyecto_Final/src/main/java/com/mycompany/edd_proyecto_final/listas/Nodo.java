@@ -91,6 +91,7 @@ public class Nodo<T> {
     public String testGraph(boolean doble, boolean circular, int group) {
         String cadena = "";
         if (circular) {
+            
             if (siguiente.getSiguiente().getId() == 0) {
                 cadena += this.getSiguiente().getId() + "[group = "+group+",label=\"" + this.getSiguiente().getValue().toString() + "\"];\n";
                 cadena += this.getSiguiente().getId() + " -> " + siguiente.getSiguiente().getId();
@@ -102,7 +103,7 @@ public class Nodo<T> {
         if (siguiente != null && siguiente.getId() != 0) {
             cadena += this.getId() + "[group = "+group+",label=\"" + this.getValue().toString() + "\"];\n";
             cadena += this.getId() + " -> " + siguiente.getId();
-
+            
             if (doble) {
                 cadena += "\n" + siguiente.getId() + " -> " + this.getId();
             }
@@ -118,25 +119,26 @@ public class Nodo<T> {
 
     @Override
     public String toString() {
-        String siguienteToString = "->null";
-        String anteriorStr = "";
-        if (siguiente != null && siguiente.getId() != 0) {
-            siguienteToString = siguiente.toString();
-            if (anterior != null && siguiente.getId() != 0) {
-                anteriorStr = "-> " + value.toString();
-                //anteriorStr = " <- " + " (id: " + id + ", value: " + value + ")";
-            }
-
-        }
-        if (siguiente.getId() == 0) {
-            siguienteToString = "->( " + siguiente.getValue().toString() + ")";
-            if (anterior != null) {
-                anteriorStr = " -> " + value.toString();//" (id: " + id + ", value: " + value + ")";
-                //anteriorStr = " <- " + " (id: " + id + ", value: " + value + ")";
-            }
-        }
-
-        return anteriorStr + value.toString() + siguienteToString;//+", value=" + value  ;
+//        String siguienteToString = "->null";
+//        String anteriorStr = "";
+//        if (siguiente != null && siguiente.getId() != 0) {
+//            siguienteToString = siguiente.toString();
+//            if (anterior != null && siguiente.getId() != 0) {
+//                anteriorStr = "-> " + value.toString();
+//                //anteriorStr = " <- " + " (id: " + id + ", value: " + value + ")";
+//            }
+//
+//        }
+//        if (siguiente.getId() == 0) {
+//            siguienteToString = "->( " + siguiente.getValue().toString() + ")";
+//            if (anterior != null) {
+//                anteriorStr = " -> " + value.toString();//" (id: " + id + ", value: " + value + ")";
+//                //anteriorStr = " <- " + " (id: " + id + ", value: " + value + ")";
+//            }
+//        }
+//
+//        return anteriorStr + value.toString() + siguienteToString;//+", value=" + value  ;
+            return "";//Nodo: "+this.id+" value: "+ value.toString();
     }
 
 }

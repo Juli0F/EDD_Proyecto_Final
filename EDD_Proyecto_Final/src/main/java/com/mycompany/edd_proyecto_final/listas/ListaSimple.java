@@ -4,6 +4,7 @@ import com.mycompany.interfaces.Estructuras_Acciones;
 import com.mycompany.exception.PopException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class ListaSimple<T> implements Estructuras_Acciones<T> {
 
@@ -12,7 +13,6 @@ public class ListaSimple<T> implements Estructuras_Acciones<T> {
 
     public ListaSimple() {
         cantNodos = 0;
-        System.out.println("Cantidad de nodos: " + cantNodos);
     }
 
     public ListaSimple(int spaceInit) {
@@ -34,6 +34,9 @@ public class ListaSimple<T> implements Estructuras_Acciones<T> {
     }
 
     private boolean pushIndex(T value, Nodo<T> nodo, int index) {
+        if (nodo.getSiguiente() == null) {
+            return false;
+        }
         if (nodo.getSiguiente().getId() == index) {
             if (nodo.getSiguiente().getValue() == null) {
                 nodo.getSiguiente().setValue(value);
@@ -79,14 +82,14 @@ public class ListaSimple<T> implements Estructuras_Acciones<T> {
             root = nodoAdd;
 
             cantNodos = 1;
-            System.out.println("(1 root) Cantidad de nodos:  " + cantNodos);
+            //System.out.println("(1 root) Cantidad de nodos:  " + cantNodos);
             //System.out.println(value.toString());
 
         } else {
 
             push(nodoAdd, root);
             cantNodos += 1;
-            System.out.println("    Cantidad de nodos: " + cantNodos);
+          //  System.out.println("    Cantidad de nodos: " + cantNodos);
         }
     }
 
@@ -254,8 +257,38 @@ public class ListaSimple<T> implements Estructuras_Acciones<T> {
         }
     }
 
+//    public String testGraph(int group) {
+//        return root.testGraph(false, false, group);
+//    }
+//    
     public String testGraph(int group) {
-        return root.testGraph(false, false, group);
+        
+        Random r = new Random();
+        int x = r.nextInt(100000);
+        
+        String cadena = "s"+x + " [label =\"posocion: " + (0)+"\n" + root.getValue().toString() + "\" width = 1.5 ,  group = " +group+ "  ];\n";;
+        cadena += label(x,0, root,group);
+        return cadena;
+        
+    }
+
+    private String label(int random,int indice, Nodo<T> t, int group) {
+        String cadena = "";
+        if (t != null) {
+            cadena += "s"+(indice+random) + " [label =\"posocion: " + (indice)+"\n" + t.getValue().toString() + "\" width = 1.5 style = filled, fillcolor = lightskyblue, group = " +group+ "  ];\n";
+            
+            //cadena += "s"+indice +" -> "+t.getValue().toString();
+            
+            cadena += label(random,indice + 1, t.getSiguiente(),group);
+            //enlaza los nodos 
+            if (indice - 1 != -1 && (indice)< this.size()) {
+                cadena +=   " s" + ((indice+random) - 1) + "-> s"+(indice+random)+"\n";
+             //   cadena += (indice-1) + "->" + (indice ) + "\n";
+                
+            }
+        }
+
+        return cadena;
     }
 
     public int size() {

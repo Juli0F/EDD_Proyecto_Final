@@ -5,6 +5,8 @@
  */
 package com.mycompany.edd_proyecto_final.ui;
 
+import com.mycompany.edd_practica_2.readf_file.Interprete;
+import com.mycompany.edd_proyecto_final.io.WriteFile;
 import javax.swing.JInternalFrame;
 
 /**
@@ -22,18 +24,16 @@ public class Desktop extends javax.swing.JFrame {
         menuBar.setVisible(false);
         Login login = new Login(menuBar);
         login.setSize(250, 400);
-        
-        login.setLocation(desktopPane.getWidth()/2-125, desktopPane.getHeight()/2-200);
+
+        login.setLocation(desktopPane.getWidth() / 2 - 125, desktopPane.getHeight() / 2 - 200);
         login.setVisible(true);
         desktopPane.repaint();
         desktopPane.add(login);
         desktopPane.revalidate();
-        
+
 //        this.repaint();
 //        this.revalidate();
 //        this.add(login);
-        
-        
     }
 
     /**
@@ -67,13 +67,13 @@ public class Desktop extends javax.swing.JFrame {
         aboutMenuItem4 = new javax.swing.JMenuItem();
         aboutMenuItem8 = new javax.swing.JMenuItem();
         btnGraficar = new javax.swing.JMenu();
-        contentMenuItem2 = new javax.swing.JMenuItem();
-        aboutMenuItem9 = new javax.swing.JMenuItem();
-        aboutMenuItem10 = new javax.swing.JMenuItem();
-        aboutMenuItem11 = new javax.swing.JMenuItem();
-        aboutMenuItem12 = new javax.swing.JMenuItem();
-        aboutMenuItem13 = new javax.swing.JMenuItem();
-        aboutMenuItem14 = new javax.swing.JMenuItem();
+        graphEstudiante = new javax.swing.JMenuItem();
+        graphCatedratico = new javax.swing.JMenuItem();
+        graphHorario = new javax.swing.JMenuItem();
+        graphCurso = new javax.swing.JMenuItem();
+        graphUsuario = new javax.swing.JMenuItem();
+        graphEdificio = new javax.swing.JMenuItem();
+        graphAsignacion = new javax.swing.JMenuItem();
         btnAcerca = new javax.swing.JMenu();
         contentMenuItem1 = new javax.swing.JMenuItem();
         aboutMenuItem1 = new javax.swing.JMenuItem();
@@ -178,33 +178,63 @@ public class Desktop extends javax.swing.JFrame {
         btnGraficar.setMnemonic('h');
         btnGraficar.setText("Graficar");
 
-        contentMenuItem2.setMnemonic('c');
-        contentMenuItem2.setText("Estudiante");
-        btnGraficar.add(contentMenuItem2);
+        graphEstudiante.setMnemonic('c');
+        graphEstudiante.setText("Estudiante");
+        graphEstudiante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                graphEstudianteActionPerformed(evt);
+            }
+        });
+        btnGraficar.add(graphEstudiante);
 
-        aboutMenuItem9.setMnemonic('a');
-        aboutMenuItem9.setText("Catedratico");
-        btnGraficar.add(aboutMenuItem9);
+        graphCatedratico.setMnemonic('a');
+        graphCatedratico.setText("Catedratico");
+        graphCatedratico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                graphCatedraticoActionPerformed(evt);
+            }
+        });
+        btnGraficar.add(graphCatedratico);
 
-        aboutMenuItem10.setMnemonic('a');
-        aboutMenuItem10.setText("Horario");
-        btnGraficar.add(aboutMenuItem10);
+        graphHorario.setMnemonic('a');
+        graphHorario.setText("Horario");
+        graphHorario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                graphHorarioActionPerformed(evt);
+            }
+        });
+        btnGraficar.add(graphHorario);
 
-        aboutMenuItem11.setMnemonic('a');
-        aboutMenuItem11.setText("Curso");
-        btnGraficar.add(aboutMenuItem11);
+        graphCurso.setMnemonic('a');
+        graphCurso.setText("Curso");
+        graphCurso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                graphCursoActionPerformed(evt);
+            }
+        });
+        btnGraficar.add(graphCurso);
 
-        aboutMenuItem12.setMnemonic('a');
-        aboutMenuItem12.setText("Usuario");
-        btnGraficar.add(aboutMenuItem12);
+        graphUsuario.setMnemonic('a');
+        graphUsuario.setText("Usuario");
+        graphUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                graphUsuarioActionPerformed(evt);
+            }
+        });
+        btnGraficar.add(graphUsuario);
 
-        aboutMenuItem13.setMnemonic('a');
-        aboutMenuItem13.setText("Edificio");
-        btnGraficar.add(aboutMenuItem13);
+        graphEdificio.setMnemonic('a');
+        graphEdificio.setText("Edificio");
+        graphEdificio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                graphEdificioActionPerformed(evt);
+            }
+        });
+        btnGraficar.add(graphEdificio);
 
-        aboutMenuItem14.setMnemonic('a');
-        aboutMenuItem14.setText("Asignacion");
-        btnGraficar.add(aboutMenuItem14);
+        graphAsignacion.setMnemonic('a');
+        graphAsignacion.setText("Asignacion");
+        btnGraficar.add(graphAsignacion);
 
         menuBar.add(btnGraficar);
 
@@ -247,20 +277,68 @@ public class Desktop extends javax.swing.JFrame {
 
     private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
         //System.exit(0);
-        
-        agregarInternal(new Login(menuBar));
+
+        //agregarInternal(new Login(menuBar));
+        Login login = new Login(menuBar);
+        login.setSize(250, 400);
+
+        login.setLocation(desktopPane.getWidth() / 2 - 125, desktopPane.getHeight() / 2 - 200);
+        login.setVisible(true);
+        desktopPane.repaint();
+        desktopPane.add(login);
+        desktopPane.revalidate();
     }//GEN-LAST:event_exitMenuItemActionPerformed
 
     private void btnCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarActionPerformed
-            LoadFile file = new LoadFile();
-            agregarInternal(file);
+
+        agregarInternal(new LoadFile());
     }//GEN-LAST:event_btnCargarActionPerformed
 
     private void deleteMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteMenuItemActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_deleteMenuItemActionPerformed
 
-    public void agregarInternal(JInternalFrame internal){
+    private void graphEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_graphEstudianteActionPerformed
+        String graph = "digraph hash{\n ";
+        graph += Interprete.hashEstudiante.testGraph();
+        graph += "\n}";
+        writeGraph("estudiante.dot", "estudiante.png", graph);
+    }//GEN-LAST:event_graphEstudianteActionPerformed
+
+    private void graphCatedraticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_graphCatedraticoActionPerformed
+        String graph = "digraph c { \n";
+        graph += Interprete.treeAvl.testGraph();
+        graph += "\n}";
+        writeGraph("catedratico.dot", "catedratico.png", graph);
+        
+    }//GEN-LAST:event_graphCatedraticoActionPerformed
+
+    private void graphHorarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_graphHorarioActionPerformed
+        
+    }//GEN-LAST:event_graphHorarioActionPerformed
+
+    private void graphCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_graphCursoActionPerformed
+        String graph = "digraph curso { \n";
+        graph += Interprete.lstCursos.testGraph();
+        graph += "\n}";
+        writeGraph("curso.dot", "curso.png", graph);
+    }//GEN-LAST:event_graphCursoActionPerformed
+
+    private void graphUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_graphUsuarioActionPerformed
+        String graph = "digraph usuario { \n";
+        graph += Interprete.lstUsr.testGraph();
+        graph += "\n}";
+        writeGraph("usuario.dot", "usuario.png", graph);
+    }//GEN-LAST:event_graphUsuarioActionPerformed
+
+    private void graphEdificioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_graphEdificioActionPerformed
+        String graph = "digraph Edificio { \n";
+        graph += Interprete.lstUsr.testGraph();
+        graph += "\n}";
+        writeGraph("edificio.dot", "edificio.png", graph);
+    }//GEN-LAST:event_graphEdificioActionPerformed
+
+    public void agregarInternal(JInternalFrame internal) {
         internal.setSize(desktopPane.getSize());
         internal.setVisible(true);
         desktopPane.removeAll();
@@ -268,7 +346,13 @@ public class Desktop extends javax.swing.JFrame {
         desktopPane.add(internal);
         desktopPane.repaint();
         desktopPane.revalidate();
-                
+
+    }
+
+    private void writeGraph(String nameDot, String namePng,String content){
+        wf = new WriteFile();
+        wf.writeFile(nameDot, content);
+        wf.dibujar(nameDot, namePng);
     }
     /**
      * @param args the command line arguments
@@ -304,21 +388,16 @@ public class Desktop extends javax.swing.JFrame {
             }
         });
     }
+    private WriteFile wf;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem aboutMenuItem1;
-    private javax.swing.JMenuItem aboutMenuItem10;
-    private javax.swing.JMenuItem aboutMenuItem11;
-    private javax.swing.JMenuItem aboutMenuItem12;
-    private javax.swing.JMenuItem aboutMenuItem13;
-    private javax.swing.JMenuItem aboutMenuItem14;
     private javax.swing.JMenuItem aboutMenuItem3;
     private javax.swing.JMenuItem aboutMenuItem4;
     private javax.swing.JMenuItem aboutMenuItem5;
     private javax.swing.JMenuItem aboutMenuItem6;
     private javax.swing.JMenuItem aboutMenuItem7;
     private javax.swing.JMenuItem aboutMenuItem8;
-    private javax.swing.JMenuItem aboutMenuItem9;
     private javax.swing.JMenu btnAcerca;
     private javax.swing.JMenuItem btnCargar;
     private javax.swing.JMenu btnCrear;
@@ -328,7 +407,6 @@ public class Desktop extends javax.swing.JFrame {
     private javax.swing.JMenu btnSalir;
     private javax.swing.JMenuItem btnSave;
     private javax.swing.JMenuItem contentMenuItem1;
-    private javax.swing.JMenuItem contentMenuItem2;
     private javax.swing.JMenuItem copyMenuItem;
     private javax.swing.JMenuItem crearCatedratico;
     private javax.swing.JMenuItem crearEstudiante;
@@ -337,6 +415,13 @@ public class Desktop extends javax.swing.JFrame {
     private javax.swing.JMenuItem deleteMenuItem;
     private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JMenuItem exitMenuItem;
+    private javax.swing.JMenuItem graphAsignacion;
+    private javax.swing.JMenuItem graphCatedratico;
+    private javax.swing.JMenuItem graphCurso;
+    private javax.swing.JMenuItem graphEdificio;
+    private javax.swing.JMenuItem graphEstudiante;
+    private javax.swing.JMenuItem graphHorario;
+    private javax.swing.JMenuItem graphUsuario;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem pasteMenuItem;
     // End of variables declaration//GEN-END:variables

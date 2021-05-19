@@ -13,18 +13,16 @@ import com.mycompany.edd_proyecto_final.entidades.Estudiante;
 import com.mycompany.edd_proyecto_final.entidades.Persona;
 import com.mycompany.edd_proyecto_final.entidades.Salon;
 import com.mycompany.edd_proyecto_final.entidades.Usuario;
+import com.mycompany.edd_proyecto_final.hash.HashTable;
 import com.mycompany.edd_proyecto_final.listas.ListaDoble;
 
-/**
- *
- * @author Temporal
- */
 public class Interprete {
     
     public static ListaDoble<Edificio> lstEdificios = new ListaDoble<>();
     public static ListaDoble<Curso> lstCursos = new ListaDoble<>();
     public static ListaDoble<Usuario> lstUsr = new ListaDoble<>();
     public static AVL<Catedratico> treeAvl = new AVL<>();
+    public static HashTable<Estudiante> hashEstudiante = new HashTable<>();
     
     public Interprete() {
         
@@ -33,7 +31,9 @@ public class Interprete {
     public void interpreteEstudiante(String linea) throws Exception {
         
         String[] datos = linea.split(",");
-        Persona p = new Estudiante(datos[0], datos[1], datos[2]);
+        Estudiante p = new Estudiante(datos[0], datos[1], datos[2]);
+        hashEstudiante.insertar(p);
+        
     }
     
     public void interpreteUsuario(String linea) throws Exception {
@@ -41,8 +41,9 @@ public class Interprete {
         String[] datos = linea.split(",");
         Usuario usuario = new Usuario(datos[0], datos[1], datos[2], datos[3]);
         if (!lstUsr.contains(usuario)) {
+            System.out.println("tipo: "+datos[3]);
             if (datos[3].equalsIgnoreCase("estudiante") || datos[3].equalsIgnoreCase("colaborador")) {
-                
+            System.out.println("tipo: "+datos[4]+" ..insertando");    
                 lstUsr.push(usuario);
             }else{
                 Read.lstErr.push("Tipo de Usuario No valido: " + datos[0] + ", " + datos[1] );

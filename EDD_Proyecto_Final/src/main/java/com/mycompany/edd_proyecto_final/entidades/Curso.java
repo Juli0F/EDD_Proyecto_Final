@@ -73,6 +73,11 @@ public class Curso {
         }
         return true;
     }
+
+    @Override
+    public String toString() {
+        return  "codigo: " + codigo + "\nnombre: " + nombre + "\nsemestre: " + semestre + "\ncreditos: " + creditos;
+    }
     
     
 }

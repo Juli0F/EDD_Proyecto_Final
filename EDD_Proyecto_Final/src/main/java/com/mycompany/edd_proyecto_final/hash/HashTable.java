@@ -24,36 +24,40 @@ public class HashTable<V> {
     //verifica si el factor de carga es menor o igual a 55%
     //el +1 es para tomar en cuenta el nodo que se insertara
     private boolean isInsertable() {
-        return ((55 * valor.size() + 1) / 100) > charge;
+        return ((55 * valor.size() + 1) / 100) >= charge;
     }
 
-    public void insertar(V value) {
+    public boolean insertar(V value) {
         //posicion donde se almacenara el valor
         int index = getIndexByHash(value);
+        if (index < 0 ) {
+            index *= -1;
+        }
 
         if (isInsertable()) {
 
-//            
-//            ListaSimple<V> lst = valor.get(index);
-//            if (lst == null) {
-//                lst = new ListaSimple<>();
-//                
-//            }
-//            
-//            lst.push(value);
-            while (valor.get(index) != null) {
+            //cambie el while por el if, porque al momento de recuperar el objeto almacenado
+            //y a este se le aplica el metodo colisionesFix(value, index), me lanza un error de overflow
+            //while 
+            if (valor.get(index) != null) {
                 //aca debo aplicar la otra formula, para encontrar el nuevo lugar  a donde enviare el valor
                 //al obtenerlo debo verificar que este vacio nuevamente, hasta encontrar un lugar disponible
                 //guardo el indice en index  y termino el ciclo
                 index = colisionesFix(value, index);
+                index = (index < 0)?(-1 * index ):index;
             }
-            valor.push(value, index);
 
-            charge++;
+            System.out.println("Index " + index);
+            if (valor.push(value, index)) {
+                charge++;
+                return true;
+            }
+            return false;
 
         } else {
-            rehashing();
+            rehashing(value);
             System.out.println("rehash necesario");
+            return true;
         }
     }
 
@@ -64,10 +68,16 @@ public class HashTable<V> {
         return (value.hashCode() % 7 + 1) * i;
     }
 
-    private void rehashing() {
+    private void rehashing(V v) {
         //para el rehashing almacenare temporalmente los valores en la lista llamada indices
 
         indices = valor;
+        int i = 0;
+        //agregue esta parte, porque se me habia olvidado insertar el ultimo valor antes de hacer el hashing
+        while (!indices.push(v, i)) {
+            i++;
+        }
+
         valor = null;
         charge = 0;
         valor = new ListaSimple<>(indices.size() * 2);
@@ -175,19 +185,21 @@ public class HashTable<V> {
             cadena += "nodo" + i + " [label =\"" + i + "\" pos = \"1.5!\" width = 1.5 style = filled, fillcolor = bisque1, group = 1 ];\n";
 
         }
-        //muestra la columna de cla
-        
+
         cadena += enlazarNodos(false);
-        
+
         String nodoValue = nodoValue();
-        cadena += nodoValue+"\n";
-        String primer = (String) nodoValue.subSequence(0, 11);
-        //
-        
-        if (!Character.isDigit(primer.charAt(primer.length()-1))) {
-            primer = primer.substring(0, primer.length()-1);
+        cadena += nodoValue + "\n";
+        String primer = "";
+        if (nodoValue.length() > 10) {
+            primer = (String) nodoValue.subSequence(0, 11);
+            if (!Character.isDigit(primer.charAt(primer.length() - 1))) {
+                primer = primer.substring(0, primer.length() - 1);
+                cadena += "valor -> " + primer + "\n";
+            }
         }
-        cadena += "valor -> "+primer+"\n";
+
+        //
         return cadena;
     }
 
@@ -236,17 +248,13 @@ public class HashTable<V> {
 //            }
 //        }
 
-         for (int i = 0; i < valor.size(); i++) {
-                cadena += "nodo" + i + " -> nodo" + (i + 1) + ";\n";
-            }
+        for (int i = 0; i < valor.size(); i++) {
+            cadena += "nodo" + i + " -> nodo" + (i + 1) + ";\n";
+        }
         return cadena;
     }
 
-    public void graph(V value, int index) {
-
-        String cadena = "";
-        cadena += index + "-> " + value.toString();
-
+    public int size() {
+        return valor.size();
     }
-
 }
