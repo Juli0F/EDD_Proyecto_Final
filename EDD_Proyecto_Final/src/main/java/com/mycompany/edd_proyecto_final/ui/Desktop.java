@@ -412,7 +412,8 @@ public class Desktop extends javax.swing.JFrame {
     }//GEN-LAST:event_graphCatedraticoActionPerformed
 
     private void graphHorarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_graphHorarioActionPerformed
-        
+        String graph = Desktop.treeHorario.testGraph();
+        writeGraph("horario.dot", "horario.png", graph);
     }//GEN-LAST:event_graphHorarioActionPerformed
 
     private void graphCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_graphCursoActionPerformed
@@ -484,7 +485,7 @@ public class Desktop extends javax.swing.JFrame {
     }//GEN-LAST:event_aboutMenuItem7ActionPerformed
 
     private void crearHorarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearHorarioActionPerformed
-        // TODO add your handling code here:
+        agregarInternal(new CrearHorario());
     }//GEN-LAST:event_crearHorarioActionPerformed
 
     private void aboutMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItem3ActionPerformed
@@ -492,7 +493,7 @@ public class Desktop extends javax.swing.JFrame {
     }//GEN-LAST:event_aboutMenuItem3ActionPerformed
 
     private void pasteMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pasteMenuItemActionPerformed
-        // TODO add your handling code here:
+        agregarInternal(new EditarHorario());
     }//GEN-LAST:event_pasteMenuItemActionPerformed
 
     private void editCatedraticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editCatedraticoActionPerformed
