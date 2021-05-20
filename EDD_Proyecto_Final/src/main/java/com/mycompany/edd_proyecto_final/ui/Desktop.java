@@ -69,6 +69,7 @@ public class Desktop extends javax.swing.JFrame {
         aboutMenuItem3 = new javax.swing.JMenuItem();
         aboutMenuItem5 = new javax.swing.JMenuItem();
         aboutMenuItem6 = new javax.swing.JMenuItem();
+        aboutMenuItem9 = new javax.swing.JMenuItem();
         aboutMenuItem7 = new javax.swing.JMenuItem();
         btnEditar = new javax.swing.JMenu();
         cutMenuItem = new javax.swing.JMenuItem();
@@ -76,6 +77,7 @@ public class Desktop extends javax.swing.JFrame {
         pasteMenuItem = new javax.swing.JMenuItem();
         deleteMenuItem = new javax.swing.JMenuItem();
         aboutMenuItem4 = new javax.swing.JMenuItem();
+        aboutMenuItem10 = new javax.swing.JMenuItem();
         aboutMenuItem8 = new javax.swing.JMenuItem();
         btnGraficar = new javax.swing.JMenu();
         graphEstudiante = new javax.swing.JMenuItem();
@@ -134,6 +136,11 @@ public class Desktop extends javax.swing.JFrame {
 
         crearCatedratico.setMnemonic('a');
         crearCatedratico.setText("Catedratico");
+        crearCatedratico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                crearCatedraticoActionPerformed(evt);
+            }
+        });
         btnCrear.add(crearCatedratico);
 
         crearHorario.setMnemonic('a');
@@ -155,7 +162,21 @@ public class Desktop extends javax.swing.JFrame {
 
         aboutMenuItem6.setMnemonic('a');
         aboutMenuItem6.setText("Edificio");
+        aboutMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aboutMenuItem6ActionPerformed(evt);
+            }
+        });
         btnCrear.add(aboutMenuItem6);
+
+        aboutMenuItem9.setMnemonic('a');
+        aboutMenuItem9.setText("Salon");
+        aboutMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aboutMenuItem9ActionPerformed(evt);
+            }
+        });
+        btnCrear.add(aboutMenuItem9);
 
         aboutMenuItem7.setMnemonic('a');
         aboutMenuItem7.setText("Asignacion");
@@ -177,6 +198,11 @@ public class Desktop extends javax.swing.JFrame {
 
         copyMenuItem.setMnemonic('y');
         copyMenuItem.setText("Catedratico");
+        copyMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                copyMenuItemActionPerformed(evt);
+            }
+        });
         btnEditar.add(copyMenuItem);
 
         pasteMenuItem.setMnemonic('p');
@@ -195,6 +221,15 @@ public class Desktop extends javax.swing.JFrame {
         aboutMenuItem4.setMnemonic('a');
         aboutMenuItem4.setText("Catedratico");
         btnEditar.add(aboutMenuItem4);
+
+        aboutMenuItem10.setMnemonic('a');
+        aboutMenuItem10.setText("Salon");
+        aboutMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aboutMenuItem10ActionPerformed(evt);
+            }
+        });
+        btnEditar.add(aboutMenuItem10);
 
         aboutMenuItem8.setMnemonic('a');
         aboutMenuItem8.setText("Asignacion");
@@ -327,7 +362,7 @@ public class Desktop extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCargarActionPerformed
 
     private void deleteMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteMenuItemActionPerformed
-        // TODO add your handling code here:
+        agregarInternal(new EditarCurso());
     }//GEN-LAST:event_deleteMenuItemActionPerformed
 
     private void graphEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_graphEstudianteActionPerformed
@@ -388,6 +423,26 @@ public class Desktop extends javax.swing.JFrame {
     private void cutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cutMenuItemActionPerformed
         agregarInternal(new EditarEstudiante());
     }//GEN-LAST:event_cutMenuItemActionPerformed
+
+    private void crearCatedraticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearCatedraticoActionPerformed
+        agregarInternal(new CrearCatedratico());
+    }//GEN-LAST:event_crearCatedraticoActionPerformed
+
+    private void aboutMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItem6ActionPerformed
+        agregarInternal(new CrearEdificio());
+    }//GEN-LAST:event_aboutMenuItem6ActionPerformed
+
+    private void aboutMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItem9ActionPerformed
+        agregarInternal(new CrearSalon());
+    }//GEN-LAST:event_aboutMenuItem9ActionPerformed
+
+    private void aboutMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItem10ActionPerformed
+        
+    }//GEN-LAST:event_aboutMenuItem10ActionPerformed
+
+    private void copyMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_copyMenuItemActionPerformed
+        agregarInternal(new EditarCatedratico());
+    }//GEN-LAST:event_copyMenuItemActionPerformed
 
     public void agregarInternal(JInternalFrame internal) {
         //internal.setSize(desktopPane.getSize());
@@ -453,12 +508,14 @@ public class Desktop extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem aboutMenuItem1;
+    private javax.swing.JMenuItem aboutMenuItem10;
     private javax.swing.JMenuItem aboutMenuItem3;
     private javax.swing.JMenuItem aboutMenuItem4;
     private javax.swing.JMenuItem aboutMenuItem5;
     private javax.swing.JMenuItem aboutMenuItem6;
     private javax.swing.JMenuItem aboutMenuItem7;
     private javax.swing.JMenuItem aboutMenuItem8;
+    private javax.swing.JMenuItem aboutMenuItem9;
     private javax.swing.JMenu btnAcerca;
     private javax.swing.JMenuItem btnCargar;
     private javax.swing.JMenu btnCrear;
