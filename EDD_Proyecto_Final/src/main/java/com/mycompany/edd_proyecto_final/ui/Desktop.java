@@ -401,6 +401,7 @@ public class Desktop extends javax.swing.JFrame {
         graph += hashEstudiante.testGraph();
         graph += "\n}";
         writeGraph("estudiante.dot", "estudiante.png", graph);
+        agregarInternal(new Visor("estudiante.png"));
     }//GEN-LAST:event_graphEstudianteActionPerformed
 
     private void graphCatedraticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_graphCatedraticoActionPerformed
@@ -409,11 +410,14 @@ public class Desktop extends javax.swing.JFrame {
         graph += "\n}";
         writeGraph("catedratico.dot", "catedratico.png", graph);
         
+        agregarInternal(new Visor("catedratico.png"));
+        
     }//GEN-LAST:event_graphCatedraticoActionPerformed
 
     private void graphHorarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_graphHorarioActionPerformed
         String graph = Desktop.treeHorario.testGraph();
         writeGraph("horario.dot", "horario.png", graph);
+        agregarInternal(new Visor("horario.png"));
     }//GEN-LAST:event_graphHorarioActionPerformed
 
     private void graphCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_graphCursoActionPerformed
@@ -421,6 +425,7 @@ public class Desktop extends javax.swing.JFrame {
         graph += lstCursos.testGraph();
         graph += "\n}";
         writeGraph("curso.dot", "curso.png", graph);
+        agregarInternal(new Visor("curso.png"));
     }//GEN-LAST:event_graphCursoActionPerformed
 
     private void graphUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_graphUsuarioActionPerformed
@@ -428,6 +433,7 @@ public class Desktop extends javax.swing.JFrame {
         graph += lstUsr.testGraph();
         graph += "\n}";
         writeGraph("usuario.dot", "usuario.png", graph);
+        agregarInternal(new Visor("usuario.png"));
     }//GEN-LAST:event_graphUsuarioActionPerformed
 
     private void graphEdificioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_graphEdificioActionPerformed
@@ -435,6 +441,7 @@ public class Desktop extends javax.swing.JFrame {
         graph += lstEdificios.testGraph();
         graph += "\n}";
         writeGraph("edificio.dot", "edificio.png", graph);
+        agregarInternal(new Visor("edificio.png"));
     }//GEN-LAST:event_graphEdificioActionPerformed
 
     private void graphAsignacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_graphAsignacionActionPerformed
@@ -442,6 +449,7 @@ public class Desktop extends javax.swing.JFrame {
         graph += lstAsignacion.testGraph();
         graph += "\n}";
         writeGraph("Asignacion.dot", "Asignacion.png", graph);
+        agregarInternal(new Visor("asignacion.png"));
     }//GEN-LAST:event_graphAsignacionActionPerformed
 
     private void aboutMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItem5ActionPerformed
