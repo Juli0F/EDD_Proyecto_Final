@@ -114,6 +114,14 @@ public class ListaDoble<T> implements Estructuras_Acciones<T> {
 
     @Override
     public boolean delete(T value) {
+        if (root.getValue().hashCode() == value.hashCode()) {
+            
+            root = root.getSiguiente();
+            root.setAnterior(null);
+            reindexar(0,root );
+            cantNodos-=1;
+            return true;
+        }
         return delete(value, root);
     }
 
@@ -121,6 +129,7 @@ public class ListaDoble<T> implements Estructuras_Acciones<T> {
         if (nodo != null) {
 
             if (value.hashCode() == nodo.getValue().hashCode()) {
+                
                 nodo.getAnterior().setSiguiente(nodo.getSiguiente());
                 nodo.getSiguiente().setAnterior(nodo.getAnterior());
                 reindexar(nodo.getId(), nodo.getSiguiente());

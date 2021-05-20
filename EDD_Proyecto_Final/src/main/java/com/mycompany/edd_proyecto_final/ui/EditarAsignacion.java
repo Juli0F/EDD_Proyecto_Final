@@ -213,7 +213,11 @@ public class EditarAsignacion extends javax.swing.JInternalFrame {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
-        Desktop.lstAsignacion.delete(asignacion);
+        if (asignacion != null) {
+            System.out.println("asignacion: "+asignacion);
+            Desktop.lstAsignacion.delete(asignacion);
+        }
+
         clearText();
         btnEnable(false);
     }//GEN-LAST:event_btnEliminarActionPerformed

@@ -119,6 +119,7 @@ public class CrearAsignacion extends javax.swing.JInternalFrame {
                     Desktop.lstAsignacion.push(asignacion);
 
                     JOptionPane.showMessageDialog(null, "Estudiante ASIGNADO Correctamente", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+                    clearText();
                     return;
                 }
             }
@@ -130,6 +131,12 @@ public class CrearAsignacion extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void clearText(){
+        txtCarnet.setText("");
+        txtFinal.setText("");
+        txtHorario.setText("");
+        txtZona.setText("");
+    }
     private Horario horario;
     private Estudiante estudiante;
     private Asignacion asignacion;
