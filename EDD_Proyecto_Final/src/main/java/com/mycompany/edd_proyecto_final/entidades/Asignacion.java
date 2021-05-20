@@ -1,6 +1,8 @@
 
 package com.mycompany.edd_proyecto_final.entidades;
 
+import java.util.Objects;
+
 public class Asignacion {
 
     private Estudiante estudiante;
@@ -50,6 +52,36 @@ public class Asignacion {
         this.fin = fin;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.estudiante);
+        hash = 97 * hash + Objects.hashCode(this.horario);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Asignacion other = (Asignacion) obj;
+        if (!Objects.equals(this.estudiante, other.estudiante)) {
+            return false;
+        }
+        if (!Objects.equals(this.horario, other.horario)) {
+            return false;
+        }
+        return true;
+    }
+
+    
     @Override
     public String toString() {
         return  "-------Estudiante------\n "+estudiante.getId() + " - "+estudiante.getNombre() + "\n zona: " + zona + "\n final: " + fin +
