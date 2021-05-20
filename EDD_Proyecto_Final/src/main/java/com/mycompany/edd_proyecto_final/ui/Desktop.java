@@ -7,6 +7,7 @@ package com.mycompany.edd_proyecto_final.ui;
 
 import com.mycompany.edd_practica_2.readf_file.Interprete;
 import com.mycompany.edd_proyecto_final.arboles.AVL;
+import com.mycompany.edd_proyecto_final.arboles.b.ArbolB;
 import com.mycompany.edd_proyecto_final.entidades.Asignacion;
 import com.mycompany.edd_proyecto_final.entidades.Catedratico;
 import com.mycompany.edd_proyecto_final.entidades.Curso;
@@ -76,7 +77,7 @@ public class Desktop extends javax.swing.JFrame {
         copyMenuItem = new javax.swing.JMenuItem();
         pasteMenuItem = new javax.swing.JMenuItem();
         deleteMenuItem = new javax.swing.JMenuItem();
-        aboutMenuItem4 = new javax.swing.JMenuItem();
+        editCatedratico = new javax.swing.JMenuItem();
         aboutMenuItem10 = new javax.swing.JMenuItem();
         aboutMenuItem8 = new javax.swing.JMenuItem();
         btnGraficar = new javax.swing.JMenu();
@@ -145,10 +146,20 @@ public class Desktop extends javax.swing.JFrame {
 
         crearHorario.setMnemonic('a');
         crearHorario.setText("Horario");
+        crearHorario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                crearHorarioActionPerformed(evt);
+            }
+        });
         btnCrear.add(crearHorario);
 
         aboutMenuItem3.setMnemonic('a');
         aboutMenuItem3.setText("Curso");
+        aboutMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aboutMenuItem3ActionPerformed(evt);
+            }
+        });
         btnCrear.add(aboutMenuItem3);
 
         aboutMenuItem5.setMnemonic('a');
@@ -180,6 +191,11 @@ public class Desktop extends javax.swing.JFrame {
 
         aboutMenuItem7.setMnemonic('a');
         aboutMenuItem7.setText("Asignacion");
+        aboutMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aboutMenuItem7ActionPerformed(evt);
+            }
+        });
         btnCrear.add(aboutMenuItem7);
 
         menuBar.add(btnCrear);
@@ -207,6 +223,11 @@ public class Desktop extends javax.swing.JFrame {
 
         pasteMenuItem.setMnemonic('p');
         pasteMenuItem.setText("Horario");
+        pasteMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pasteMenuItemActionPerformed(evt);
+            }
+        });
         btnEditar.add(pasteMenuItem);
 
         deleteMenuItem.setMnemonic('d');
@@ -218,9 +239,14 @@ public class Desktop extends javax.swing.JFrame {
         });
         btnEditar.add(deleteMenuItem);
 
-        aboutMenuItem4.setMnemonic('a');
-        aboutMenuItem4.setText("Catedratico");
-        btnEditar.add(aboutMenuItem4);
+        editCatedratico.setMnemonic('a');
+        editCatedratico.setText("Catedratico");
+        editCatedratico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editCatedraticoActionPerformed(evt);
+            }
+        });
+        btnEditar.add(editCatedratico);
 
         aboutMenuItem10.setMnemonic('a');
         aboutMenuItem10.setText("Salon");
@@ -233,6 +259,11 @@ public class Desktop extends javax.swing.JFrame {
 
         aboutMenuItem8.setMnemonic('a');
         aboutMenuItem8.setText("Asignacion");
+        aboutMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aboutMenuItem8ActionPerformed(evt);
+            }
+        });
         btnEditar.add(aboutMenuItem8);
 
         menuBar.add(btnEditar);
@@ -437,12 +468,36 @@ public class Desktop extends javax.swing.JFrame {
     }//GEN-LAST:event_aboutMenuItem9ActionPerformed
 
     private void aboutMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItem10ActionPerformed
-        
+        agregarInternal(new EditSalon());
     }//GEN-LAST:event_aboutMenuItem10ActionPerformed
 
     private void copyMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_copyMenuItemActionPerformed
         agregarInternal(new EditarCatedratico());
     }//GEN-LAST:event_copyMenuItemActionPerformed
+
+    private void aboutMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItem8ActionPerformed
+        agregarInternal(new EditarAsignacion());
+    }//GEN-LAST:event_aboutMenuItem8ActionPerformed
+
+    private void aboutMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItem7ActionPerformed
+        agregarInternal(new CrearAsignacion());
+    }//GEN-LAST:event_aboutMenuItem7ActionPerformed
+
+    private void crearHorarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearHorarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_crearHorarioActionPerformed
+
+    private void aboutMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItem3ActionPerformed
+        agregarInternal(new CrearCurso());
+    }//GEN-LAST:event_aboutMenuItem3ActionPerformed
+
+    private void pasteMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pasteMenuItemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pasteMenuItemActionPerformed
+
+    private void editCatedraticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editCatedraticoActionPerformed
+        agregarInternal(new EditarCatedratico());
+    }//GEN-LAST:event_editCatedraticoActionPerformed
 
     public void agregarInternal(JInternalFrame internal) {
         //internal.setSize(desktopPane.getSize());
@@ -503,14 +558,13 @@ public class Desktop extends javax.swing.JFrame {
     public static ListaDoble<Usuario> lstUsr = new ListaDoble<>();
     public static AVL<Catedratico> treeAvl = new AVL<>();
     public static HashTable<Estudiante> hashEstudiante = new HashTable<>();
-    public static AVL<Horario> treeHorario = new AVL<>();
+    public static ArbolB<Horario> treeHorario = new ArbolB<>(Horario.class);
     public static ListaDoble<Asignacion> lstAsignacion = new ListaDoble<>();
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem aboutMenuItem1;
     private javax.swing.JMenuItem aboutMenuItem10;
     private javax.swing.JMenuItem aboutMenuItem3;
-    private javax.swing.JMenuItem aboutMenuItem4;
     private javax.swing.JMenuItem aboutMenuItem5;
     private javax.swing.JMenuItem aboutMenuItem6;
     private javax.swing.JMenuItem aboutMenuItem7;
@@ -532,6 +586,7 @@ public class Desktop extends javax.swing.JFrame {
     private javax.swing.JMenuItem cutMenuItem;
     private javax.swing.JMenuItem deleteMenuItem;
     private javax.swing.JDesktopPane desktopPane;
+    private javax.swing.JMenuItem editCatedratico;
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenuItem graphAsignacion;
     private javax.swing.JMenuItem graphCatedratico;

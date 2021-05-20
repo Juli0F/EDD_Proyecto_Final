@@ -1,5 +1,6 @@
 package com.mycompany.edd_proyecto_final.ui;
 
+import com.mycompany.edd_proyecto_final.arboles.b.Key;
 import com.mycompany.edd_proyecto_final.entidades.Asignacion;
 import com.mycompany.edd_proyecto_final.entidades.Estudiante;
 import com.mycompany.edd_proyecto_final.entidades.Horario;
@@ -111,7 +112,7 @@ public class CrearAsignacion extends javax.swing.JInternalFrame {
             estudiante = Desktop.hashEstudiante.getValue(new Estudiante(txtCarnet.getText(), "", ""));
 
             if (estudiante != null) {
-                horario = Desktop.treeHorario.buscar(new Horario(txtHorario.getText()));
+                horario = Desktop.treeHorario.get(new Key(txtHorario.getText()));
 
                 if (horario != null) {
                     asignacion = new Asignacion(estudiante, horario, txtZona.getText(), txtFinal.getText());

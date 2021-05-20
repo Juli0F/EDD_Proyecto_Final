@@ -1,5 +1,7 @@
 package com.mycompany.main;
 
+import com.mycompany.edd_proyecto_final.arboles.b.ArbolB;
+import com.mycompany.edd_proyecto_final.entidades.Curso;
 import com.mycompany.edd_proyecto_final.entidades.Edificio;
 import com.mycompany.edd_proyecto_final.entidades.Salon;
 import com.mycompany.edd_proyecto_final.hash.HashTable;
@@ -11,10 +13,21 @@ public class Main {
     public static void main(String[] args) {
         Main m = new Main();
         //m.testHash();
-          m.testLstDoble();
+          //m.testLstDoble();
+          m.testArbolB();
         
     }
 
+    public void testArbolB(){
+        ArbolB<Curso> treeB = new ArbolB<>(Curso.class);
+        
+        for (int i = 0; i < 30; i++) {
+            Curso e = new Curso("codigo-"+i, "n-"+i, "s-"+i, "cr-"+i);
+            treeB.insertar(e);
+        }
+        
+        System.out.println(treeB.testGraph());
+    }
     public void testLstDoble(){
          ListaDoble<Edificio> lstDoble = new ListaDoble<>();
         

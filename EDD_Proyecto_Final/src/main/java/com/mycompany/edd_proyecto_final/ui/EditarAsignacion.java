@@ -1,5 +1,6 @@
 package com.mycompany.edd_proyecto_final.ui;
 
+import com.mycompany.edd_proyecto_final.arboles.b.Key;
 import com.mycompany.edd_proyecto_final.entidades.Asignacion;
 import com.mycompany.edd_proyecto_final.entidades.Estudiante;
 import com.mycompany.edd_proyecto_final.entidades.Horario;
@@ -9,6 +10,7 @@ public class EditarAsignacion extends javax.swing.JInternalFrame {
 
     public EditarAsignacion() {
         initComponents();
+        btnEnable(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -58,6 +60,11 @@ public class EditarAsignacion extends javax.swing.JInternalFrame {
         });
 
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -152,15 +159,21 @@ public class EditarAsignacion extends javax.swing.JInternalFrame {
             estudiante = Desktop.hashEstudiante.getValue(new Estudiante(txtCarnet.getText(), "", ""));
 
             if (estudiante != null) {
-                horario = Desktop.treeHorario.buscar(new Horario(txtHorario.getText()));
+                horario = Desktop.treeHorario.get(new Key(txtHorario.getText()));
 
-                if (horario != null) {
-                    asignacion = new Asignacion(estudiante, horario, txtZona.getText(), txtFinal.getText());
-                    Desktop.lstAsignacion.push(asignacion);
-
-                    JOptionPane.showMessageDialog(null, "Estudiante ASIGNADO Correctamente", "Informacion", JOptionPane.INFORMATION_MESSAGE);
-                    return;
-                }
+                asignacion.setFin(txtFinal.getText());
+                asignacion.setZona(txtZona.getText());
+                JOptionPane.showMessageDialog(null, "Asignacion Modificada Correctamente", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+                clearText();
+                btnEnable(false);
+                return;
+//                if (horario != null) {
+//                    asignacion = new Asignacion(estudiante, horario, txtZona.getText(), txtFinal.getText());
+//                    Desktop.lstAsignacion.push(asignacion);
+//
+//                    JOptionPane.showMessageDialog(null, "Estudiante ASIGNADO Correctamente", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+//                    return;
+//                }
             }
             JOptionPane.showMessageDialog(null, "Horario o Estudiante No Existe", "Informacion", JOptionPane.INFORMATION_MESSAGE);
             return;
@@ -185,17 +198,32 @@ public class EditarAsignacion extends javax.swing.JInternalFrame {
                 if (asignacion != null) {
                     txtFinal.setText(asignacion.getFin());
                     txtZona.setText(asignacion.getZona());
+                    btnEnable(true);
                     return;
                 }
-                
+
             }
-            
-            JOptionPane.showMessageDialog(null, "Horario o Estudiante No Existe","Informacion",JOptionPane.INFORMATION_MESSAGE);
+
+            JOptionPane.showMessageDialog(null, "Horario o Estudiante No Existe", "Informacion", JOptionPane.INFORMATION_MESSAGE);
             return;
 
         }
-        JOptionPane.showMessageDialog(null, "Carnet y Id Horario Son Obligatorios","Informacion",JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Carnet y Id Horario Son Obligatorios", "Informacion", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+        Desktop.lstAsignacion.delete(asignacion);
+        clearText();
+        btnEnable(false);
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void clearText() {
+        txtCarnet.setText("");
+        txtFinal.setText("");
+        txtHorario.setText("");
+        txtZona.setText("");
+    }
 
     private void btnEnable(boolean visible) {
         btnEliminar.setVisible(visible);

@@ -5,6 +5,7 @@
  */
 package com.mycompany.edd_practica_2.readf_file;
 
+import com.mycompany.edd_proyecto_final.arboles.b.Key;
 import com.mycompany.edd_proyecto_final.entidades.Asignacion;
 import com.mycompany.edd_proyecto_final.entidades.Catedratico;
 import com.mycompany.edd_proyecto_final.entidades.Curso;
@@ -131,7 +132,7 @@ public class Interprete {
                 if (curso != null) {
                     Catedratico catedratico = treeAvl.buscar(new Catedratico(datos[6], "", ""));
                   Horario horario = new Horario(datos[0].trim(), datos[1].trim(), datos[2].trim(), s, curso, catedratico);  
-                    treeHorario.insertar(horario);
+                    treeHorario.insertar(new Key(horario.getId()),horario);
                 }else{
                     Read.lstErr.push("Codigo de Catedratico: " + datos[3] + " No Se Encuntra Registrado! ");
                 }
@@ -149,7 +150,7 @@ public class Interprete {
             //      0          1       2      3
         //Asignar(carnet, codHorario, zona, final)
         
-        Horario horario = treeHorario.buscar(new Horario(datos[1].trim()));
+        Horario horario = treeHorario.get(new Key(datos[1]));
         
         if (horario != null && horario.getSalon() != null &&  horario.getSalon().isDisponible()) {
             Estudiante estudiante = hashEstudiante.getValue(new Estudiante(datos[0], "",""));
