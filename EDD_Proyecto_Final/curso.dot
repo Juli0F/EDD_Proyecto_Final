@@ -1,0 +1,38 @@
+digraph curso { 
+0 [label ="posocion: 0
+codigo: 777
+Curso: compiladores1
+semestre: 5
+creditos: 4" width = 1.5 style = filled, fillcolor = firebrick1, group = 54774  ];
+1 [label ="posocion: 1
+codigo: 771
+Curso: programacion2
+semestre: 4
+creditos: 4" width = 1.5 style = filled, fillcolor = firebrick1, group = 54768  ];
+2 [label ="posocion: 2
+codigo: 779
+Curso: Arquitectura de computadoras y ensambladores 2
+semestre: 7
+creditos: 4;" width = 1.5 style = filled, fillcolor = firebrick1, group = 54776  ];
+3 [label ="posocion: 3
+codigo: 732
+Curso: Estadistica 1
+semestre: 4
+creditos: 4;" width = 1.5 style = filled, fillcolor = firebrick1, group = 54645  ];
+4 [label ="posocion: 4
+codigo: 795
+Curso: Leguajes formales
+semestre: 4
+creditos: 4;" width = 1.5 style = filled, fillcolor = firebrick1, group = 54834  ];
+4->3
+3->4
+3->2
+2->3
+2->1
+1->2
+1->0
+0->1
+0 -> 4;
+4->0;
+
+}

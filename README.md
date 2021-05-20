@@ -1,5 +1,13 @@
-# EDD_Proyecto_Final
-Funciones Tabla Hash
-	insercion(key, value)
-	busqueda(key) --> devuelve el valor
-	borrar(key)
+# EDD_Proyecto_Final Estructura de Datos
+# Estructuras: 
+#	 Lista -> simple
+#		  doble
+#		  simple circular
+#		  doble circular
+#
+#	  pila
+#	  cola
+#	  AVL
+#	  Arbol B
+#
+#

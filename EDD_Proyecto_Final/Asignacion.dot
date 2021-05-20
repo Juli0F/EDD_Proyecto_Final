@@ -1,0 +1,36 @@
+digraph Edificio { 
+0 [label ="posocion: 0
+-------Estudiante------
+ 200145785 - Fernando Marroquín
+ zona: 30
+ final: 25
+ ----horario----
+lunes - 7:10am-8:00am
+---Curso--
+compiladores1" width = 1.5 style = filled, fillcolor = firebrick1, group = 821619674  ];
+1 [label ="posocion: 1
+-------Estudiante------
+ 200745781 - Alfonso Antonio
+ zona: 60
+ final: 10
+ ----horario----
+lunes - 8:00am-8:50am
+---Curso--
+compiladores1" width = 1.5 style = filled, fillcolor = firebrick1, group = 303915985  ];
+2 [label ="posocion: 2
+-------Estudiante------
+ 200478542 - Mario Morales
+ zona: 70
+ final: 20
+ ----horario----
+viernes - 7:10am-8:00am
+---Curso--
+compiladores1" width = 1.5 style = filled, fillcolor = firebrick1, group = 839983064  ];
+2->1
+1->2
+1->0
+0->1
+0 -> 2;
+2->0;
+
+}

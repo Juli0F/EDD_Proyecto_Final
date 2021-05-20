@@ -21,9 +21,6 @@ public class Visor extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jLabel1 = new javax.swing.JLabel();
-
-        jScrollPane1.setViewportView(jLabel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -47,20 +44,20 @@ public class Visor extends javax.swing.JInternalFrame {
 
     public void view() {
 
-        String ruta;
-
         try {
-            File archivoelegido = new File(pathImg);
-            ruta = archivoelegido.getPath();
-            ImageIcon imagen = new ImageIcon(pathImg);
-            jLabel1.setIcon(imagen);
-            jLabel1.setVisible(true);
+
+            ImageIcon img = new ImageIcon(pathImg); 
+            
+            JLabel lbl = new JLabel(img, JLabel.CENTER);
+            lbl.setSize(jScrollPane1.getSize());
+
             System.out.println("Cargando Imagen");
-            // jScrollPane1.setBounds(160, 10, 410, 300);
-            jScrollPane1.setViewportView(jLabel1);
+
+            jScrollPane1.setViewportView(lbl);
+            lbl.setVisible(true);
             jScrollPane1.setVisible(true);
         } catch (Exception e) {
-            
+
             JOptionPane.showMessageDialog(null, "Error Al Cargar Imagen", "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
@@ -70,7 +67,6 @@ public class Visor extends javax.swing.JInternalFrame {
     private String pathImg;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 

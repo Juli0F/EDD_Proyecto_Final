@@ -1,0 +1,33 @@
+digraph Edificio { 
+0 [label ="posocion: 0
+Edificio: T1
+Cantidad De Salones: 0" width = 1.5 style = filled, fillcolor = firebrick1, group = 2798  ];
+0 -> "Sin Salones"1 [label ="posocion: 1
+Edificio: T5
+Cantidad De Salones: 1" width = 1.5 style = filled, fillcolor = firebrick1, group = 2802  ];
+1 -> s42806 [label ="posocion: 0" width = 1.5 ,  group = 2802  ];
+s42806 [label ="posocion: 0
+No. Salon: 305
+Limite De Estudiantes:  25
+Alumnos Asignados: 0" width = 1.5 style = filled, fillcolor = lightskyblue, group = 2802  ];
+2 [label ="posocion: 2
+Edificio: T3
+Cantidad De Salones: 2" width = 1.5 style = filled, fillcolor = firebrick1, group = 2800  ];
+2 -> s60437 [label ="posocion: 0" width = 1.5 ,  group = 2800  ];
+s60437 [label ="posocion: 0
+No. Salon: 110
+Limite De Estudiantes:  75
+Alumnos Asignados: 0" width = 1.5 style = filled, fillcolor = lightskyblue, group = 2800  ];
+s60438 [label ="posocion: 1
+No. Salon: 310
+Limite De Estudiantes:  125
+Alumnos Asignados: 0" width = 1.5 style = filled, fillcolor = lightskyblue, group = 2800  ];
+ s60437-> s60438
+2->1
+1->2
+1->0
+0->1
+0 -> 2;
+2->0;
+
+}

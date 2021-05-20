@@ -109,24 +109,30 @@ public class ListaSimple<T> implements Estructuras_Acciones<T> {
      * @throws com.mycompany.exception.PopException
      */
     @Override
-    public T pop(int deletePos) throws PopException {
+    public T pop(int deletePos)  {
 
-        if (deletePos == 0) {
-            if (root == null) {
-                return null;
+        try {
+
+            if (deletePos == 0) {
+                if (root == null) {
+                    return null;
+                } else {
+                    T value = root.getValue();
+                    root = root.getSiguiente();
+                    cantNodos -= 1;
+                    return value;
+                }
+
+            } else if (deletePos == 1) {
+                return pop(root.getSiguiente());
             } else {
-                T value = root.getValue();
-                root = root.getSiguiente();
-                cantNodos -= 1;
-                return value;
+                throw new PopException("accion desconocida, parametro debe ser 1 | 0");
             }
-
-        } else if (deletePos == 1) {
-            return pop(root.getSiguiente());
-        } else {
-            throw new PopException("accion desconocida, parametro debe ser 1 | 0");
+        } catch (PopException e) {
+            e.printStackTrace();
         }
 
+        return null;
     }
 
     /**
@@ -221,8 +227,8 @@ public class ListaSimple<T> implements Estructuras_Acciones<T> {
     public boolean delete(T value) {
         Nodo<T> nodoDelete = new Nodo<>(value, false);
         if (root.hashCode() == nodoDelete.hashCode()) {
-            root = root.getSiguiente();
-            cantNodos -= 1;
+
+            pop(0);
             return true;
         }
         return delete(nodoDelete, root);
@@ -274,16 +280,16 @@ public class ListaSimple<T> implements Estructuras_Acciones<T> {
         }
     }
 
-    public String testGraph(){
+    public String testGraph() {
         return root.testGraph(true, true, root.hashCode());
     }
-            
+
     public String testGraph(int group) {
 
         Random r = new Random();
         int x = r.nextInt(100000);
 
-        String cadena = "s" + x + " [label =\"posocion: " + (0) +"\" width = 1.5 ,  group = " + group + "  ];\n";;
+        String cadena = "s" + x + " [label =\"posocion: " + (0) + "\" width = 1.5 ,  group = " + group + "  ];\n";;
         cadena += label(x, 0, root, group);
         return cadena;
 
