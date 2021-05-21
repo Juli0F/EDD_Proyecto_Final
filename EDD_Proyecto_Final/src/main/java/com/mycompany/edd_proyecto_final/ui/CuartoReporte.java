@@ -106,6 +106,7 @@ public class CuartoReporte extends javax.swing.JInternalFrame {
         dtm.setRowCount(0);
         int aprobados = 0;
         int otro = 0;
+        
         for (int j = 0; j < Desktop.lstAsignacion.size(); j++) {
             Asignacion asignacion = Desktop.lstAsignacion.get(j);
 

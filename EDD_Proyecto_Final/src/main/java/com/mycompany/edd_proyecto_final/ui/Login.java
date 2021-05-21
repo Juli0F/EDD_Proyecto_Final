@@ -119,17 +119,20 @@ public class Login extends javax.swing.JInternalFrame {
 
             if (lstUsr.contains(usr)) {
                 Usuario usuario = lstUsr.get(usr);
+                System.out.println(usuario.getTipo());
                 if (usuario.getPassword().equals(usr.getPassword())) {
                     if (!usuario.getTipo().equalsIgnoreCase("colaborador")) {
 
                         Estudiante s = Desktop.hashEstudiante.getValue(new Estudiante(usuario.getId(), "", ""));
-                        if (s != null) {
+                        
+                        //if (s != null) {
+                            System.out.println("dentro del if de estudiante");
                             Desktop.estudiante = s;
                             HomeStudent hs = new HomeStudent(s);
 
                             desktop.agregarInternal(hs);
                             permisos();
-                        }
+                        //}
 
                     }
                     bar.setVisible(true);
