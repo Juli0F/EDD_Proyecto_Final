@@ -29,18 +29,12 @@ public class Desktop extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         menuBar.setVisible(false);
         agregarInternal(new Login(menuBar,this));
-//        Login login = new Login(menuBar);
-//        login.setSize(250, 400);
-//
-//        login.setLocation(desktopPane.getWidth() / 2 - 125, desktopPane.getHeight() / 2 - 200);
-//        login.setVisible(true);
-//        desktopPane.repaint();
-//        desktopPane.add(login);
-//        desktopPane.revalidate();
-
-//        this.repaint();
-//        this.revalidate();
-//        this.add(login);
+        
+        if (estudiante != null) {
+            rep2.setVisible(false);
+            rep3.setVisible(false);
+            rep4.setVisible(false);
+        }
     }
 
     /**
@@ -85,7 +79,9 @@ public class Desktop extends javax.swing.JFrame {
         graphAsignacion = new javax.swing.JMenuItem();
         btnAcerca = new javax.swing.JMenu();
         contentMenuItem1 = new javax.swing.JMenuItem();
-        aboutMenuItem1 = new javax.swing.JMenuItem();
+        rep2 = new javax.swing.JMenuItem();
+        rep3 = new javax.swing.JMenuItem();
+        rep4 = new javax.swing.JMenuItem();
         btnSalir = new javax.swing.JMenu();
         exitMenuItem1 = new javax.swing.JMenuItem();
 
@@ -333,15 +329,43 @@ public class Desktop extends javax.swing.JFrame {
         menuBar.add(btnGraficar);
 
         btnAcerca.setMnemonic('h');
-        btnAcerca.setText("Acerca De");
+        btnAcerca.setText("Reportes");
 
         contentMenuItem1.setMnemonic('c');
-        contentMenuItem1.setText("Contents");
+        contentMenuItem1.setText("Asignacion Por Estudiante");
+        contentMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                contentMenuItem1ActionPerformed(evt);
+            }
+        });
         btnAcerca.add(contentMenuItem1);
 
-        aboutMenuItem1.setMnemonic('a');
-        aboutMenuItem1.setText("About");
-        btnAcerca.add(aboutMenuItem1);
+        rep2.setMnemonic('c');
+        rep2.setText("Asignacion A Un Curso");
+        rep2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rep2ActionPerformed(evt);
+            }
+        });
+        btnAcerca.add(rep2);
+
+        rep3.setMnemonic('c');
+        rep3.setText("Cursos en un Salon");
+        rep3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rep3ActionPerformed(evt);
+            }
+        });
+        btnAcerca.add(rep3);
+
+        rep4.setMnemonic('c');
+        rep4.setText("Estudiantes Aprobados");
+        rep4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rep4ActionPerformed(evt);
+            }
+        });
+        btnAcerca.add(rep4);
 
         menuBar.add(btnAcerca);
 
@@ -520,6 +544,22 @@ public class Desktop extends javax.swing.JFrame {
         agregarInternal(new Login(menuBar,this));
     }//GEN-LAST:event_exitMenuItem1ActionPerformed
 
+    private void contentMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contentMenuItem1ActionPerformed
+        agregarInternal(new PrimerReporte(estudiante));
+    }//GEN-LAST:event_contentMenuItem1ActionPerformed
+
+    private void rep2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rep2ActionPerformed
+        agregarInternal(new SegundoReporte());
+    }//GEN-LAST:event_rep2ActionPerformed
+
+    private void rep3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rep3ActionPerformed
+        agregarInternal(new TercerReporte());
+    }//GEN-LAST:event_rep3ActionPerformed
+
+    private void rep4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rep4ActionPerformed
+        agregarInternal(new CuartoReporte());
+    }//GEN-LAST:event_rep4ActionPerformed
+
     public void agregarInternal(JInternalFrame internal) {
         //internal.setSize(desktopPane.getSize());
          internal.setLocation(desktopPane.getWidth() / 2 - (internal.getWidth()/2), desktopPane.getHeight() / 2 - (internal.getHeight()/2));
@@ -573,7 +613,7 @@ public class Desktop extends javax.swing.JFrame {
     }
     private WriteFile wf;
     
-    
+    public static Estudiante estudiante;
     public static ListaDoble<Edificio> lstEdificios = new ListaDoble<>();
     public static ListaDoble<Curso> lstCursos = new ListaDoble<>();
     public static ListaDoble<Usuario> lstUsr = new ListaDoble<>();
@@ -583,7 +623,6 @@ public class Desktop extends javax.swing.JFrame {
     public static ListaDoble<Asignacion> lstAsignacion = new ListaDoble<>();
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem aboutMenuItem1;
     private javax.swing.JMenuItem aboutMenuItem10;
     private javax.swing.JMenuItem aboutMenuItem3;
     private javax.swing.JMenuItem aboutMenuItem5;
@@ -619,6 +658,9 @@ public class Desktop extends javax.swing.JFrame {
     private javax.swing.JMenuItem graphUsuario;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem pasteMenuItem;
+    private javax.swing.JMenuItem rep2;
+    private javax.swing.JMenuItem rep3;
+    private javax.swing.JMenuItem rep4;
     // End of variables declaration//GEN-END:variables
 
 }

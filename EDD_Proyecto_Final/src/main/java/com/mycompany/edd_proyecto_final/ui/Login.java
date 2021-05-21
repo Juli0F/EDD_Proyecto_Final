@@ -30,7 +30,7 @@ public class Login extends javax.swing.JInternalFrame {
         initComponents();
         this.bar = bar;
         this.desktop = desktopPane;
-        
+
         txtUser.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -121,14 +121,19 @@ public class Login extends javax.swing.JInternalFrame {
                 Usuario usuario = lstUsr.get(usr);
                 if (usuario.getPassword().equals(usr.getPassword())) {
                     if (!usuario.getTipo().equalsIgnoreCase("colaborador")) {
-                        
-                        HomeStudent hs = new HomeStudent(Desktop.hashEstudiante.getValue(new Estudiante(usuario.getId(),"","")));
-                        
-                        desktop.agregarInternal(hs);
-                        permisos();
+
+                        Estudiante s = Desktop.hashEstudiante.getValue(new Estudiante(usuario.getId(), "", ""));
+                        if (s != null) {
+                            Desktop.estudiante = s;
+                            HomeStudent hs = new HomeStudent(s);
+
+                            desktop.agregarInternal(hs);
+                            permisos();
+                        }
+
                     }
                     bar.setVisible(true);
-                    
+
                     dispose();
                 } else {
 
