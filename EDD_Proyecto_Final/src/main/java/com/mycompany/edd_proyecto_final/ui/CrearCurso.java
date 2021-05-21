@@ -4,9 +4,12 @@
 package com.mycompany.edd_proyecto_final.ui;
 
 import com.mycompany.edd_proyecto_final.entidades.Curso;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 public class CrearCurso extends javax.swing.JInternalFrame {
 
@@ -21,6 +24,7 @@ public class CrearCurso extends javax.swing.JInternalFrame {
             }
             
         });
+        actionTxt(txtCreditos);
         
     }
     @SuppressWarnings("unchecked")
@@ -120,6 +124,15 @@ public class CrearCurso extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "El Curso Ya Existe", "Error", JOptionPane.ERROR_MESSAGE);
     }//GEN-LAST:event_btnCrearActionPerformed
 
+    
+    private void actionTxt(JTextField input) {
+        input.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                btnCrearActionPerformed(e);
+            }
+        });
+    }
     
     private Curso curso;
     // Variables declaration - do not modify//GEN-BEGIN:variables

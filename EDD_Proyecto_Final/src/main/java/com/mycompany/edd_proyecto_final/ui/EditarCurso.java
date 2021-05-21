@@ -1,9 +1,12 @@
 package com.mycompany.edd_proyecto_final.ui;
 
 import com.mycompany.edd_proyecto_final.entidades.Curso;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 public class EditarCurso extends javax.swing.JInternalFrame {
 
@@ -11,6 +14,7 @@ public class EditarCurso extends javax.swing.JInternalFrame {
         initComponents();
         btnEnable(false);
         txtCodigo.setEnabled(false);
+        actionTxt(txtCreditos);
 
     }
 
@@ -22,7 +26,7 @@ public class EditarCurso extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        btnCrear = new javax.swing.JButton();
+        btnGuardar = new javax.swing.JButton();
         txtCodigo = new javax.swing.JFormattedTextField();
         txtCurso = new javax.swing.JTextField();
         txtSemestre = new javax.swing.JFormattedTextField();
@@ -41,10 +45,10 @@ public class EditarCurso extends javax.swing.JInternalFrame {
 
         jLabel4.setText("Creditos");
 
-        btnCrear.setText("Guardar");
-        btnCrear.addActionListener(new java.awt.event.ActionListener() {
+        btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCrearActionPerformed(evt);
+                btnGuardarActionPerformed(evt);
             }
         });
 
@@ -96,7 +100,7 @@ public class EditarCurso extends javax.swing.JInternalFrame {
                                         .addComponent(txtSemestre)
                                         .addComponent(txtCreditos))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(btnCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(btnEliminar))))
                             .addGroup(layout.createSequentialGroup()
@@ -136,7 +140,7 @@ public class EditarCurso extends javax.swing.JInternalFrame {
                     .addComponent(txtCreditos, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(14, 14, 14))
         );
@@ -144,7 +148,7 @@ public class EditarCurso extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
 
         curso = Desktop.lstCursos.get(new Curso(txtCurso.getText(), "", "", ""));
 
@@ -159,7 +163,7 @@ public class EditarCurso extends javax.swing.JInternalFrame {
 
         cleanTxt();
         JOptionPane.showMessageDialog(null, "El Curso Modificado Correctamente", "Informacion", JOptionPane.INFORMATION_MESSAGE);
-    }//GEN-LAST:event_btnCrearActionPerformed
+    }//GEN-LAST:event_btnGuardarActionPerformed
 
     
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
@@ -188,7 +192,7 @@ public class EditarCurso extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnEnable(boolean visible) {
-        btnCrear.setVisible(visible);
+        btnGuardar.setVisible(visible);
         btnEliminar.setVisible(visible);
     }
     private void cleanTxt(){
@@ -200,10 +204,18 @@ public class EditarCurso extends javax.swing.JInternalFrame {
      
     }
 
+     private void actionTxt(JTextField input) {
+        input.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                btnGuardarActionPerformed(e);
+            }
+        });
+    }
     private Curso curso;
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCrear;
     private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnGuardar;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

@@ -5,7 +5,10 @@ package com.mycompany.edd_proyecto_final.ui;
 
 import com.mycompany.edd_proyecto_final.entidades.Edificio;
 import com.mycompany.edd_proyecto_final.entidades.Salon;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 public class EditSalon extends javax.swing.JInternalFrame {
 
@@ -13,6 +16,8 @@ public class EditSalon extends javax.swing.JInternalFrame {
     public EditSalon() {
         initComponents();
         panel.setVisible(false);
+        
+        actionTxt(txtCantidad);
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -203,6 +208,15 @@ public class EditSalon extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCrear1ActionPerformed
 
+    
+    private void actionTxt(JTextField input) {
+        input.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                btnCrearActionPerformed(e);
+            }
+        });
+    }
     private Salon salon;
     private Edificio edificio ;
     // Variables declaration - do not modify//GEN-BEGIN:variables

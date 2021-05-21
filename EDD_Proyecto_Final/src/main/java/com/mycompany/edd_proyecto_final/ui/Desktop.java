@@ -21,27 +21,22 @@ import com.mycompany.edd_proyecto_final.listas.ListaDoble;
 import com.mycompany.edd_proyecto_final.listas.ListaSimple;
 import javax.swing.JInternalFrame;
 
-/**
- *
- * @author Temporal
- */
 public class Desktop extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Desktop
-     */
+    
     public Desktop() {
         initComponents();
         setLocationRelativeTo(null);
         menuBar.setVisible(false);
-        Login login = new Login(menuBar);
-        login.setSize(250, 400);
-
-        login.setLocation(desktopPane.getWidth() / 2 - 125, desktopPane.getHeight() / 2 - 200);
-        login.setVisible(true);
-        desktopPane.repaint();
-        desktopPane.add(login);
-        desktopPane.revalidate();
+        agregarInternal(new Login(menuBar,this));
+//        Login login = new Login(menuBar);
+//        login.setSize(250, 400);
+//
+//        login.setLocation(desktopPane.getWidth() / 2 - 125, desktopPane.getHeight() / 2 - 200);
+//        login.setVisible(true);
+//        desktopPane.repaint();
+//        desktopPane.add(login);
+//        desktopPane.revalidate();
 
 //        this.repaint();
 //        this.revalidate();
@@ -92,6 +87,7 @@ public class Desktop extends javax.swing.JFrame {
         contentMenuItem1 = new javax.swing.JMenuItem();
         aboutMenuItem1 = new javax.swing.JMenuItem();
         btnSalir = new javax.swing.JMenu();
+        exitMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -351,6 +347,16 @@ public class Desktop extends javax.swing.JFrame {
 
         btnSalir.setMnemonic('e');
         btnSalir.setText("Salir");
+
+        exitMenuItem1.setMnemonic('x');
+        exitMenuItem1.setText("Salir");
+        exitMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitMenuItem1ActionPerformed(evt);
+            }
+        });
+        btnSalir.add(exitMenuItem1);
+
         menuBar.add(btnSalir);
 
         setJMenuBar(menuBar);
@@ -377,14 +383,16 @@ public class Desktop extends javax.swing.JFrame {
         //System.exit(0);
 
         //agregarInternal(new Login(menuBar));
-        Login login = new Login(menuBar);
-        login.setSize(250, 400);
+//        Login login = new Login(menuBar);
+//        login.setSize(250, 400);
+//
+//        login.setLocation(desktopPane.getWidth() / 2 - 125, desktopPane.getHeight() / 2 - 200);
+//        login.setVisible(true);
+//        desktopPane.repaint();
+//        desktopPane.add(login);
+//        desktopPane.revalidate();
 
-        login.setLocation(desktopPane.getWidth() / 2 - 125, desktopPane.getHeight() / 2 - 200);
-        login.setVisible(true);
-        desktopPane.repaint();
-        desktopPane.add(login);
-        desktopPane.revalidate();
+        agregarInternal(new Login(menuBar,this));
     }//GEN-LAST:event_exitMenuItemActionPerformed
 
     private void btnCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarActionPerformed
@@ -508,6 +516,10 @@ public class Desktop extends javax.swing.JFrame {
         agregarInternal(new EditarCatedratico());
     }//GEN-LAST:event_editCatedraticoActionPerformed
 
+    private void exitMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItem1ActionPerformed
+        agregarInternal(new Login(menuBar,this));
+    }//GEN-LAST:event_exitMenuItem1ActionPerformed
+
     public void agregarInternal(JInternalFrame internal) {
         //internal.setSize(desktopPane.getSize());
          internal.setLocation(desktopPane.getWidth() / 2 - (internal.getWidth()/2), desktopPane.getHeight() / 2 - (internal.getHeight()/2));
@@ -597,6 +609,7 @@ public class Desktop extends javax.swing.JFrame {
     private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JMenuItem editCatedratico;
     private javax.swing.JMenuItem exitMenuItem;
+    private javax.swing.JMenuItem exitMenuItem1;
     private javax.swing.JMenuItem graphAsignacion;
     private javax.swing.JMenuItem graphCatedratico;
     private javax.swing.JMenuItem graphCurso;

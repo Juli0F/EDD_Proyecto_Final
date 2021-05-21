@@ -2,13 +2,17 @@
 package com.mycompany.edd_proyecto_final.ui;
 
 import com.mycompany.edd_proyecto_final.entidades.Estudiante;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 public class CrearEstudiante extends javax.swing.JInternalFrame {
 
     
     public CrearEstudiante() {
         initComponents();
+        actionTxt(txtDireccion);
     }
 
     
@@ -107,6 +111,15 @@ public class CrearEstudiante extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_btnCrearActionPerformed
 
+    
+    private void actionTxt(JTextField input) {
+        input.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                btnCrearActionPerformed(e);
+            }
+        });
+    }
     private void clearTex(){
         txtCarnet.setText("");
         txtDireccion.setText("");

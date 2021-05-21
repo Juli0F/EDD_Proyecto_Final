@@ -4,13 +4,17 @@ import com.mycompany.edd_proyecto_final.arboles.b.Key;
 import com.mycompany.edd_proyecto_final.entidades.Asignacion;
 import com.mycompany.edd_proyecto_final.entidades.Estudiante;
 import com.mycompany.edd_proyecto_final.entidades.Horario;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 public class EditarAsignacion extends javax.swing.JInternalFrame {
 
     public EditarAsignacion() {
         initComponents();
         btnEnable(false);
+        actionTxt(txtFinal);
     }
 
     @SuppressWarnings("unchecked")
@@ -233,6 +237,16 @@ public class EditarAsignacion extends javax.swing.JInternalFrame {
         btnEliminar.setVisible(visible);
         btnGuardar.setVisible(visible);
     }
+    
+    private void actionTxt(JTextField input) {
+        input.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                btnGuardarActionPerformed(e);
+            }
+        });
+    }
+    
     private Horario horario;
     private Estudiante estudiante;
     private Asignacion asignacion;

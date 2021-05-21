@@ -6,13 +6,17 @@ import com.mycompany.edd_proyecto_final.entidades.Curso;
 import com.mycompany.edd_proyecto_final.entidades.Edificio;
 import com.mycompany.edd_proyecto_final.entidades.Horario;
 import com.mycompany.edd_proyecto_final.entidades.Salon;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 public class EditarHorario extends javax.swing.JInternalFrame {
 
     public EditarHorario() {
         initComponents();
-        
+        actionTxt(txtCatedratico);
+
     }
 
     @SuppressWarnings("unchecked")
@@ -30,7 +34,7 @@ public class EditarHorario extends javax.swing.JInternalFrame {
         jLabel7 = new javax.swing.JLabel();
         txtDia = new javax.swing.JTextField();
         txtCatedratico = new javax.swing.JTextField();
-        btnCrear = new javax.swing.JButton();
+        btnGuardar = new javax.swing.JButton();
         txtCurso = new javax.swing.JFormattedTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jButton2 = new javax.swing.JButton();
@@ -51,10 +55,10 @@ public class EditarHorario extends javax.swing.JInternalFrame {
             }
         });
 
-        btnCrear.setText("Guardar");
-        btnCrear.addActionListener(new java.awt.event.ActionListener() {
+        btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCrearActionPerformed(evt);
+                btnGuardarActionPerformed(evt);
             }
         });
 
@@ -80,12 +84,11 @@ public class EditarHorario extends javax.swing.JInternalFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(10, 10, 10)
-                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(40, 40, 40))
+                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addContainerGap()
-                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(36, 36, 36)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtCurso)
                                     .addComponent(txtDia, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)))
@@ -110,7 +113,7 @@ public class EditarHorario extends javax.swing.JInternalFrame {
                                             .addComponent(txtCatedratico, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGroup(jPanel1Layout.createSequentialGroup()
                                                 .addGap(49, 49, 49)
-                                                .addComponent(btnCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                                .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                         .addGap(0, 22, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -144,7 +147,7 @@ public class EditarHorario extends javax.swing.JInternalFrame {
                     .addComponent(jLabel6)
                     .addComponent(txtCatedratico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(btnCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -162,7 +165,7 @@ public class EditarHorario extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         if (txtId.getText().isBlank()) {
             JOptionPane.showMessageDialog(null, "Todos los Campos son Obligatorios");
             return;
@@ -191,7 +194,7 @@ public class EditarHorario extends javax.swing.JInternalFrame {
         }
 
         JOptionPane.showMessageDialog(null, "Horario Ya Existe", "Informacion", JOptionPane.INFORMATION_MESSAGE);
-    }//GEN-LAST:event_btnCrearActionPerformed
+    }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void clearTxt() {
         txtCatedratico.setText("");
@@ -206,6 +209,14 @@ public class EditarHorario extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIdActionPerformed
 
+    private void actionTxt(JTextField input) {
+        input.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                btnGuardarActionPerformed(e);
+            }
+        });
+    }
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         if (txtId.getText().isBlank()) {
             JOptionPane.showMessageDialog(null, "Debe Ingresar EL ID del Horario", "Informacion", JOptionPane.INFORMATION_MESSAGE);
@@ -228,7 +239,7 @@ public class EditarHorario extends javax.swing.JInternalFrame {
     private Horario horario;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCrear;
+    private javax.swing.JButton btnGuardar;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

@@ -2,13 +2,17 @@
 package com.mycompany.edd_proyecto_final.ui;
 
 import com.mycompany.edd_proyecto_final.entidades.Catedratico;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 public class CrearCatedratico extends javax.swing.JInternalFrame {
 
     
     public CrearCatedratico() {
         initComponents();
+        actionTxt(txtDireccion);
     }
 
     
@@ -111,6 +115,15 @@ public class CrearCatedratico extends javax.swing.JInternalFrame {
         txtCarnet.setText("");
         txtDireccion.setText("");
         txtNombre.setText("");
+    }
+    
+    private void actionTxt(JTextField input) {
+        input.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                btnCrearActionPerformed(e);
+            }
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

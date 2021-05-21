@@ -1,19 +1,19 @@
-
-
-
 package com.mycompany.edd_proyecto_final.ui;
 
 import com.mycompany.edd_proyecto_final.entidades.Edificio;
 import com.mycompany.edd_proyecto_final.entidades.Salon;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
 public class CrearSalon extends javax.swing.JInternalFrame {
 
-
     public CrearSalon() {
         initComponents();
         panel.setVisible(false);
+        actionTxt();
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -142,38 +142,45 @@ public class CrearSalon extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         edificio = Desktop.lstEdificios.get(new Edificio(txtEdificio.getText()));
-        
+
         if (edificio == null) {
-            JOptionPane.showMessageDialog(null, "No se Encontro Edificio: "+txtEdificio.getText());
+            JOptionPane.showMessageDialog(null, "No se Encontro Edificio: " + txtEdificio.getText());
             txtEdificio.setText("");
             return;
         }
-        
-        
+
         txtEdificio.setText("");
-        labelTitle.setText(labelTitle.getText() +" "+ txtEdificio.getText());
+        labelTitle.setText(labelTitle.getText() + " " + txtEdificio.getText());
         panel.setVisible(true);
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
-        
+
         if (txtCantidad.getText().isBlank() || txtNoSalon.getText().isBlank()) {
-            JOptionPane.showMessageDialog(null, "Debe LLenar Todos Los Campos","Informacion", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Debe LLenar Todos Los Campos", "Informacion", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
         Salon s = new Salon(txtNoSalon.getText(), txtCantidad.getText());
         edificio.getLstSalon().push(s);
-        JOptionPane.showMessageDialog(null, "Salon Creado Exitosamente","Informacion",JOptionPane.INFORMATION_MESSAGE);
-        
+        JOptionPane.showMessageDialog(null, "Salon Creado Exitosamente", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+
         txtCantidad.setText("");
         txtNoSalon.setText("");
         panel.setVisible(false);
-            
-        
+
+
     }//GEN-LAST:event_btnCrearActionPerformed
 
-    private Edificio edificio ;
+    private void actionTxt() {
+        txtCantidad.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                btnCrearActionPerformed(e);
+            }
+        });
+    }
+    private Edificio edificio;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCrear;
     private javax.swing.JButton jButton1;

@@ -4,12 +4,16 @@ import com.mycompany.edd_proyecto_final.arboles.b.Key;
 import com.mycompany.edd_proyecto_final.entidades.Asignacion;
 import com.mycompany.edd_proyecto_final.entidades.Estudiante;
 import com.mycompany.edd_proyecto_final.entidades.Horario;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 public class CrearAsignacion extends javax.swing.JInternalFrame {
 
     public CrearAsignacion() {
         initComponents();
+        actionTxt(txtHorario);
     }
 
     @SuppressWarnings("unchecked")
@@ -25,7 +29,7 @@ public class CrearAsignacion extends javax.swing.JInternalFrame {
         txtZona = new javax.swing.JFormattedTextField();
         jLabel5 = new javax.swing.JLabel();
         txtFinal = new javax.swing.JFormattedTextField();
-        jButton1 = new javax.swing.JButton();
+        btnCrear = new javax.swing.JButton();
 
         jLabel1.setText("Carnet");
 
@@ -35,10 +39,10 @@ public class CrearAsignacion extends javax.swing.JInternalFrame {
 
         jLabel5.setText("Final");
 
-        jButton1.setText("Crear");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnCrear.setText("Crear");
+        btnCrear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnCrearActionPerformed(evt);
             }
         });
 
@@ -56,7 +60,7 @@ public class CrearAsignacion extends javax.swing.JInternalFrame {
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(txtCarnet, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
                         .addComponent(txtHorario)
@@ -87,7 +91,7 @@ public class CrearAsignacion extends javax.swing.JInternalFrame {
                     .addComponent(txtHorario, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(44, 44, 44)
-                .addComponent(jButton1)
+                .addComponent(btnCrear)
                 .addGap(49, 49, 49))
         );
 
@@ -107,7 +111,7 @@ public class CrearAsignacion extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
         if (!txtCarnet.getText().isEmpty() && !txtHorario.getText().isEmpty()) {
             estudiante = Desktop.hashEstudiante.getValue(new Estudiante(txtCarnet.getText(), "", ""));
 
@@ -129,7 +133,7 @@ public class CrearAsignacion extends javax.swing.JInternalFrame {
         JOptionPane.showMessageDialog(null, "Debe LLenar Todos Los Campos", "Informacion", JOptionPane.INFORMATION_MESSAGE);
 
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnCrearActionPerformed
 
     private void clearText(){
         txtCarnet.setText("");
@@ -137,11 +141,21 @@ public class CrearAsignacion extends javax.swing.JInternalFrame {
         txtHorario.setText("");
         txtZona.setText("");
     }
+    
+    private void actionTxt(JTextField input) {
+        input.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                btnCrearActionPerformed(e);
+            }
+        });
+    }
+    
     private Horario horario;
     private Estudiante estudiante;
     private Asignacion asignacion;
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnCrear;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;

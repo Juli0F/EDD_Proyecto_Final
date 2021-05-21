@@ -1,13 +1,17 @@
 package com.mycompany.edd_proyecto_final.ui;
 
 import com.mycompany.edd_proyecto_final.entidades.Usuario;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 public class EditarUsuario extends javax.swing.JInternalFrame {
 
     public EditarUsuario() {
         initComponents();
         enabledBtn(false);
+        actionTxt(txtPassword);
     }
 
     @SuppressWarnings("unchecked")
@@ -155,6 +159,14 @@ public class EditarUsuario extends javax.swing.JInternalFrame {
     private void enabledBtn(boolean enable) {
         btnEliminar.setEnabled(enable);
         btnGuardar.setEnabled(enable);
+    }
+     private void actionTxt(JTextField input) {
+        input.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                btnGuardarActionPerformed(e);
+            }
+        });
     }
     private Usuario usuario;
     // Variables declaration - do not modify//GEN-BEGIN:variables

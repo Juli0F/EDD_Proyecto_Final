@@ -3,13 +3,18 @@
 package com.mycompany.edd_proyecto_final.ui;
 
 import com.mycompany.edd_proyecto_final.entidades.Estudiante;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 public class EditarEstudiante extends javax.swing.JInternalFrame {
 
 
     public EditarEstudiante() {
         initComponents();
+        
+        actionTxt(txtDireccion);
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -189,6 +194,14 @@ public class EditarEstudiante extends javax.swing.JInternalFrame {
         btnGuardar.setEnabled(enable);
     }
     
+     private void actionTxt(JTextField input) {
+        input.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                btnGuardarActionPerformed(e);
+            }
+        });
+    }
     private Estudiante estudiante;    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEliminar;

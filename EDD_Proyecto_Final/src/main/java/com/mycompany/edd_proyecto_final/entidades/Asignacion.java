@@ -43,6 +43,10 @@ public class Asignacion {
     public void setZona(String zona) {
         this.zona = zona;
     }
+    public String getNotaFinal(){
+        
+         return ""+ (Integer.parseInt(fin)+Integer.parseInt(zona));
+    }
 
     public String getFin() {
         return fin;

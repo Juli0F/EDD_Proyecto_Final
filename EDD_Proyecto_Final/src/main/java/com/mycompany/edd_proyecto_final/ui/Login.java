@@ -5,11 +5,13 @@
  */
 package com.mycompany.edd_proyecto_final.ui;
 
+import com.mycompany.edd_proyecto_final.entidades.Estudiante;
 import com.mycompany.edd_proyecto_final.entidades.Usuario;
 import static com.mycompany.edd_proyecto_final.ui.Desktop.lstUsr;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JDesktopPane;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
@@ -23,10 +25,12 @@ public class Login extends javax.swing.JInternalFrame {
     /**
      * Creates new form Login
      */
-    public Login(JMenuBar bar) {
+    public Login(JMenuBar bar, Desktop desktopPane) {
         initComponents();
         initComponents();
         this.bar = bar;
+        this.desktop = desktopPane;
+        
         txtUser.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -52,10 +56,10 @@ public class Login extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         txtUser = new javax.swing.JTextField();
-        txtPassword = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        txtPassword = new javax.swing.JPasswordField();
 
         jButton1.setText("Entrar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -93,9 +97,9 @@ public class Login extends javax.swing.JInternalFrame {
                 .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(74, Short.MAX_VALUE))
         );
@@ -117,9 +121,14 @@ public class Login extends javax.swing.JInternalFrame {
                 Usuario usuario = lstUsr.get(usr);
                 if (usuario.getPassword().equals(usr.getPassword())) {
                     if (!usuario.getTipo().equalsIgnoreCase("colaborador")) {
+                        
+                        HomeStudent hs = new HomeStudent(Desktop.hashEstudiante.getValue(new Estudiante(usuario.getId(),"","")));
+                        
+                        desktop.agregarInternal(hs);
                         permisos();
                     }
                     bar.setVisible(true);
+                    
                     dispose();
                 } else {
 
@@ -162,12 +171,13 @@ public class Login extends javax.swing.JInternalFrame {
             }
         }
     }
+    private Desktop desktop;
     private JMenuBar bar;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField txtPassword;
+    private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables
 }

@@ -6,12 +6,16 @@ import com.mycompany.edd_proyecto_final.entidades.Curso;
 import com.mycompany.edd_proyecto_final.entidades.Edificio;
 import com.mycompany.edd_proyecto_final.entidades.Horario;
 import com.mycompany.edd_proyecto_final.entidades.Salon;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 public class CrearHorario extends javax.swing.JInternalFrame {
 
     public CrearHorario() {
         initComponents();
+        actionTxt(txtCatedratico);
     }
 
     @SuppressWarnings("unchecked")
@@ -219,6 +223,14 @@ public class CrearHorario extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIdActionPerformed
 
+    private void actionTxt(JTextField input) {
+        input.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                btnCrearActionPerformed(e);
+            }
+        });
+    }
     private Catedratico catedratico;
     private Curso curso;
     private Edificio edificio;
