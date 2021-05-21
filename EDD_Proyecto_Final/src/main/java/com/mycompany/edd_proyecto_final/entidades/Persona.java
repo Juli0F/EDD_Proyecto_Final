@@ -1,6 +1,7 @@
 
 package com.mycompany.edd_proyecto_final.entidades;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 
 public class Persona {
@@ -44,9 +45,16 @@ public class Persona {
 
     @Override
     public int hashCode() {
+        int suma = 0;
+        
+        byte[] bytes = id.getBytes(StandardCharsets.US_ASCII);
+        
+        for (int i = 0; i < bytes.length; i++) {
+            suma += bytes[i]*(i+1);    
+        }
         
         int hash = 3;
-        hash = 71 * hash + Objects.hashCode(this.id);
+        hash = 71 * hash + suma;
         return hash;
     }
 
