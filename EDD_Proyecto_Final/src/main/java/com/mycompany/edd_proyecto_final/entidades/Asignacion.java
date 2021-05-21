@@ -1,4 +1,3 @@
-
 package com.mycompany.edd_proyecto_final.entidades;
 
 import java.util.Objects;
@@ -7,7 +6,7 @@ public class Asignacion {
 
     private Estudiante estudiante;
     private Horario horario;
-    private String zona ;
+    private String zona;
     private String fin;
 
     public Asignacion() {
@@ -43,9 +42,10 @@ public class Asignacion {
     public void setZona(String zona) {
         this.zona = zona;
     }
-    public String getNotaFinal(){
-        
-         return ""+ (Integer.parseInt(fin)+Integer.parseInt(zona));
+
+    public String getNotaFinal() {
+
+        return "" + (Integer.parseInt(fin) + Integer.parseInt(zona));
     }
 
     public String getFin() {
@@ -85,12 +85,20 @@ public class Asignacion {
         return true;
     }
 
-    
     @Override
     public String toString() {
-        return  "-------Estudiante------\n "+estudiante.getId() + " - "+estudiante.getNombre() + "\n zona: " + zona + "\n final: " + fin +
-                "\n ----horario----\n" +horario.getDia()+" - "+ horario.getHora()+"\n---Curso--\n"+horario.getCurso().getNombre();
+        String studen = (estudiante != null) ? estudiante.getId()
+                + " - " + estudiante.getNombre() : "null";
+        String strHorario = (horario != null) ?
+                horario.getDia() + " - " + horario.getHora()
+                + "\n---Curso--\n"+ horario.getCurso().getNombre() : "Eliminado";
+
+        return "-------Estudiante------\n "
+                + studen
+                + "\n zona: " + zona
+                + "\n final: " + fin
+                + "\n ----horario----\n"
+                + strHorario;
     }
-    
-    
+
 }

@@ -62,7 +62,7 @@ public class Horario {
     }
 
     public Curso getCurso() {
-        return curso;
+        return (curso != null)?curso:new Curso("", "", "Eliminado", "");
     }
 
     public void setCurso(Curso curso) {
@@ -104,7 +104,11 @@ public class Horario {
 
     @Override
     public String toString() {
-        return  id + "\n hora: " + hora + "\n dia " + dia + "\n salon: " + salon + "\n curso" + curso + "\n catedratico" + catedratico + '}';
+        String strCurso = (curso != null)?curso.toString():"Eliminado";
+        String strCat   = (catedratico != null)?catedratico.toString():"Eliminado";
+        return  id + "\n hora: " + hora + "\n dia " + dia + "\n salon: " + salon + "\n curso" +
+                strCurso
+                + "\n catedratico" + strCat ;
     }
     
     
