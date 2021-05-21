@@ -12,6 +12,7 @@ public class EditarUsuario extends javax.swing.JInternalFrame {
         initComponents();
         enabledBtn(false);
         actionTxt(txtPassword);
+        buscarTxt(txtUsuario);
     }
 
     @SuppressWarnings("unchecked")
@@ -20,7 +21,7 @@ public class EditarUsuario extends javax.swing.JInternalFrame {
 
         jLabel1 = new javax.swing.JLabel();
         txtUsuario = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
@@ -43,14 +44,14 @@ public class EditarUsuario extends javax.swing.JInternalFrame {
         getContentPane().add(txtUsuario);
         txtUsuario.setBounds(86, 14, 183, 33);
 
-        jButton1.setText("Buscar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnBuscarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(281, 14, 72, 33);
+        getContentPane().add(btnBuscar);
+        btnBuscar.setBounds(281, 14, 72, 33);
         getContentPane().add(jSeparator1);
         jSeparator1.setBounds(0, 53, 446, 10);
 
@@ -110,7 +111,7 @@ public class EditarUsuario extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         usuario = Desktop.lstUsr.get(new Usuario(txtUsuario.getText(), "", "", ""));
         if (usuario == null) {
             JOptionPane.showMessageDialog(null, "No se Encontro Usuario con Id: " + txtUsuario.getText());
@@ -124,7 +125,7 @@ public class EditarUsuario extends javax.swing.JInternalFrame {
         txtPassword.setText(usuario.getPassword());
         enabledBtn(true);
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         usuario.setPassword(txtPassword.getText());
@@ -148,6 +149,14 @@ public class EditarUsuario extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_btnEliminarActionPerformed
 
+    private void buscarTxt(JTextField input) {
+        input.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                btnBuscarActionPerformed(e);
+            }
+        });
+    }
     private void clearText() {
         txtUsuario.setText("");
         txtid.setText("");
@@ -170,9 +179,9 @@ public class EditarUsuario extends javax.swing.JInternalFrame {
     }
     private Usuario usuario;
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnGuardar;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

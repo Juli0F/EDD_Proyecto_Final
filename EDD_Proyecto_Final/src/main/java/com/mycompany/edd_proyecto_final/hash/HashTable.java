@@ -138,14 +138,19 @@ public class HashTable<V> {
     public boolean eliminar(V value) {
 
         int index = getIndexByHash(value);
-        if (valor.get(index).hashCode() == value.hashCode()) {
-            return valor.pushForce(null, index);
+        
+        V v = valor.get(index);
+        if (v != null && v.hashCode() == value.hashCode()) {
+            charge--;
+            return valor.delete(value);
+         //   return valor.pushForce(null, index);
 
         } else {
             index = getIndexColision(value, index);
-            if (valor.get(index).hashCode() == value.hashCode()) {
+            v = valor.get(index);
+            if (v != null && v.hashCode() == value.hashCode()) {
                 charge--;
-                return valor.pushForce(null, index);
+                return valor.delete(value);
             }
         }
         return false;

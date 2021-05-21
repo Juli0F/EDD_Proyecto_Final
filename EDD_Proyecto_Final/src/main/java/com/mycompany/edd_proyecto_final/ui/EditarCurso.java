@@ -15,6 +15,7 @@ public class EditarCurso extends javax.swing.JInternalFrame {
         btnEnable(false);
         txtCodigo.setEnabled(false);
         actionTxt(txtCreditos);
+        buscarTxt(txtCodigo);
 
     }
 
@@ -35,7 +36,7 @@ public class EditarCurso extends javax.swing.JInternalFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jLabel5 = new javax.swing.JLabel();
         txtBuscar = new javax.swing.JFormattedTextField();
-        jButton1 = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
 
         jLabel1.setText("Codigo");
 
@@ -69,10 +70,10 @@ public class EditarCurso extends javax.swing.JInternalFrame {
 
         txtBuscar.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
 
-        jButton1.setText("Buscar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnBuscarActionPerformed(evt);
             }
         });
 
@@ -108,7 +109,7 @@ public class EditarCurso extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton1)))
+                                .addComponent(btnBuscar)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -119,7 +120,7 @@ public class EditarCurso extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(btnBuscar))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -170,9 +171,10 @@ public class EditarCurso extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         Desktop.lstCursos.delete(curso);
         JOptionPane.showMessageDialog(null, "El Curso Eliminado Correctamente", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+        cleanTxt();
     }//GEN-LAST:event_btnEliminarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         if (txtBuscar.getText().isBlank()) {
             JOptionPane.showMessageDialog(null, "Debe Ingresar El COdigo Del Curso A Buscar", "Informacion", JOptionPane.INFORMATION_MESSAGE);
             return;
@@ -189,7 +191,7 @@ public class EditarCurso extends javax.swing.JInternalFrame {
         txtSemestre.setText(curso.getSemestre());
         btnEnable(true);
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnEnable(boolean visible) {
         btnGuardar.setVisible(visible);
@@ -203,6 +205,16 @@ public class EditarCurso extends javax.swing.JInternalFrame {
      txtSemestre.setText("");
      
     }
+    
+    private void buscarTxt(JTextField input) {
+        input.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                btnBuscarActionPerformed(e);
+            }
+        });
+    }
+            
 
      private void actionTxt(JTextField input) {
         input.addActionListener(new ActionListener() {
@@ -214,9 +226,9 @@ public class EditarCurso extends javax.swing.JInternalFrame {
     }
     private Curso curso;
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnGuardar;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

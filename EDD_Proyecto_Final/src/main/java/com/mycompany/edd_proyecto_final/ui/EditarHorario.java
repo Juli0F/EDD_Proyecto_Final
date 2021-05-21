@@ -16,6 +16,7 @@ public class EditarHorario extends javax.swing.JInternalFrame {
     public EditarHorario() {
         initComponents();
         actionTxt(txtCatedratico);
+        buscarTxt(txtId);
 
     }
 
@@ -37,7 +38,7 @@ public class EditarHorario extends javax.swing.JInternalFrame {
         btnGuardar = new javax.swing.JButton();
         txtCurso = new javax.swing.JFormattedTextField();
         jSeparator1 = new javax.swing.JSeparator();
-        jButton2 = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
 
         jLabel1.setText("Id");
 
@@ -64,10 +65,10 @@ public class EditarHorario extends javax.swing.JInternalFrame {
 
         txtCurso.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
 
-        jButton2.setText("Buscar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnBuscarActionPerformed(evt);
             }
         });
 
@@ -98,7 +99,7 @@ public class EditarHorario extends javax.swing.JInternalFrame {
                                 .addGap(12, 12, 12)
                                 .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton2))
+                                .addComponent(btnBuscar))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -125,7 +126,7 @@ public class EditarHorario extends javax.swing.JInternalFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton2)))
+                        .addComponent(btnBuscar)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15)
@@ -217,7 +218,7 @@ public class EditarHorario extends javax.swing.JInternalFrame {
             }
         });
     }
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         if (txtId.getText().isBlank()) {
             JOptionPane.showMessageDialog(null, "Debe Ingresar EL ID del Horario", "Informacion", JOptionPane.INFORMATION_MESSAGE);
             return;
@@ -230,8 +231,16 @@ public class EditarHorario extends javax.swing.JInternalFrame {
         txtHora.setText(horario.getHora());
 
 
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
+    private void buscarTxt(JTextField input) {
+        input.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                btnBuscarActionPerformed(e);
+            }
+        });
+    }
     private Catedratico catedratico;
     private Curso curso;
     private Edificio edificio;
@@ -239,8 +248,8 @@ public class EditarHorario extends javax.swing.JInternalFrame {
     private Horario horario;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnGuardar;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -15,6 +15,8 @@ public class EditarAsignacion extends javax.swing.JInternalFrame {
         initComponents();
         btnEnable(false);
         actionTxt(txtFinal);
+        buscarTxt(txtHorario);
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -32,7 +34,7 @@ public class EditarAsignacion extends javax.swing.JInternalFrame {
         txtFinal = new javax.swing.JFormattedTextField();
         btnGuardar = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
-        jButton2 = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
 
         jLabel1.setText("Carnet");
@@ -56,10 +58,10 @@ public class EditarAsignacion extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton2.setText("Buscar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnBuscarActionPerformed(evt);
             }
         });
 
@@ -102,7 +104,7 @@ public class EditarAsignacion extends javax.swing.JInternalFrame {
                                 .addGap(0, 40, Short.MAX_VALUE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(94, 94, 94)
-                        .addComponent(jButton2)
+                        .addComponent(btnBuscar)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -118,7 +120,7 @@ public class EditarAsignacion extends javax.swing.JInternalFrame {
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtHorario, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
+                .addComponent(btnBuscar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -191,7 +193,7 @@ public class EditarAsignacion extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtHorarioActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         if (!txtCarnet.getText().isEmpty() && !txtHorario.getText().isEmpty()) {
             estudiante = new Estudiante(txtCarnet.getText(), "", "");
             horario = new Horario(txtHorario.getText());
@@ -213,12 +215,12 @@ public class EditarAsignacion extends javax.swing.JInternalFrame {
 
         }
         JOptionPane.showMessageDialog(null, "Carnet y Id Horario Son Obligatorios", "Informacion", JOptionPane.INFORMATION_MESSAGE);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
         if (asignacion != null) {
-            System.out.println("asignacion: "+asignacion);
+            System.out.println("asignacion: " + asignacion);
             Desktop.lstAsignacion.delete(asignacion);
         }
 
@@ -237,7 +239,7 @@ public class EditarAsignacion extends javax.swing.JInternalFrame {
         btnEliminar.setVisible(visible);
         btnGuardar.setVisible(visible);
     }
-    
+
     private void actionTxt(JTextField input) {
         input.addActionListener(new ActionListener() {
             @Override
@@ -246,14 +248,23 @@ public class EditarAsignacion extends javax.swing.JInternalFrame {
             }
         });
     }
-    
+
+    private void buscarTxt(JTextField input) {
+        input.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                btnBuscarActionPerformed(e);
+            }
+        });
+    }
+
     private Horario horario;
     private Estudiante estudiante;
     private Asignacion asignacion;
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnGuardar;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;

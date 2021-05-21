@@ -1,5 +1,3 @@
-
-
 package com.mycompany.edd_proyecto_final.ui;
 
 import com.mycompany.edd_proyecto_final.entidades.Estudiante;
@@ -10,19 +8,21 @@ import javax.swing.JTextField;
 
 public class EditarEstudiante extends javax.swing.JInternalFrame {
 
-
     public EditarEstudiante() {
         initComponents();
-        
+
         actionTxt(txtDireccion);
+        buscarTxt(txtCarnet);
     }
+    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         txtCarnet = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
         txtCarnetS = new javax.swing.JTextField();
@@ -37,10 +37,10 @@ public class EditarEstudiante extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Carnet");
 
-        jButton1.setText("Buscar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnBuscarActionPerformed(evt);
             }
         });
 
@@ -78,7 +78,7 @@ public class EditarEstudiante extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtCarnet, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -115,7 +115,7 @@ public class EditarEstudiante extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txtCarnet)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -148,11 +148,11 @@ public class EditarEstudiante extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+
         estudiante = Desktop.hashEstudiante.getValue(new Estudiante(txtCarnet.getText(), "", ""));
         if (estudiante == null) {
-            JOptionPane.showMessageDialog(null, "No se Encontro Estudiante con Carnet: "+txtCarnet.getText());
+            JOptionPane.showMessageDialog(null, "No se Encontro Estudiante con Carnet: " + txtCarnet.getText());
             txtCarnet.setText("");
             return;
         }
@@ -161,7 +161,7 @@ public class EditarEstudiante extends javax.swing.JInternalFrame {
         txtNombre.setText(estudiante.getNombre());
         txtDireccion.setText(estudiante.getDireccion());
         enabledBtn(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         estudiante.setNombre(txtNombre.getText());
@@ -171,30 +171,30 @@ public class EditarEstudiante extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        
-        
+
         if (!Desktop.hashEstudiante.eliminar(estudiante)) {
-            JOptionPane.showMessageDialog(null, "Ocurrio Un Error Al Intentar Eliminar AL Estudiante","Error",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Ocurrio Un Error Al Intentar Eliminar AL Estudiante", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        
-        JOptionPane.showMessageDialog(null, "Estudiante Eliminado Correctamente","Informacion",JOptionPane.INFORMATION_MESSAGE);
+
+        JOptionPane.showMessageDialog(null, "Estudiante Eliminado Correctamente", "Informacion", JOptionPane.INFORMATION_MESSAGE);
         clearText();
         enabledBtn(false);
-        
+
     }//GEN-LAST:event_btnEliminarActionPerformed
 
-    private void clearText(){
+    private void clearText() {
         txtCarnetS.setText("");
         txtDireccion.setText("");
         txtNombre.setText("");
     }
-    private void enabledBtn(boolean enable){
+
+    private void enabledBtn(boolean enable) {
         btnEliminar.setEnabled(enable);
         btnGuardar.setEnabled(enable);
     }
-    
-     private void actionTxt(JTextField input) {
+
+    private void actionTxt(JTextField input) {
         input.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -202,11 +202,20 @@ public class EditarEstudiante extends javax.swing.JInternalFrame {
             }
         });
     }
-    private Estudiante estudiante;    
+
+    private void buscarTxt(JTextField input) {
+        input.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                btnBuscarActionPerformed(e);
+            }
+        });
+    }
+    private Estudiante estudiante;
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnGuardar;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

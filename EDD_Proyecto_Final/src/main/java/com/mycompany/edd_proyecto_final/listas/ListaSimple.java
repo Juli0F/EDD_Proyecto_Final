@@ -226,7 +226,7 @@ public class ListaSimple<T> implements Estructuras_Acciones<T> {
     @Override
     public boolean delete(T value) {
         Nodo<T> nodoDelete = new Nodo<>(value, false);
-        if (root.hashCode() == nodoDelete.hashCode()) {
+        if (root.getValue() != null && root.hashCode() == nodoDelete.hashCode()) {
 
             pop(0);
             return true;
